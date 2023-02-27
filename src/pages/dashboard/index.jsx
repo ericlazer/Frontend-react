@@ -16,7 +16,7 @@ const Dashboard = () => {
           Best Blockchain Market Overview in the world!
         </div>
         <div className='mt-16 text-[30px] sm:text-[40px] lg:text-[60px] text-center'>
-          <span className='text-white'>Analyze Blockchain Market Cap Today</span>
+          <span className='text-white'>Analyze Blockchain Market Today</span>
           <br />
           <span className='text-white'>with <span className='text-violet-700 font-bold'>CONEXIO</span></span>
         </div>
