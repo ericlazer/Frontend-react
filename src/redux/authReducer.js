@@ -40,7 +40,7 @@ export const authSlice = createSlice({
     }
 });
 
-const {  loginRequest, loginSuccess, loginFailure, registerRequest, registering, registerEnd} = authSlice.actions;
+const {  registerRequest, registerEnd } = authSlice.actions;
 
 export const registerUser = (user) => async (dispatch) => {
     dispatch(registerRequest());

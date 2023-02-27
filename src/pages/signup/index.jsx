@@ -12,7 +12,7 @@ export default function Index() {
   
 
   const clickSignUpBtn = () => {
-    if (email == '' || password =='') {
+    if (email === '' || password === '') {
       dispatch(openSnackBar({status: "warning", message: "Please fill email and password"}))
       return;
     }
