@@ -24,14 +24,14 @@ const Main = () => {
             <button className='border-2 border-white px-6 py-2 rounded-[10px] min-w-[100px] transition ease-in-out hover:bg-white hover:text-black duration-300'>Sign Up</button>
             <button className='border-2 border-white px-6 py-2 rounded-[10px] min-w-[100px] transition ease-in-out hover:bg-white hover:text-black duration-300 ml-4'>Login</button>
           </div>
-        </div>
+        </div>  
         <div className='flex justify-between mt-10 gap-10'>
           <div className='bg-black w-[50%] flex px-8 py-16 rounded-lg'>
             <div>
               <img src={CoinMarketImg} className='w-[200px]'/>
             </div>
             <div className='m-auto'>
-              <div className='text-[32px] text-white font-bold'>Coin Market List</div>
+              <div className='text-[32px] text-white font-bold'>Coin Market List</div>    
               <div className='text-[18px] text-white'>Get all informaion about Coins</div>
               <button className='border-2 border-white px-6 py-2 rounded-[10px] min-w-[100px] transition ease-in-out hover:bg-white hover:text-black duration-300 text-white mt-8'>Explore All</button>
             </div>
