@@ -8,11 +8,11 @@ const Dashboard = () => {
     <div className='min-h-screen dashboard-background'>
       <div className='max-w-[1500px] m-auto pt-10 px-10'>
         <div className='flex justify-between'>
-          <img src={ Logo } className='sm:w-[250px] w-[150px]' />
-          <div className='flex text-xl gap-10 text-white items-center'>
-            <Link><div className='text-[14px] tracking-[.05em] text-gray-300 hover:text-white transition ease-in-out'>HOW-TO</div></Link>
-            <Link><div className='text-[14px] tracking-[.05em] text-gray-300 hover:text-white transition ease-in-out'>CAREER</div></Link>
-            <Link><div className='text-[14px] tracking-[.05em] text-gray-300 hover:text-white transition ease-in-out'>ABOUT</div></Link>
+          <img src={ Logo } className='sm:w-[250px] w-[130px]' />
+          <div className='flex text-xl gap-0 sm:gap-10 text-white items-center'>
+            <Link><div className='text-[14px] tracking-[.05em] text-gray-300 hover:text-white transition ease-in-out hidden sm:block'>HOW-TO</div></Link>
+            <Link><div className='text-[14px] tracking-[.05em] text-gray-300 hover:text-white transition ease-in-out hidden sm:block'>CAREER</div></Link>
+            <Link><div className='text-[14px] tracking-[.05em] text-gray-300 hover:text-white transition ease-in-out hidden sm:block'>ABOUT</div></Link>
             <Link to="/app"><div className='py-2 px-6 rounded-md px-8 duration-300 transition cursor-pointer ease-in-out text-[14px] hover:opacity-[0.8]' style={{background: 'radial-gradient(100% 341.37% at 0% 24.29%, #5C1693 0%, #201DAD 100%)'}}>Ged Started</div></Link>
           </div>
         </div>
