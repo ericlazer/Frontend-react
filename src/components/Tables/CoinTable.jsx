@@ -47,12 +47,12 @@ const Table = (props) => {
         // In these columns, compare by integer. Not string
         const valueA = parseFloat(a[column]);
         const valueB = parseFloat(b[column]);
-        if (valueA < valueB) return -1 * sortOrder;
-        if (valueA > valueB) return 1 * sortOrder;
+        if (valueA < valueB) return -sortOrder;
+        if (valueA > valueB) return sortOrder;
         return 0;
       } else {
-        if (a[column] < b[column]) return -1 * sortOrder;
-        if (a[column] > b[column]) return 1 * sortOrder;
+        if (a[column] < b[column]) return -sortOrder;
+        if (a[column] > b[column]) return sortOrder;
         return 0;
       }
     });
