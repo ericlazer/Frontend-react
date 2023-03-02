@@ -19,3 +19,7 @@ code {
 .dashboard-background {
   background: linear-gradient(139.43deg, #2B2B2B 6.41%, #19191A 76.94%);
 }
+
+.menu-button:hover {
+  background: radial-gradient(100% 341.37% at 0% 24.29%, #5C1693 0%, #201DAD 100%);
+}

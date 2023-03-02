@@ -2,10 +2,8 @@ import React from 'react'
 import Layout from '../../components/Layout'
 import CoinTable from '../../components/Tables/CoinTable'
 import CoinMarketImg from '../../assets/img/CoinMarket.gif'
-import TrendingCoinGif from '../../assets/img/trendingCoin.gif'
-import TrendingCoinImg from '../../assets/img/trendingCoin.png'
 
-const Main = () => {
+const News = () => {
 
   const CoinData = [
     { id: 1, name: 'Bitcoin', price: '45632', hourlyChange: '-0.76', dailyChange: '-2.91', weeklyChange: '-1.12', marketCap: '$858.8B', volume: '$36.5B', lastSevenDays: 0.5 },
@@ -56,4 +54,4 @@ const Main = () => {
   )
 }
 
-export default Main
+export default News
