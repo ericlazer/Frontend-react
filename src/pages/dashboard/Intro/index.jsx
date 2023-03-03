@@ -7,7 +7,7 @@ const Intro = () => {
   return (
     <>
       <div className='flex justify-between'>
-        <img src={ Logo } className='sm:w-[250px] w-[130px]' alt="LOGO" />
+        <img src={ Logo } className='sm:w-[250px] w-[130px]' alt="Logo" />
         <div className='flex text-xl gap-0 sm:gap-10 text-white items-center'>
           <Link><div className='text-[14px] tracking-[.05em] text-gray-300 hover:text-white transition ease-in-out hidden sm:block'>HOW-TO</div></Link>
           <Link><div className='text-[14px] tracking-[.05em] text-gray-300 hover:text-white transition ease-in-out hidden sm:block'>CAREER</div></Link>

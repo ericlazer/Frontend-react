@@ -3,6 +3,7 @@ import Intro from './Intro'
 import KnowMore from './KnowMore'
 import Goal from './Goal'
 import Plan from './Plan'
+import Question from './Question'
 import Subscribe from './Subscribe'
 import Footer from './Footer'
 
@@ -14,7 +15,10 @@ const Dashboard = () => {
         <KnowMore />
         <Goal />
         <Plan />
+        <Question />
         <Subscribe />
+      </div>
+      <div className='px-[240px] bg-[#0A0A0A]'>
         <Footer />
       </div>
     </div>

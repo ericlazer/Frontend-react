@@ -1,6 +1,5 @@
-import React, { useState, useMemo } from "react";
+import React, { useState } from "react";
 import { CoinTableHeader } from "../../config/TableHeaders";
-import { data } from "autoprefixer";
 
 // map table headers to object keys
 const columnMap = {
