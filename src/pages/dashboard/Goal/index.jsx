@@ -5,7 +5,7 @@ const Goal = () => {
   return (
     <div className='mt-24'>
       <p className='font-semibold text-[67px] text-white ml-8'>OUR GOAL</p>
-      <div className='mt-24 grid grid-cols-4 gap-4'>
+      <div className='mt-12 grid grid-cols-4 gap-4'>
         <div className='rounded-[34px] border-2 border-gray-600 p-10 border-opacity-0 hover:border-opacity-100 text-white cursor-pointer transition ease-in-out'>
           <p className='text-2xl font-bold'>Education</p>
           <p className='mt-4 text-[14px]'>

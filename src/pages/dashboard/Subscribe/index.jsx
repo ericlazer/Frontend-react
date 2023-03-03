@@ -2,12 +2,12 @@ import React from 'react'
 
 const Subscribe = () => {
   return (
-    <div className='flex justify-center gap-[200px] mt-24'>
+    <div className='flex justify-between mt-32 px-24'>
       <div>
         <p className="text-[64px] font-semibold leading-[60px] text-white">Subscribe to <br /> new letter</p>
         <p className="text-[14px] mt-4 text-gray-400">Get daily news, update and post about <br/> crypto and trading directly to your email</p>
       </div>
-      <div className='flex flex-col gap-4 text-white'>
+      <div className='flex flex-col gap-4 text-white w-[520px]'>
         <p className='text-2xl font-semibold'>Name</p>
         <input placeholder='Please input your Name.' className='bg-gray-900 outline-none border-2 border-gray-800 p-4 rounded-lg w-[400px]'/>
         <p className='text-2xl font-semibold'>Email</p>

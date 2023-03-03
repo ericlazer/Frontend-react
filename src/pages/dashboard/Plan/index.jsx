@@ -12,6 +12,8 @@ const PlanDetail = ({ content }) => {
   );
 };
 
+const PlanButton = () => <div className='py-4 text-white rounded-md duration-300 transition cursor-pointer ease-in-out text-[14px] hover:opacity-[0.8] text-center' style={{background: 'radial-gradient(100% 341.37% at 0% 24.29%, #5C1693 0%, #201DAD 100%)'}}>Ged Started</div>
+
 const Plan = () => {
   return (
     <div className="mt-24">
@@ -31,7 +33,7 @@ const Plan = () => {
             <PlanDetail content="On-chain historical data" />
             <PlanDetail content="Advanced screening & charting" />
             <PlanDetail content="Tier 1 metrics up to 24 hours" />
-            <button className="text-gray-400 w-full py-3 transition ease-in-out text-white bg-gradient-to-br from-purple-800 to-indigo-900 hover:text-white hover:opacity-[0.9] rounded-lg">Get Started</button>
+            <PlanButton />
             <p className="text-gray-400 w-full text-center hover:text-white transition ease-in-out cursor-pointer mt-[-10px]">Learn more</p>
           </div>
         </div>
@@ -49,8 +51,8 @@ const Plan = () => {
             <PlanDetail content="10 custom queries" />
             <PlanDetail content="25 smart alerts" />
             <PlanDetail content="CSV downloads" />
-            <button className="text-gray-400 w-full py-3 transition ease-in-out text-white bg-gradient-to-br from-purple-800 to-indigo-900 hover:text-white hover:opacity-[0.9] rounded-lg">Get Started</button>
-            <p className="text-gray-400 w-full text-center hover:text-white transition ease-in-out cursor-pointer mt-[-10px]">Learn more</p>
+            {/* <PlanButton />
+            <p className="text-gray-400 w-full text-center hover:text-white transition ease-in-out cursor-pointer mt-[-10px]">Learn more</p> */}
           </div>
         </div>
 
@@ -69,8 +71,8 @@ const Plan = () => {
             <PlanDetail content="10 active trading bots" />
             <PlanDetail content="CSV & JSON downloads" />
             <PlanDetail content="Trade on many exchanges using a single interface." />
-            <button className="text-gray-400 w-full py-3 transition ease-in-out text-white bg-gradient-to-br from-purple-800 to-indigo-900 hover:text-white hover:opacity-[0.9] rounded-lg">Get Started</button>
-            <p className="text-gray-400 w-full text-center hover:text-white transition ease-in-out cursor-pointer mt-[-10px]">Learn more</p>
+            {/* <PlanButton />
+            <p className="text-gray-400 w-full text-center hover:text-white transition ease-in-out cursor-pointer mt-[-10px]">Learn more</p> */}
           </div>
         </div>
 
@@ -89,8 +91,8 @@ const Plan = () => {
             <PlanDetail content="10 active trading bots" />
             <PlanDetail content="CSV & JSON downloads" />
             <PlanDetail content="Trade on many exchanges using a single interface." />
-            <button className="text-gray-400 w-full py-3 transition ease-in-out text-white bg-gradient-to-br from-purple-800 to-indigo-900 hover:text-white hover:opacity-[0.9] rounded-lg">Get Started</button>
-            <p className="text-gray-400 w-full text-center hover:text-white transition ease-in-out cursor-pointer mt-[-10px]">Learn more</p>
+            {/* <PlanButton />
+            <p className="text-gray-400 w-full text-center hover:text-white transition ease-in-out cursor-pointer mt-[-10px]">Learn more</p> */}
           </div>
         </div>
 
