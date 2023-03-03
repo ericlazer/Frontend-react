@@ -2,6 +2,7 @@ import React, { useState, useMemo } from "react";
 import { CoinTableHeader } from "../../config/TableHeaders";
 import { data } from "autoprefixer";
 
+// map table headers to object keys
 const columnMap = {
   "#": "id",
   "1h %": "hourlyChange",
