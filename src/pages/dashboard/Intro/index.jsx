@@ -20,7 +20,7 @@ const Intro = () => {
         <br />
         <span className='text-white'>TODAY</span>
       </div>
-      <div className='mt-4 text-center text-base text-gray-300'>
+      <div className='mt-4 text-center text-sm sm:text-base text-gray-300'>
         Welcome to the future of blockchain! Our CONEXIO is the ultimate solution for all your Blockchain information <br /> needs.
         With our technology and user-friendly platform, you can easily manage, store information and <br/> get recent news about Blockchain.
       </div>
