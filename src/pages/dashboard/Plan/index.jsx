@@ -17,10 +17,10 @@ const PlanButton = () => <div className='py-4 text-white rounded-md duration-300
 const Plan = () => {
   return (
     <div className="mt-24">
-      <p className="font-semibold text-[56px] text-white ml-8">
+      <p className="font-semibold text-4xl md:text-[56px] text-white ml-8">
         Choose your Plan
       </p>
-      <div className="mt-8 grid grid-cols-4 gap-5">
+      <div className="mt-8 grid md:grid-cols-2 xl:grid-cols-4 gap-5">
 
         <div className="p-3">
           <p className="text-[32px] text-white">Basic</p>
