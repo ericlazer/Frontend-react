@@ -11,8 +11,8 @@ const Coins = () => {
 
   useEffect(() => {
     const socket = socketIOClient(API_URL);
-
     // Get Total Coin Data
+    console.log(process.env.APP_URL)
     socket.on('totalCoinInfo', data => {
       setCoinData(data);
     })
