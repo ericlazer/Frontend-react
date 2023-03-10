@@ -12,11 +12,18 @@ const Coins = () => {
   useEffect(() => {
     const socket = socketIOClient(API_URL);
     // Get Total Coin Data
-    console.log(process.env.APP_URL)
     socket.on('totalCoinInfo', data => {
-      setCoinData(data);
+      if (data) {
+        setCoinData(data);
+      }
     })
   }, [])
+
+  // useEffect(() => {
+  //   if (coinData && coinData.length > 0) {
+  //     console.log("Wh23h2q3hq23")
+  //   }
+  // }, []);
 
   return (
     <Layout>
