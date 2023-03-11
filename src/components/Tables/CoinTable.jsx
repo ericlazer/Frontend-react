@@ -148,16 +148,19 @@ const Table = (props) => {
     // Sort and set the table data
     // if (JSON.stringify(tableData) !== JSON.stringify(props.CoinData)) {
 
-    const newData = props.CoinData.map((item, index) => ({
-      ...item,
-      volatility: (coinInfo[index] && coinInfo[index].coins.length > 0 && coinInfo[index].coins[0].volatility[coinInfo[index].coins[0].volatility.length - 1]) ? (coinInfo[index].coins[0].volatility[coinInfo[index].coins[0].volatility.length - 1].volatility60).toFixed(2) : 0,
-      largeTxs: (coinInfo[index] && coinInfo[index].coins.length > 0 && coinInfo[index].coins[0].largeTxs[coinInfo[index].coins[0].largeTxs.length - 1]) ? coinInfo[index].coins[0].largeTxs[coinInfo[index].coins[0].largeTxs.length - 1].adjustedCount : 0,
-      moneyIn: (coinInfo[index] && coinInfo[index].coins.length > 0 && coinInfo[index].coins[0].inOutOfTheMoneyHistory[coinInfo[index].coins[0].inOutOfTheMoneyHistory.length - 1]) ? (coinInfo[index].coins[0].inOutOfTheMoneyHistory[coinInfo[index].coins[0].inOutOfTheMoneyHistory.length - 1].inPercentage).toFixed(2) : 0,
-      moneyOut: (coinInfo[index] && coinInfo[index].coins.length > 0 && coinInfo[index].coins[0].inOutOfTheMoneyHistory[coinInfo[index].coins[0].inOutOfTheMoneyHistory.length - 1]) ? (coinInfo[index].coins[0].inOutOfTheMoneyHistory[coinInfo[index].coins[0].inOutOfTheMoneyHistory.length - 1].outPercentage).toFixed(2) : 0,
-      breakIn: (coinInfo[index] && coinInfo[index].coins.length > 0 && coinInfo[index].coins[0].breakEvenPriceHistory[coinInfo[index].coins[0].breakEvenPriceHistory.length - 1]) ? (coinInfo[index].coins[0].breakEvenPriceHistory[coinInfo[index].coins[0].breakEvenPriceHistory.length - 1].inPercentage).toFixed(2) : 0,
-      breakOut: (coinInfo[index] && coinInfo[index].coins.length > 0 && coinInfo[index].coins[0].breakEvenPriceHistory[coinInfo[index].coins[0].breakEvenPriceHistory.length - 1]) ? (coinInfo[index].coins[0].breakEvenPriceHistory[coinInfo[index].coins[0].breakEvenPriceHistory.length - 1].outPercentage).toFixed(2) : 0,
+    const newData = props.CoinData.map((item, index) => {
+      const coin = coinInfo[index]?.coins?.[0] || {};
+      return {
+        ...item,
+        volatility: (coin.volatility?.[coin.volatility.length - 1]?.volatility60)?.toFixed(2) || 0,
+      largeTxs: (coin.largeTxs?.[coin.largeTxs.length - 1]?.adjustedCount) || 0,
+      moneyIn: (coin.inOutOfTheMoneyHistory?.[coin.inOutOfTheMoneyHistory.length - 1]?.inPercentage)?.toFixed(2) || 0,
+      moneyOut: (coin.inOutOfTheMoneyHistory?.[coin.inOutOfTheMoneyHistory.length - 1]?.outPercentage)?.toFixed(2) || 0,
+      breakIn: (coin.breakEvenPriceHistory?.[coin.breakEvenPriceHistory.length - 1]?.inPercentage)?.toFixed(2) || 0,
+      breakOut: (coin.breakEvenPriceHistory?.[coin.breakEvenPriceHistory.length - 1]?.outPercentage)?.toFixed(2) || 0,
+      }
       // intotheBlockDataResults: coinInfo[index],
-    }));
+    });
     setTableData(sortTableData(newData));
 
     // console.log("3q2hq23h2q3hj32j");
