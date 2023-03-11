@@ -150,12 +150,12 @@ const Table = (props) => {
 
     const newData = props.CoinData.map((item, index) => ({
       ...item,
-      volatility: (coinInfo[index] && coinInfo[index].coins[0].volatility[coinInfo[index].coins[0].volatility.length - 1]) ? (coinInfo[index].coins[0].volatility[coinInfo[index].coins[0].volatility.length - 1].volatility60).toFixed(2) : 0,
-      largeTxs: (coinInfo[index] && coinInfo[index].coins[0].largeTxs[coinInfo[index].coins[0].largeTxs.length - 1]) ? coinInfo[index].coins[0].largeTxs[coinInfo[index].coins[0].largeTxs.length - 1].adjustedCount : 0,
-      moneyIn: (coinInfo[index] && coinInfo[index].coins[0].inOutOfTheMoneyHistory[coinInfo[index].coins[0].inOutOfTheMoneyHistory.length - 1]) ? (coinInfo[index].coins[0].inOutOfTheMoneyHistory[coinInfo[index].coins[0].inOutOfTheMoneyHistory.length - 1].inPercentage).toFixed(2) : 0,
-      moneyOut: (coinInfo[index] && coinInfo[index].coins[0].inOutOfTheMoneyHistory[coinInfo[index].coins[0].inOutOfTheMoneyHistory.length - 1]) ? (coinInfo[index].coins[0].inOutOfTheMoneyHistory[coinInfo[index].coins[0].inOutOfTheMoneyHistory.length - 1].outPercentage).toFixed(2) : 0,
-      breakIn: (coinInfo[index] && coinInfo[index].coins[0].breakEvenPriceHistory[coinInfo[index].coins[0].breakEvenPriceHistory.length - 1]) ? (coinInfo[index].coins[0].breakEvenPriceHistory[coinInfo[index].coins[0].breakEvenPriceHistory.length - 1].inPercentage).toFixed(2) : 0,
-      breakOut: (coinInfo[index] && coinInfo[index].coins[0].breakEvenPriceHistory[coinInfo[index].coins[0].breakEvenPriceHistory.length - 1]) ? (coinInfo[index].coins[0].breakEvenPriceHistory[coinInfo[index].coins[0].breakEvenPriceHistory.length - 1].outPercentage).toFixed(2) : 0,
+      volatility: (coinInfo[index] && coinInfo[index].coins.length > 0 && coinInfo[index].coins[0].volatility[coinInfo[index].coins[0].volatility.length - 1]) ? (coinInfo[index].coins[0].volatility[coinInfo[index].coins[0].volatility.length - 1].volatility60).toFixed(2) : 0,
+      largeTxs: (coinInfo[index] && coinInfo[index].coins.length > 0 && coinInfo[index].coins[0].largeTxs[coinInfo[index].coins[0].largeTxs.length - 1]) ? coinInfo[index].coins[0].largeTxs[coinInfo[index].coins[0].largeTxs.length - 1].adjustedCount : 0,
+      moneyIn: (coinInfo[index] && coinInfo[index].coins.length > 0 && coinInfo[index].coins[0].inOutOfTheMoneyHistory[coinInfo[index].coins[0].inOutOfTheMoneyHistory.length - 1]) ? (coinInfo[index].coins[0].inOutOfTheMoneyHistory[coinInfo[index].coins[0].inOutOfTheMoneyHistory.length - 1].inPercentage).toFixed(2) : 0,
+      moneyOut: (coinInfo[index] && coinInfo[index].coins.length > 0 && coinInfo[index].coins[0].inOutOfTheMoneyHistory[coinInfo[index].coins[0].inOutOfTheMoneyHistory.length - 1]) ? (coinInfo[index].coins[0].inOutOfTheMoneyHistory[coinInfo[index].coins[0].inOutOfTheMoneyHistory.length - 1].outPercentage).toFixed(2) : 0,
+      breakIn: (coinInfo[index] && coinInfo[index].coins.length > 0 && coinInfo[index].coins[0].breakEvenPriceHistory[coinInfo[index].coins[0].breakEvenPriceHistory.length - 1]) ? (coinInfo[index].coins[0].breakEvenPriceHistory[coinInfo[index].coins[0].breakEvenPriceHistory.length - 1].inPercentage).toFixed(2) : 0,
+      breakOut: (coinInfo[index] && coinInfo[index].coins.length > 0 && coinInfo[index].coins[0].breakEvenPriceHistory[coinInfo[index].coins[0].breakEvenPriceHistory.length - 1]) ? (coinInfo[index].coins[0].breakEvenPriceHistory[coinInfo[index].coins[0].breakEvenPriceHistory.length - 1].outPercentage).toFixed(2) : 0,
       // intotheBlockDataResults: coinInfo[index],
     }));
     setTableData(sortTableData(newData));
