@@ -135,7 +135,7 @@ const Table = (props) => {
   };
 
   // Sort the table function
-  const handleSort = (column) => {
+  const handleSort = (column) => {  
     if (column === sortBy) {
       setSortAsc(!sortAsc);
     } else {
