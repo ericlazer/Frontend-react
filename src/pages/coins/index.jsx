@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import socketIOClient from 'socket.io-client'
 import Layout from '../../components/Layout'
-import CoinTable from '../../components/Tables/CoinTable'
+import CoinMainTable from '../../components/Tables/CoinMainTable'
 import CoinMarketImg from '../../assets/img/CoinMarket.gif'
 import { API_URL } from '../../config/constants'
 
@@ -12,18 +12,12 @@ const Coins = () => {
   useEffect(() => {
     const socket = socketIOClient(API_URL);
     // Get Total Coin Data
-    socket.on('totalCoinInfo', data => {
+    socket.on('TotalCoinInfo', data => {
       if (data) {
         setCoinData(data);
       }
     })
   }, [])
-
-  // useEffect(() => {
-  //   if (coinData && coinData.length > 0) {
-  //     console.log("Wh23h2q3hq23")
-  //   }
-  // }, []);
 
   return (
     <Layout>
@@ -38,7 +32,7 @@ const Coins = () => {
         <div className='flex justify-between mt-10 gap-10'>
           <div className='bg-black w-[50%] flex px-8 py-16 rounded-lg'>
             <div>
-              <img src={CoinMarketImg} className='w-[200px]'/>
+              <img src={CoinMarketImg} className='w-[200px]' alt="Coin Explore" />
             </div>
             <div className='m-auto'>
               <div className='text-[32px] text-white font-bold'>Coin Market List</div>
@@ -58,7 +52,7 @@ const Coins = () => {
         <div className='mt-16'>
           <p className='text-center text-[40px] font-bold text-white'>Crypto Prices Today</p>
           <div className='m-8'>
-            <CoinTable CoinData={coinData} />
+            <CoinMainTable CoinData={coinData} />
           </div>
         </div>
       </div>

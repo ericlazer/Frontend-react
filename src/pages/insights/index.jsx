@@ -1,6 +1,6 @@
 import React from 'react'
 import Layout from '../../components/Layout'
-import CoinTable from '../../components/Tables/CoinTable'
+import CoinMainTable from '../../components/Tables/CoinMainTable'
 import CoinMarketImg from '../../assets/img/CoinMarket.gif'
 
 const Insights = () => {
@@ -26,7 +26,7 @@ const Insights = () => {
         <div className='flex justify-between mt-10 gap-10'>
           <div className='bg-black w-[50%] flex px-8 py-16 rounded-lg'>
             <div>
-              <img src={CoinMarketImg} className='w-[200px]'/>
+              <img src={CoinMarketImg} className='w-[200px]' alt="Coin Explore" />
             </div>
             <div className='m-auto'>
               <div className='text-[32px] text-white font-bold'>Coin Market List</div>
@@ -46,7 +46,7 @@ const Insights = () => {
         <div className='mt-16'>
           <p className='text-center text-[40px] font-bold text-white'>Crypto Prices Today</p>
           <div className='m-8'>
-            <CoinTable CoinData={CoinData} />
+            <CoinMainTable CoinData={CoinData} />
           </div>
         </div>
       </div>
