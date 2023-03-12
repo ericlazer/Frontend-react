@@ -1,8 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { coinService } from "../../services/coin.service";
-import { selectCoinInfo } from "../../redux/coinInfoReducer";
-import { useDispatch, useSelector } from "react-redux";
-import { setCoinInfomration } from "../../redux/coinInfoReducer";
 
 // Table header width
 const columnWidths = {
@@ -33,13 +29,13 @@ const headerTextPosition = {
 
 // Table Headers
 const CoinTableHeader = [
-  { header: "#", columnName: "id" },
+  { header: "#", columnName: "rank" },
   { header: "Name", columnName: "name" },
   { header: "Market Cap", columnName: "marketCap" },
   { header: "Price", columnName: "price" },
   { header: "24h %", columnName: "dailyChanged" },
-  { header: "In & Out of the Money", columnName: "moneyIn" },
-  { header: "Break Even Price", columnName: "breakIn" },
+  { header: "In & Out of the Money", columnName: "inOutOfTheMoneyHistory" },
+  { header: "Break Even Price", columnName: "breakEvenPriceHistory" },
   { header: "Volatility", columnName: "volatility" },
   { header: "Large Txs(24h)", columnName: "largeTxs" },
   { header: "Volume (24h)", columnName: "volume" },
@@ -74,13 +70,13 @@ const ProgressBar = ({ inPercentage, outPercentage }) => {
   };
 
   return (
-    <div className="relative bg-gray-200 rounded-md h-3">
+    <div className="relative bg-gray-200 h-3">
       <div
-        className="absolute top-0 left-0 h-full rounded-l-md"
+        className="absolute top-0 left-0 h-full"
         style={inStyle}
       ></div>
       <div
-        className="absolute top-0 right-0 h-full rounded-r-md"
+        className="absolute top-0 right-0 h-full"
         style={outStyle}
       ></div>
     </div>
@@ -91,10 +87,6 @@ const Table = (props) => {
   const [sortBy, setSortBy] = useState("");
   const [sortAsc, setSortAsc] = useState(false);
   const [tableData, setTableData] = useState([]);
-  const dispatch = useDispatch();
-  const [flag, setFlag] = useState(false);
-
-  const coinInfo = useSelector(selectCoinInfo);
 
   // Get maxium values for marketcap and volume
   const maxMarketCap =
@@ -117,16 +109,37 @@ const Table = (props) => {
     const sortedData = [...data].sort((a, b) => {
       const sortOrder = sortAsc ? -1 : 1;
       // If the table header is not name, sort by integer
-      if (sortBy !== "name") {
-        const valueA = parseFloat(a[sortBy]);
-        const valueB = parseFloat(b[sortBy]);
+      if (sortBy === "volatility") {
+        const valueA = parseFloat(a[sortBy][0]?.volatility60 ?? 0);
+        const valueB = parseFloat(b[sortBy][0]?.volatility60 ?? 0);
         if (valueA < valueB) return -sortOrder;
         if (valueA > valueB) return sortOrder;
         return 0;
       }
-      else {
+      else if (sortBy === "largeTxs") {
+        const valueA = parseFloat(a[sortBy][0]?.adjustedCount ?? 0);
+        const valueB = parseFloat(b[sortBy][0]?.adjustedCount ?? 0);
+        if (valueA < valueB) return -sortOrder;
+        if (valueA > valueB) return sortOrder;
+        return 0;
+      }
+      else if (sortBy === "inOutOfTheMoneyHistory" || sortBy === "breakEvenPriceHistory") {
+        const valueA = parseFloat(a[sortBy][0]?.inPercentage ?? 0);
+        const valueB = parseFloat(b[sortBy][0]?.inPercentage ?? 0);
+        if (valueA < valueB) return -sortOrder;
+        if (valueA > valueB) return sortOrder;
+        return 0;
+      }
+      else if (sortBy === "name") {
         if (a[sortBy] < b[sortBy]) return -sortOrder;
         if (a[sortBy] > b[sortBy]) return sortOrder;
+        return 0;
+      }
+      else {
+        const valueA = parseFloat(a[sortBy]);
+        const valueB = parseFloat(b[sortBy]);
+        if (valueA < valueB) return -sortOrder;
+        if (valueA > valueB) return sortOrder;
         return 0;
       }
     });
@@ -147,48 +160,11 @@ const Table = (props) => {
   useEffect(() => {
     // Sort and set the table data
     // if (JSON.stringify(tableData) !== JSON.stringify(props.CoinData)) {
-
-    const newData = props.CoinData.map((item, index) => {
-      const coin = coinInfo[index]?.coins?.[0] || {};
-      return {
-        ...item,
-        volatility: (coin.volatility?.[coin.volatility.length - 1]?.volatility60)?.toFixed(2) || 0,
-      largeTxs: (coin.largeTxs?.[coin.largeTxs.length - 1]?.adjustedCount) || 0,
-      moneyIn: (coin.inOutOfTheMoneyHistory?.[coin.inOutOfTheMoneyHistory.length - 1]?.inPercentage)?.toFixed(2) || 0,
-      moneyOut: (coin.inOutOfTheMoneyHistory?.[coin.inOutOfTheMoneyHistory.length - 1]?.outPercentage)?.toFixed(2) || 0,
-      breakIn: (coin.breakEvenPriceHistory?.[coin.breakEvenPriceHistory.length - 1]?.inPercentage)?.toFixed(2) || 0,
-      breakOut: (coin.breakEvenPriceHistory?.[coin.breakEvenPriceHistory.length - 1]?.outPercentage)?.toFixed(2) || 0,
-      }
-      // intotheBlockDataResults: coinInfo[index],
-    });
-    setTableData(sortTableData(newData));
-
-    // console.log("3q2hq23h2q3hj32j");
+    
+    setTableData(sortTableData(props.CoinData));
+    
     // }
   }, [props.CoinData, sortBy, sortAsc]);
-
-  useEffect(() => {
-    const fetchData = async (data) => {
-      const intotheBlockDataPromises = data.map(async (coin) => {
-        return await coinService.getIntheBlockCoinData(coin.name);
-      });
-
-      try {
-        const intotheBlockDataResults = await Promise.all(
-          intotheBlockDataPromises.filter((p) => p)
-        );
-
-        dispatch(setCoinInfomration(intotheBlockDataResults));
-      } catch (err) {
-        console.log(err);
-      }
-    };
-
-    if (props.CoinData.length > 0 && !flag) {
-      setFlag(true);
-      fetchData(props.CoinData);
-    }
-  }, [props.CoinData]);
 
   return (
     <table className="mx-auto">
@@ -210,27 +186,26 @@ const Table = (props) => {
         </tr>
       </thead>
       <tbody>
-        { console.log(tableData)}
         {tableData &&
           tableData.map((data, index) => (
             <tr key={index} className="text-white border-b border-slate-800">
-              <td className="p-6 text-right">{data.id}</td>
+              <td className="p-6 text-right">{data.rank && data.rank}</td>
               <td className="p-6 px-4 flex items-center">
                 <div>
-                  <img src={data.imgURL} className="h-6 w-6" />
+                  <img src={data.imgURL && data.imgURL} className="h-6 w-6"  alt="CoinLogo" />
                 </div>
                 <div className="ml-4">
                   <div className="font-semibold">{data.name}</div>
                 </div>
               </td>
               <td className="px-4 text-right">
-                ${formatNumber(data.marketCap)}
+                ${data.marketCap ? formatNumber(data.marketCap) : '0.00'}
                 <div className="h-2 bg-gray-300 mt-2">
                   <div
                     className="h-full bg-green-500"
                     style={{
                       width: `${calculatePercentage(
-                        data.marketCap,
+                        data.marketCap ? data.marketCap : 0,
                         maxMarketCap
                       )}%`,
                     }}
@@ -238,34 +213,32 @@ const Table = (props) => {
                 </div>
               </td>
               <td className="px-4 text-right">
-                {parseFloat(data.price).toLocaleString("en-US", {
+                {data.price ? parseFloat(data.price).toLocaleString("en-US", {
                   style: "currency",
                   currency: "USD",
-                })}
+                }) : '$0.00'}
               </td>
               <td className="px-4 text-right">
-                {data.dailyChanged.toFixed(2)}%
+                {data.dailyChanged ? data.dailyChanged.toFixed(2) : 0}%
               </td>
               <td className="px-4 text-center">
-                { (data.moneyIn && data.moneyOut) ? (
-                  <ProgressBar inPercentage={ data.moneyIn } outPercentage={ data.moneyOut } />
+                { (data.inOutOfTheMoneyHistory.length > 0) ? (
+                  <ProgressBar inPercentage={ data.inOutOfTheMoneyHistory[0].inPercentage } outPercentage={ data.inOutOfTheMoneyHistory[0].outPercentage } />
                 ) : ( "No Info" )}
               </td>
               <td className="px-4 text-center">
-                { (data.breakIn && data.breakOut) ? (
-                  <ProgressBar inPercentage={ data.breakIn } outPercentage={ data.breakOut } />
+                { (data.breakEvenPriceHistory.length > 0) ? (
+                  <ProgressBar inPercentage={ data.breakEvenPriceHistory[0].inPercentage } outPercentage={ data.breakEvenPriceHistory[0].outPercentage } />
                 ) : ( "No Info" )}
               </td>
               <td className="px-4 text-center">
-                { data.volatility ? `${(data.volatility * 100).toFixed(2)}%` : "0%" }
+                { data.volatility.length > 0 ? `${(data.volatility[0].volatility60 * 100).toFixed(2)}%` : "0%" }
               </td>
               <td className="px-4 text-center">
-                { data.largeTxs
-                  ? data.largeTxs
-                  : 0}
+                { data.largeTxs.length > 0 ? data.largeTxs[data.largeTxs.length - 1].adjustedCount : 0 }
               </td>
               <td className="px-4 text-right">
-                ${formatNumber(data.volume)}
+                ${data.volume ? formatNumber(data.volume) : '0.00'}
                 <div className="h-2 bg-gray-300 mt-2">
                   <div
                     className="h-full bg-blue-500"
