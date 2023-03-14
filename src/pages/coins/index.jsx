@@ -13,27 +13,37 @@ const Coins = () => {
   const [tableNumber, setTableNumber] = useState(0);
   const [pageNum, setPageNum] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
-
+  
   useEffect(() => {
-    socket.emit('NextCoinInfo', pageNum);
-    socket.on('TotalCoinInfo', data => {
+    setIsLoading(true);
+    socket.on('TotalCoinInfo', async (data) => {
       if (data) {
         setCoinData(data);
+        setIsLoading(false);
       }
     })
-    console.log("323223")
-
-  }, [coinData]);
-
-  useEffect(() => {
-    socket.emit('NextCoinInfo', 0);
+    console.log("err")
+    // Remove the listener on unmount to prevent memory leaks
+    return () => {
+      socket.off('TotalCoinInfo')
+    };
   }, [])
+  
+  useEffect(() => {
+    socket.emit('NextCoinInfo', pageNum);
+  }, [coinData]);
 
   const getNextCoins = () => {
     let temp = pageNum;
     temp += 50;
     setPageNum(temp);
-    setIsLoading(true);
+  }
+
+  const getPrevCoins = () => {
+    let temp = pageNum;
+    temp -= 50;
+    if (temp < 0) temp = 0;
+    setPageNum(temp);
   }
 
   return (
@@ -88,23 +98,32 @@ const Coins = () => {
             Crypto Prices Today
           </p>
           <div className="flex gap-3">
-            <button className="text-white py-2 px-5 bg-gray-700 rounded-lg text-sm tracking-[1px] transition ease-in-out hover:opacity-[0.8]" onClick={() => setTableNumber(0)}>
+            <button className={`text-white py-2 px-5 bg-gray-700 rounded-lg text-sm tracking-[1px] transition ease-in-out hover:opacity-[0.8] ${tableNumber === 0 && "bg-blue-700"}`} onClick={() => setTableNumber(0)}>
               LiveCoinWatch
             </button>
-            <button className="text-white py-2 px-5 bg-gray-700 rounded-lg text-sm tracking-[1px] transition ease-in-out hover:opacity-[0.8]" onClick={() => setTableNumber(1)}>
+            <button className={`text-white py-2 px-5 bg-gray-700 rounded-lg text-sm tracking-[1px] transition ease-in-out hover:opacity-[0.8] ${tableNumber === 1 && "bg-blue-700"}`} onClick={() => setTableNumber(1)}>
               TokenInsight
             </button>
           </div>
           <div className="m-8">
             {
-              tableNumber === 0 ? <CoinMainTable CoinData={coinData} loading={false} /> :
+              tableNumber === 0 ? <CoinMainTable CoinData={coinData} loading={isLoading} /> :
               (tableNumber === 1 ? 
-                  <CoinTokenInsightTable CoinData={coinData} loading={false} />  : "")
+                  <CoinTokenInsightTable CoinData={coinData} loading={isLoading} />  : "")
             }
           </div>
-          <button className="bg-white" onClick={() => {
-            getNextCoins();
-          }}>Next</button>
+          <div className="flex gap-5 justify-center">
+            <button className="bg-gray-800 py-2 px-5 text-white font-bold rounded-md hover:bg-gray-600 transition ease-in-out" onClick={() => {
+              getPrevCoins();
+            }}>
+              Prev
+            </button>
+            <button className="bg-gray-800 py-2 px-5 text-white font-bold rounded-md hover:bg-gray-600 transition ease-in-out" onClick={() => {
+              getNextCoins();
+            }}>
+              Next
+            </button>
+          </div>
         </div>
       </div>
     </Layout>
