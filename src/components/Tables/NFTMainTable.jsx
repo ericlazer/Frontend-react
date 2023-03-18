@@ -42,17 +42,6 @@ const CoinTableHeader = [
   { header: "Community", columnName: "community" },
 ];
 
-// Format number for biggest number
-const formatNumber = (num) => {
-  if (num >= 1000000000) {
-    return (num / 1000000000).toFixed(2) + "B";
-  } else if (num >= 1000000) {
-    return (num / 1000000).toFixed(2) + "M";
-  } else {
-    return num.toFixed(2);
-  }
-};
-
 const formatPrice = (price)  => {
   const num = parseFloat(price);
   if (num !== 0) {
