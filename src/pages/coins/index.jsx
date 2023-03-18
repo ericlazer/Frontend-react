@@ -1,26 +1,42 @@
 import React, { useEffect, useState } from "react";
 import socketIOClient from "socket.io-client";
 import Layout from "../../components/Layout";
-import CoinMainTable from "../../components/Tables/CoinMainTable";
-import CoinTokenInsightTable from "../../components/Tables/CoinTokenInsightTable";
+import { CoinMainTable, CoinChangeTable, CoinTokenInsightTable, NFTMainTable } from "../../components/Tables";
 import CoinMarketImg from "../../assets/img/CoinMarket.gif";
 import { API_URL } from "../../config/constants";
 
 const socket = socketIOClient(API_URL);
+
+const showTable = (type, data, loading) => {
+  if (type === 0) {
+    return <CoinMainTable CoinData={data} loading={loading} />
+  }
+  else if (type === 1) {
+    return <CoinTokenInsightTable CoinData={data} loading={loading} />
+  }
+  else if (type === 2) {
+    return <CoinChangeTable CoinData={data} loading={loading} />
+  }
+  else if (type === 3) {
+    return <NFTMainTable />
+  }
+}
 
 const Coins = () => {
   const [coinData, setCoinData] = useState([]);
   const [tableNumber, setTableNumber] = useState(0);
   const [pageNum, setPageNum] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
+  const [startNum, setStartNum] = useState(0);
   
   useEffect(() => {
     setIsLoading(true);
     socket.on('TotalCoinInfo', async (data) => {
-      if (data) {
-        setCoinData(data);
+      if (data.coinData) {
+        setCoinData(data.coinData);
         setIsLoading(false);
       }
+      setStartNum(data.startNum)
     })
     console.log("err")
     // Remove the listener on unmount to prevent memory leaks
@@ -30,16 +46,21 @@ const Coins = () => {
   }, [])
   
   useEffect(() => {
+    if (startNum !== pageNum) {
+      setIsLoading(true)
+    }
     socket.emit('NextCoinInfo', pageNum);
   }, [coinData]);
 
   const getNextCoins = () => {
+    setIsLoading(true)
     let temp = pageNum;
     temp += 50;
     setPageNum(temp);
   }
 
   const getPrevCoins = () => {
+    setIsLoading(true)
     let temp = pageNum;
     temp -= 50;
     if (temp < 0) temp = 0;
@@ -97,19 +118,23 @@ const Coins = () => {
           <p className="text-center text-[40px] font-bold text-white">
             Crypto Prices Today
           </p>
-          <div className="flex gap-3">
-            <button className={`text-white py-2 px-5 bg-gray-700 rounded-lg text-sm tracking-[1px] transition ease-in-out hover:opacity-[0.8] ${tableNumber === 0 && "bg-blue-700"}`} onClick={() => setTableNumber(0)}>
-              LiveCoinWatch
+          <div className="flex gap-3 mt-8">
+            <button className={`text-white py-2 px-5 bg-gray-700 rounded-lg tracking-[1px] transition ease-in-out hover:opacity-[0.5] ${tableNumber === 0 && "!bg-blue-700 !opacity-[1]"}`} onClick={() => setTableNumber(0)}>
+              CryptoInfo
             </button>
-            <button className={`text-white py-2 px-5 bg-gray-700 rounded-lg text-sm tracking-[1px] transition ease-in-out hover:opacity-[0.8] ${tableNumber === 1 && "bg-blue-700"}`} onClick={() => setTableNumber(1)}>
-              TokenInsight
+            <button className={`text-white py-2 px-5 bg-gray-700 rounded-lg tracking-[1px] transition ease-in-out hover:opacity-[0.5] ${tableNumber === 1 && "!bg-blue-700 !opacity-[1]"}`} onClick={() => setTableNumber(1)}>
+              CryptoATH
+            </button>
+            <button className={`text-white py-2 px-5 bg-gray-700 rounded-lg tracking-[1px] transition ease-in-out hover:opacity-[0.5] ${tableNumber === 2 && "!bg-blue-700 !opacity-[1]"}`} onClick={() => setTableNumber(2)}>
+              CryptoHourly
+            </button>
+            <button className={`text-white py-2 px-5 bg-gray-700 rounded-lg tracking-[1px] transition ease-in-out hover:opacity-[0.5] ${tableNumber === 3 && "!bg-blue-700 !opacity-[1]"}`} onClick={() => setTableNumber(3)}>
+              NFT
             </button>
           </div>
           <div className="m-8">
             {
-              tableNumber === 0 ? <CoinMainTable CoinData={coinData} loading={isLoading} /> :
-              (tableNumber === 1 ? 
-                  <CoinTokenInsightTable CoinData={coinData} loading={isLoading} />  : "")
+              coinData && showTable(tableNumber, coinData, isLoading)
             }
           </div>
           <div className="flex gap-5 justify-center">

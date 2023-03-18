@@ -1,57 +1,42 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 
 // Table header width
 const columnWidths = {
-  id: "5%",
+  rank: "5%",
   name: "20%",
-  athPrice: "10%",
-  athDate: "15%",
-  price: "10%",
-  atlPrice: "10%",
-  atlDate: "15%",
-  fromATH: "8%",
-  website: "10%",
-  community: "10%",
+  price: "20%",
+  hourlyChanged: "10%",
+  dailyChanged: "10%",
+  weeklyChanged: "10%",
+  monthlyChanged: "10%",
+  quarterlyChanged: "10%",
+  yearlyChanged: "10%",
 };
 
 const headerTextPosition = {
   "#": "text-right",
   "Name": "text-left",
-  "ATH Price": "text-right",
-  "ATH Date": "text-center",
   "Price": "text-right",
-  "ATL Price": "text-center",
-  "ATL Date": "text-center",
-  "% from ATH": "text-center",
-  "Website": "text-center",
-  "Community": "text-center",
+  "1H %": "text-center",
+  "24H %": "text-center",
+  "7D %": "text-center",
+  "1M %": "text-center",
+  "3M %": "text-center",
+  "1Y %": "text-center",
 };
 
 // Table Headers
 const CoinTableHeader = [
   { header: "#", columnName: "rank" },
   { header: "Name", columnName: "name" },
-  { header: "ATH Price", columnName: "athPrice" },
-  { header: "ATH Date", columnName: "athDate" },
   { header: "Price", columnName: "price" },
-  { header: "ATL Price", columnName: "atlPrice" },
-  { header: "ATL Date", columnName: "atlDate" },
-  { header: "% from ATH", columnName: "fromATH" },
-  { header: "Website", columnName: "website" },
-  { header: "Community", columnName: "community" },
+  { header: "1H %", columnName: "hourlyChanged" },
+  { header: "24H %", columnName: "dailyChanged" },
+  { header: "7D %", columnName: "weeklyChanged" },
+  { header: "1M %", columnName: "monthlyChanged" },
+  { header: "3M %", columnName: "quarterlyChanged" },
+  { header: "1Y %", columnName: "yearlyChanged" },
 ];
-
-// Format number for biggest number
-const formatNumber = (num) => {
-  if (num >= 1000000000) {
-    return (num / 1000000000).toFixed(2) + "B";
-  } else if (num >= 1000000) {
-    return (num / 1000000).toFixed(2) + "M";
-  } else {
-    return num.toFixed(2);
-  }
-};
 
 const formatPrice = (price)  => {
   const num = parseFloat(price);
@@ -74,31 +59,14 @@ const formatPrice = (price)  => {
   }
 }
 
-const calculatePercentage = (value, max) => {
-  return (value / max) * 100;
-};
-
-const ellipsizedString = (string) => {
-  if (string.length > 20) {
-    return string.substring(0, 20) + '...';
-  } else {
-    return string;
-  }
+const showChangePercent = (change) => {
+  return ((change - 1) * 100).toFixed(2);
 }
 
 const Table = (props) => {
   const [sortBy, setSortBy] = useState("");
   const [sortAsc, setSortAsc] = useState(false);
   const [tableData, setTableData] = useState([]);
-
-  const convertDate = (string) => {
-    const date = new Date(string);
-    const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
-    const formattedDate = date.toLocaleDateString('en-US', options).replace(/\//g, '-');
-
-
-    return formattedDate;
-  }
 
   const sortTableData = (data) => {
     // if (!sortBy) {
@@ -159,7 +127,7 @@ const Table = (props) => {
   useEffect(() => {
     // Sort and set the table data
     // if (JSON.stringify(tableData) !== JSON.stringify(props.CoinData)) {
-    
+    console.log("1221")
     setTableData(props.CoinData);
     // console.log(props.CoinData)
     // }
@@ -174,13 +142,9 @@ const Table = (props) => {
               return (
                 <th
                   key={index}
-                  className={`${headerTextPosition[header]} px-4 border-b border-slate-800 pb-6 cursor-pointer select-none text-[14px]`}
+                  className={`${headerTextPosition[header]} px-4 border-b border-slate-800 pb-6 cursor-pointer select-none text-[14px] w-[${columnWidths[columnName]}]`}
                   onClick={() => {
                     handleSort(columnName);
-                  }}
-                  style={{
-                    minWidth: `${columnWidths[columnName]}`,
-                    width: `${columnWidths[columnName]}`,
                   }}
                 >
                   {sortBy === columnName && (sortAsc ? " ▼" : " ▲")} {header}
@@ -193,9 +157,7 @@ const Table = (props) => {
           {tableData &&
             tableData.map((data, index) => (
               <tr key={index} className="text-white border-b border-slate-800">
-                <td className="p-6 text-right">
-                  {data.rank && data.rank}
-                </td>
+                <td className="p-6 text-right">{data.rank && data.rank}</td>
                 <td className="p-6 px-4 flex items-center">
                   <div>
                     <img src={data.imgURL && data.imgURL} className="h-6 w-6"  alt="CoinLogo" />
@@ -205,37 +167,32 @@ const Table = (props) => {
                   </div>
                 </td>
                 <td className="px-4 text-right">
-                  {data.athPrice ? formatPrice(data.athPrice) : '$0.00'}  
-                </td>
-                <td className="px-4 text-center">
-                  {data.athDate && convertDate(data.athDate)}
-                </td>
-                <td className="px-4 text-right">
                   {data.price ? formatPrice(data.price) : '$0.00'}
                 </td>
-                <td className="px-4 text-right">
-                  {data.atlPrice ? parseFloat(data.atlPrice).toLocaleString("en-US", {
-                    style: "currency",
-                    currency: "USD",
-                  }) : '$0.00'}
+                <td className={`px-4 text-center ${data.hourlyChanged && data.hourlyChanged < 1 ? "text-red-500" : "text-green-500"}`}>
+                  {data.hourlyChanged ? showChangePercent(data.hourlyChanged) : 0}%
                 </td>
-                <td className="px-4 text-center">
-                  {data.atlDate && convertDate(data.atlDate)}
+                <td className={`px-4 text-center ${data.dailyChanged && data.dailyChanged < 1 ? "text-red-500" : "text-green-500"}`}>
+                  {data.dailyChanged ? showChangePercent(data.dailyChanged) : 0}%
                 </td>
-                <td className="px-4 text-center text-red-400">
-                  { data.athPrice ? `- ${(100 - (data.price / data.athPrice) * 100).toPrecision(2)}%` : "0%" }
+                <td className={`px-4 text-center ${data.weeklyChanged && data.weeklyChanged < 1 ? "text-red-500" : "text-green-500"}`}>
+                  {data.weeklyChanged ? showChangePercent(data.weeklyChanged) : 0}%
                 </td>
-                <td className="px-4 text-center text-ellipsis text-blue-400 transition ease-in-out hover:text-blue-500">
-                  <Link to={ data.website ? data.website : '/' }>{ data.website && ellipsizedString(data.website) }</Link>
+                <td className={`px-4 text-center ${data.monthlyChanged && data.monthlyChanged < 1 ? "text-red-500" : "text-green-500"}`}>
+                  {data.monthlyChanged ? showChangePercent(data.monthlyChanged) : 0}%
                 </td>
-                <td className="px-4 text-right">
-                  <Link to={ data.community ? data.community.twitter : '/' }><button className="cursor-pointer text-gray-400 transition ease-in-out duration-300 hover:bg-gray-600 hover:text-white bg-gray-800 rounded-lg py-2 px-5">Join</button></Link>
+                <td className={`px-4 text-center ${data.quarterlyChanged && data.quarterlyChanged < 1 ? "text-red-500" : "text-green-500"}`}>
+                  {data.quarterlyChanged ? showChangePercent(data.quarterlyChanged) : 0}%
+                </td>
+                <td className={`px-4 text-center ${data.yearlyChanged && data.yearlyChanged < 1 ? "text-red-500" : "text-green-500"}`}>
+                  {data.yearlyChanged ? showChangePercent(data.yearlyChanged) : 0}%
                 </td>
               </tr>
-            ))}
+            )
+          )}
         </tbody>
       </table>
-      </div>
+    </div>
   );
 };
 

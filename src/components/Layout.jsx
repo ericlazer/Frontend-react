@@ -14,7 +14,7 @@ const Layout = ({ children }) => {
 
   return (
     <div className="flex">
-      <div className="w-[300px] bg-[#14112C] min-h-screen py-3 px-5 flex flex-col text-xl text-white gap-1">
+      <div className="min-w-[250px] bg-[#14112C] min-h-screen py-3 px-5 flex flex-col text-xl text-white gap-1">
         <p className="text-center mt-4 mb-4">CONEXIO</p>
         <Link to="/coins">
           <div className={`cursor-pointer transition ease-in-out duration-300 hover:text-white hover:bg-gradient-to-br hover:from-purple-800 hover:to-indigo-900 rounded-lg p-3 ${activeMenu === '/coins' ? clickedCSS : 'text-[#747474]'}`}>
@@ -47,7 +47,7 @@ const Layout = ({ children }) => {
           </div>
         </Link>
       </div>
-      <div className="w-full p-8 bg-[url('assets/img/background.png')] bg-cover bg-no-repeat">
+      <div style={{width: "calc(100% - 250px)"}} className="p-8 bg-[url('assets/img/background.png')] bg-cover bg-no-repeat">
         {children}
       </div>
     </div>

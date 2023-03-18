@@ -167,136 +167,138 @@ const Table = (props) => {
 
 
   return (
-    <table className="mx-auto">
-      <thead>
-        <tr className="text-white">
-          {CoinTableHeader.map(({ header, columnName }, index) => {
-            return (
-              <th
-                key={index}
-                className={`${headerTextPosition[header]} px-4 border-b border-slate-800 pb-6 cursor-pointer select-none text-[14px] w-[${columnWidths[columnName]}]`}
-                onClick={() => {
-                  handleSort(columnName);
-                }}
-              >
-                {sortBy === columnName && (sortAsc ? " ▼" : " ▲")} {header}
-              </th>
-            );
-          })}
-        </tr>
-      </thead>
-      <tbody>
-        {props.loading ? (
-          <>
-            {/* Skeleton for 10 rows */}
-            {[...Array(10)].map((_, index) => (
-              <tr key={index} className="text-white border-b border-slate-800">
-                <td className="p-6 text-right">
-                  <Skeleton width={30} height={40} style={{backgroundColor: 'gray'}} />
-                </td>
-                <td className="p-6 px-4 flex items-center">
-                  <div>
-                    <Skeleton variant="circular" height={24} width={24} style={{backgroundColor: 'gray'}} />
-                  </div>
-                  <div className="ml-4">
-                    <Skeleton width={200} height={40} style={{backgroundColor: 'gray'}} />
-                  </div>
-                </td>
-                <td className="px-4 text-right">
-                  <Skeleton width="100%" height={40} style={{backgroundColor: 'gray'}} />
-                </td>
-                <td className="px-4 text-right">
-                  <Skeleton width="100%" height={40} style={{backgroundColor: 'gray'}}/>
-                </td>
-                <td className="px-4 text-right">
-                  <Skeleton width="100%" height={40} style={{backgroundColor: 'gray'}}/>
-                </td>
-                <td className="px-4 text-center">
-                  <Skeleton width="100%" height={40} style={{backgroundColor: 'gray'}}/>
-                </td>
-                <td className="px-4 text-center">
-                  <Skeleton width="100%" height={40} style={{backgroundColor: 'gray'}}/>
-                </td>
-                <td className="px-4 text-center">
-                  <Skeleton width="100%" height={40} style={{backgroundColor: 'gray'}}/>
-                </td>
-                <td className="px-4 text-center">
-                  <Skeleton width="100%" height={40} style={{backgroundColor: 'gray'}}/>
-                </td>
-                <td className="px-4 text-right">
-                  <Skeleton width="100%" height={40} style={{backgroundColor: 'gray'}}/>
-                </td>
-              </tr>
-            ))}
-          </>
-        ) : <>
-          {tableData &&
-            tableData.map((data, index) => (
-              <tr key={index} className="text-white border-b border-slate-800">
-                <td className="p-6 text-right">{data.rank && data.rank}</td>
-                <td className="p-6 px-4 flex items-center">
-                  <div>
-                    <img src={data.imgURL && data.imgURL} className="h-6 w-6" alt="CoinLogo" />
-                  </div>
-                  <div className="ml-4">
-                    <div className="font-semibold">{data.name}</div>
-                  </div>
-                </td>
-                <td className="px-4 text-right">
-                  ${data.marketCap ? formatNumber(data.marketCap) : '0.00'}
-                  <div className="h-2 bg-gray-300 mt-2">
-                    <div
-                      className="h-full bg-green-500"
-                      style={{
-                        width: `${calculatePercentage(
-                          data.marketCap ? data.marketCap : 0,
-                          maxMarketCap
-                        )}%`,
-                      }}
-                    ></div>
-                  </div>
-                </td>
-                <td className="px-4 text-right">
-                  {data.price ? parseFloat(data.price).toLocaleString("en-US", {
-                    style: "currency",
-                    currency: "USD",
-                  }) : '$0.00'}
-                </td>
-                <td className="px-4 text-right">
-                  {data.dailyChanged ? data.dailyChanged.toFixed(2) : 0}%
-                </td>
-                <td className="px-4 text-center">
-                  {(data.inOutOfTheMoneyHistory.length > 0) ? (
-                    <ProgressBar inPercentage={data.inOutOfTheMoneyHistory[0].inPercentage} outPercentage={data.inOutOfTheMoneyHistory[0].outPercentage} />
-                  ) : ("No Info")}
-                </td>
-                <td className="px-4 text-center">
-                  {(data.breakEvenPriceHistory.length > 0) ? (
-                    <ProgressBar inPercentage={data.breakEvenPriceHistory[0].inPercentage} outPercentage={data.breakEvenPriceHistory[0].outPercentage} />
-                  ) : ("No Info")}
-                </td>
-                <td className="px-4 text-center">
-                  {data.volatility.length > 0 ? `${(data.volatility[0].volatility60 * 100).toFixed(2)}%` : "0%"}
-                </td>
-                <td className="px-4 text-center">
-                  {data.largeTxs.length > 0 ? data.largeTxs[data.largeTxs.length - 1].adjustedCount : 0}
-                </td>
-                <td className="px-4 text-right">
-                  ${data.volume ? formatNumber(data.volume) : '0.00'}
-                  <div className="h-2 bg-gray-300 mt-2">
-                    <div
-                      className="h-full bg-blue-500"
-                      style={{
-                        width: `${calculatePercentage(data.volume, maxVolume)}%`,
-                      }}
-                    ></div>
-                  </div>
-                </td>
-              </tr>
-            ))}
-        </>}
-      </tbody>
-    </table>
+    <div className="h-auto overflow-x-auto">
+      <table className="mx-auto whitespace-nowrap w-[100%]">
+        <thead>
+          <tr className="text-white">
+            {CoinTableHeader.map(({ header, columnName }, index) => {
+              return (
+                <th
+                  key={index}
+                  className={`${headerTextPosition[header]} px-4 border-b border-slate-800 pb-6 cursor-pointer select-none text-[14px] w-[${columnWidths[columnName]}]`}
+                  onClick={() => {
+                    handleSort(columnName);
+                  }}
+                >
+                  {sortBy === columnName && (sortAsc ? " ▼" : " ▲")} {header}
+                </th>
+              );
+            })}
+          </tr>
+        </thead>
+        <tbody>
+          {props.loading ? (
+            <>
+              {/* Skeleton for 10 rows */}
+              {[...Array(10)].map((_, index) => (
+                <tr key={index} className="text-white border-b border-slate-800">
+                  <td className="p-6 text-right">
+                    <Skeleton width={30} height={40} style={{backgroundColor: 'gray'}} />
+                  </td>
+                  <td className="p-6 px-4 flex items-center">
+                    <div>
+                      <Skeleton variant="circular" height={24} width={24} style={{backgroundColor: 'gray'}} />
+                    </div>
+                    <div className="ml-4">
+                      <Skeleton width={200} height={40} style={{backgroundColor: 'gray'}} />
+                    </div>
+                  </td>
+                  <td className="px-4 text-right">
+                    <Skeleton width="100%" height={40} style={{backgroundColor: 'gray'}} />
+                  </td>
+                  <td className="px-4 text-right">
+                    <Skeleton width="100%" height={40} style={{backgroundColor: 'gray'}}/>
+                  </td>
+                  <td className="px-4 text-right">
+                    <Skeleton width="100%" height={40} style={{backgroundColor: 'gray'}}/>
+                  </td>
+                  <td className="px-4 text-center">
+                    <Skeleton width="100%" height={40} style={{backgroundColor: 'gray'}}/>
+                  </td>
+                  <td className="px-4 text-center">
+                    <Skeleton width="100%" height={40} style={{backgroundColor: 'gray'}}/>
+                  </td>
+                  <td className="px-4 text-center">
+                    <Skeleton width="100%" height={40} style={{backgroundColor: 'gray'}}/>
+                  </td>
+                  <td className="px-4 text-center">
+                    <Skeleton width="100%" height={40} style={{backgroundColor: 'gray'}}/>
+                  </td>
+                  <td className="px-4 text-right">
+                    <Skeleton width="100%" height={40} style={{backgroundColor: 'gray'}}/>
+                  </td>
+                </tr>
+              ))}
+            </>
+          ) : <>
+            {tableData &&
+              tableData.map((data, index) => (
+                <tr key={index} className="text-white border-b border-slate-800">
+                  <td className="p-6 text-right">{data.rank && data.rank}</td>
+                  <td className="p-6 px-4 flex items-center">
+                    <div>
+                      <img src={data.imgURL && data.imgURL} className="h-6 w-6" alt="CoinLogo" />
+                    </div>
+                    <div className="ml-4">
+                      <div className="font-semibold">{data.name}</div>
+                    </div>
+                  </td>
+                  <td className="px-4 text-right">
+                    ${data.marketCap ? formatNumber(data.marketCap) : '0.00'}
+                    <div className="h-2 bg-gray-300 mt-2">
+                      <div
+                        className="h-full bg-green-500"
+                        style={{
+                          width: `${calculatePercentage(
+                            data.marketCap ? data.marketCap : 0,
+                            maxMarketCap
+                          )}%`,
+                        }}
+                      ></div>
+                    </div>
+                  </td>
+                  <td className="px-4 text-right">
+                    {data.price ? parseFloat(data.price).toLocaleString("en-US", {
+                      style: "currency",
+                      currency: "USD",
+                    }) : '$0.00'}
+                  </td>
+                  <td className="px-4 text-right">
+                    {data.dailyChanged ? data.dailyChanged.toFixed(2) : 0}%
+                  </td>
+                  <td className="px-4 text-center">
+                    {(data.inOutOfTheMoneyHistory.length > 0) ? (
+                      <ProgressBar inPercentage={data.inOutOfTheMoneyHistory[0].inPercentage} outPercentage={data.inOutOfTheMoneyHistory[0].outPercentage} />
+                    ) : ("No Info")}
+                  </td>
+                  <td className="px-4 text-center">
+                    {(data.breakEvenPriceHistory.length > 0) ? (
+                      <ProgressBar inPercentage={data.breakEvenPriceHistory[0].inPercentage} outPercentage={data.breakEvenPriceHistory[0].outPercentage} />
+                    ) : ("No Info")}
+                  </td>
+                  <td className="px-4 text-center">
+                    {data.volatility.length > 0 ? `${(data.volatility[0].volatility60 * 100).toFixed(2)}%` : "0%"}
+                  </td>
+                  <td className="px-4 text-center">
+                    {data.largeTxs.length > 0 ? data.largeTxs[data.largeTxs.length - 1].adjustedCount : 0}
+                  </td>
+                  <td className="px-4 text-right">
+                    ${data.volume ? formatNumber(data.volume) : '0.00'}
+                    <div className="h-2 bg-gray-300 mt-2">
+                      <div
+                        className="h-full bg-blue-500"
+                        style={{
+                          width: `${calculatePercentage(data.volume, maxVolume)}%`,
+                        }}
+                      ></div>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+          </>}
+        </tbody>
+      </table>
+    </div>
   );
 };
 
