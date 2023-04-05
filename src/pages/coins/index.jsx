@@ -30,26 +30,26 @@ const Coins = () => {
   const [startNum, setStartNum] = useState(0);
   
   useEffect(() => {
-    setIsLoading(true);
-    socket.on('TotalCoinInfo', async (data) => {
-      if (data.coinData) {
-        setCoinData(data.coinData);
-        setIsLoading(false);
-      }
-      setStartNum(data.startNum)
-    })
-    console.log("err")
-    // Remove the listener on unmount to prevent memory leaks
-    return () => {
-      socket.off('TotalCoinInfo')
-    };
+    // setIsLoading(true);
+    // socket.on('TotalCoinInfo', async (data) => {
+    //   if (data.coinData) {
+    //     setCoinData(data.coinData);
+    //     setIsLoading(false);
+    //   }
+    //   setStartNum(data.startNum)
+    // })
+    // console.log("err")
+    // // Remove the listener on unmount to prevent memory leaks
+    // return () => {
+    //   socket.off('TotalCoinInfo')
+    // };
   }, [])
   
   useEffect(() => {
-    if (startNum !== pageNum) {
-      setIsLoading(true)
-    }
-    socket.emit('NextCoinInfo', pageNum);
+    // if (startNum !== pageNum) {
+    //   setIsLoading(true)
+    // }
+    // socket.emit('NextCoinInfo', pageNum);
   }, [coinData]);
 
   const getNextCoins = () => {
@@ -134,7 +134,7 @@ const Coins = () => {
           </div>
           <div className="m-8">
             {
-              coinData && showTable(tableNumber, coinData, isLoading)
+              // coinData && showTable(tableNumber, coinData, isLoading)
             }
           </div>
           <div className="flex gap-5 justify-center">
