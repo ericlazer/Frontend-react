@@ -2,6 +2,7 @@ import React from 'react'
 import Layout from '../../components/Layout'
 import LineChart from '../../components/Charts/LineChart'
 import ConexioTable from '../../components/Tables/ConexioTable'
+import ProgressBar from '../../components/ProgressBar'
 import CoinMainTable from '../../components/Tables/CoinMainTable'
 import CoinMarketImg from '../../assets/img/CoinMarket.gif'
 
@@ -88,6 +89,29 @@ const tableData = {
     }
   ],
   rows: [
+    [
+      'Avalance AVAX',
+      '$58.3k',
+      <label className='text-red-300'><i className='fa fa-heart'/> 0.04%</label>,
+      <label className='text-red-300'><i className='fa fa-heart'/> 0.04%</label>,
+      <label className='text-red-300'><i className='fa fa-heart'/> 0.04%</label>,
+      '$5,656,087,725',
+      '$165,585,252',
+      <div>
+        <label className='block text-left text-sm'>34,025,379,637,657 VVS</label>
+        <div className='flex'>
+          <ProgressBar 
+            options={{
+              parentClasses: 'bg-stone-300',
+              childClasses: 'bg-stone-700'
+            }}
+            percent={50}
+          />
+          <label className='ml-3 text-[9px]'>VVS</label>
+        </div>
+      </div>,
+      <div className='max-w-[250px] h-[30px] m-auto'><LineChart/></div>,
+    ]
   ]
 }
 
@@ -96,7 +120,7 @@ const DeFi = () => {
     <Layout>
       {/* Line Chart Cards */}
       <div className='flex w-full'>
-        <div className='w-1/2 m-5 rounded-lg bg-gradient-image'>
+        <div className='w-1/2 m-5 rounded-lg bg-gradient-card'>
           <div className='flex justify-between px-8 py-8'>
             <h6 className='text-white text-lg'>Market Capital</h6>
             <div className=''>
@@ -111,7 +135,7 @@ const DeFi = () => {
             </div>
           </div>
         </div>
-        <div className='w-1/2 m-5 rounded-lg bg-gradient-image'>
+        <div className='w-1/2 m-5 rounded-lg bg-gradient-card'>
           <div className='flex justify-between px-8 py-8'>
             <h6 className='text-white text-lg'>Market Capital</h6>
             <div>
@@ -189,7 +213,7 @@ const DeFi = () => {
         </div>
       </div>
       {/* Table */}
-      <div>
+      <div className='mt-16 overflow-x-auto'>
         <ConexioTable tableData={tableData}/>
       </div>
     </Layout>
