@@ -37,7 +37,9 @@ const CoinRank = () => {
             </div>
           </div>
         </div>
-        { category === 0 && <TrendingCoins /> }
+        <div>
+          {category === 0 && <TrendingCoins />}
+        </div>
       </div>
     </Layout>
   );
