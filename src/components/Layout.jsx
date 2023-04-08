@@ -38,6 +38,12 @@ const Layout = ({ children }) => {
 
   useEffect(() => {
     setActiveMenu(location.pathname);
+
+    document.body.classList.add('overflow-hidden');
+
+    return () => {
+      document.body.classList.remove('overflow-hidden');
+    };
   }, [location]);
 
   const menuItems = [
@@ -60,7 +66,13 @@ const Layout = ({ children }) => {
   };
 
   return (
-    <div className="bg-gradient-image">
+    <div className="overflow-y-hidden">
+      <div className='light x1 -z-[10]'></div>
+      <div className='light x3 -z-[10]'></div>
+      <div className='light x4 -z-[10]'></div>
+      <div className='light x6 -z-[10]'></div>
+      <div className='light x7 -z-[10]'></div>
+      <div className='light x9 -z-[10]'></div>
       <div className="flex justify-between px-5 py-10">
         <div className="ml-10 flex gap-4 items-center">
           <img src={UserPNG} />
