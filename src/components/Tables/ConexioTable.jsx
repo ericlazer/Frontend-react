@@ -1,13 +1,13 @@
-export default (tableOption = {}, tableData) => {
+export default ({tableOption = {}, tableData}) => {
   return (
-    <table className='w-full'>
+    <table className='w-full text-sm'>
       <thead>
         <tr>
           {
             tableData.columns && tableData.columns.map((column, key) => {
               console.log(column);
               return (
-                <th key={key}>
+                <th key={key} className='px-3 py-2 bg-[#313131] text-white font-normal' >
                   {column.header}
                 </th>
               )
@@ -19,10 +19,10 @@ export default (tableOption = {}, tableData) => {
         {
           tableData.rows && tableData.rows.map((row, key) => {
             return (
-              <tr key={key}>
+              <tr key={key} className='text-white text-center'>
                 {
                   row.map((item, i) => {
-                    <td key={i}>{item}</td>
+                    return <td key={i} className='px-3 py-2 bg-[#262626]'>{item}</td>
                   })
                 }
               </tr>
