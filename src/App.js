@@ -7,6 +7,7 @@ import Dapp from './pages/dapp';
 import DeFi from './pages/defi';
 import News from './pages/news';
 import Insights from './pages/insights';
+import TopCoins from './pages/coins/TopCoins';
 
 function App() {
   return (
@@ -15,7 +16,8 @@ function App() {
         {/* <Route path = "/" element ={<Navigate to = "/signup"/>} /> */}
         <Route path="/" element={<Dashboard />} />
         <Route path="/home" element={<Home />} />
-        <Route path="/coins" element={<Coins />} />
+        <Route exact path="/coins" element={<Coins />} />
+        <Route exact path="/coins/rank" element={<TopCoins />} />
         <Route path="/nft" element={<NFT />} />
         <Route path="/dapp" element={<Dapp />} />
         <Route path="/defi" element={<DeFi />} />
