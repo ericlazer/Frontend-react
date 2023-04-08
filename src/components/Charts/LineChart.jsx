@@ -31,6 +31,10 @@ export const options = {
       // position: 'top',
     },
   },
+  scaleOverride: true,
+  scaleSteps: 10,
+  scaleStepWidth: 100,
+  scaleStartValue: 0,
   scales: {
     x: {
       display: false,
@@ -43,28 +47,12 @@ export const options = {
       grid: {
         display: false,
       },
+      min: 0,
     },
   },
   maintainAspectRatio: false,
 };
 
-const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-
-export const data = {
-  labels,
-  datasets: [
-    {
-      fill: true,
-      label: 'Dataset',
-      data: labels.map(() => Math.floor(Math.random() * 201) + 800),
-      borderWidth: 1,
-      pointRadius: 0,
-      borderColor: 'rgb(255, 99, 132)',
-      backgroundColor: 'rgba(255, 99, 132, 0.3)',
-    },
-  ],
-};
-
-export default function App() {
+export default ({data}) => {
   return <Line options={options} data={data} />;
 }
