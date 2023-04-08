@@ -1,26 +1,28 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import socketIOClient from "socket.io-client";
 import Layout from "../../components/Layout";
-import { CoinMainTable, CoinChangeTable, CoinTokenInsightTable, NFTMainTable } from "../../components/Tables";
-import CoinMarketImg from "../../assets/img/CoinMarket.gif";
+import {
+  CoinMainTable,
+  CoinChangeTable,
+  CoinTokenInsightTable,
+  NFTMainTable,
+} from "../../components/Tables";
 import { API_URL } from "../../config/constants";
 
-const socket = socketIOClient(API_URL);
+// const socket = socketIOClient(API_URL);
 
 const showTable = (type, data, loading) => {
   if (type === 0) {
-    return <CoinMainTable CoinData={data} loading={loading} />
+    return <CoinMainTable CoinData={data} loading={loading} />;
+  } else if (type === 1) {
+    return <CoinTokenInsightTable CoinData={data} loading={loading} />;
+  } else if (type === 2) {
+    return <CoinChangeTable CoinData={data} loading={loading} />;
+  } else if (type === 3) {
+    return <NFTMainTable />;
   }
-  else if (type === 1) {
-    return <CoinTokenInsightTable CoinData={data} loading={loading} />
-  }
-  else if (type === 2) {
-    return <CoinChangeTable CoinData={data} loading={loading} />
-  }
-  else if (type === 3) {
-    return <NFTMainTable />
-  }
-}
+};
 
 const Coins = () => {
   const [coinData, setCoinData] = useState([]);
@@ -28,7 +30,7 @@ const Coins = () => {
   const [pageNum, setPageNum] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [startNum, setStartNum] = useState(0);
-  
+
   useEffect(() => {
     // setIsLoading(true);
     // socket.on('TotalCoinInfo', async (data) => {
@@ -43,8 +45,8 @@ const Coins = () => {
     // return () => {
     //   socket.off('TotalCoinInfo')
     // };
-  }, [])
-  
+  }, []);
+
   useEffect(() => {
     // if (startNum !== pageNum) {
     //   setIsLoading(true)
@@ -53,24 +55,42 @@ const Coins = () => {
   }, [coinData]);
 
   const getNextCoins = () => {
-    setIsLoading(true)
+    setIsLoading(true);
     let temp = pageNum;
     temp += 50;
     setPageNum(temp);
-  }
+  };
 
   const getPrevCoins = () => {
-    setIsLoading(true)
+    setIsLoading(true);
     let temp = pageNum;
     temp -= 50;
     if (temp < 0) temp = 0;
     setPageNum(temp);
-  }
+  };
+
+  const coinBoxes = [
+    { label: "Ranks", link: "/coins/rank" },
+    { label: "Liquidations", link: "/coins/liquidation" },
+    { label: "Charts", link: "/coins/chart" },
+    { label: "Trading", link: "/coins/trading" },
+    { label: "Exchange", link: "/coins/exchange" },
+    { label: "Coin Breakdown", link: "/coins/coinbreakdown" },
+  ];
 
   return (
     <Layout>
-      <div className="w-full">
-        <div className="flex items-center">
+      <div className="w-full grid grid-cols-3 gap-10">
+        {
+          coinBoxes.map(item => (
+            <Link key={item.label} to={item.link}>
+              <div className="h-[200px] text-white text-2xl bg-box-image rounded-lg p-5 transition border border-gray-500/0 hover:border-gray-500/100">
+                {item.label}
+              </div>
+            </Link>
+          ))
+        }
+        {/* <div className="flex items-center">
           <input
             className="bg-black p-4 rounded-md w-[500px] text-white outline-0 border-0 mx-auto flex"
             placeholder="Search by name, type & more"
@@ -106,7 +126,6 @@ const Coins = () => {
             </div>
           </div>
           <div className="bg-black w-[50%] flex px-8 py-16 bg-[url('assets/img/trendingCoin.gif')] bg-cover bg-no-repeat relative rounded-lg">
-            <div>{/* <img src={TrendingCoinImg} className='absolute'/> */}</div>
             <div>
               <div className="text-[32px] text-white font-bold">
                 Trending Coins Today
@@ -149,7 +168,7 @@ const Coins = () => {
               Next
             </button>
           </div>
-        </div>
+        </div> */}
       </div>
     </Layout>
   );
