@@ -19,7 +19,7 @@ export default ({tableOption = {}, tableData}) => {
         {
           tableData.rows && tableData.rows.map((row, key) => {
             return (
-              <tr key={key} className='text-white text-center'>
+              <tr key={key} className='text-white text-center hover:brightness-125'>
                 {
                   row.map((item, i) => {
                     return <td key={i} className='px-3 py-2 bg-[#262626]'>{item}</td>

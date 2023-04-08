@@ -6,6 +6,38 @@ import ProgressBar from '../../components/ProgressBar'
 import CoinMainTable from '../../components/Tables/CoinMainTable'
 import CoinMarketImg from '../../assets/img/CoinMarket.gif'
 
+const labels = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9,0, 1, 2, 3, 4, 5, 6, 7, 8, 9,0, 1, 2, 3, 4, 5, 6, 7, 8, 9,0, 1, 2, 3, 4, 5, 6, 7, 8, 9,0, 1, 2, 3, 4, 5, 6, 7, 8, 9,0, 1, 2, 3, 4, 5, 6, 7, 8, 9,0, 1, 2, 3, 4, 5, 6, 7, 8, 9,0, 1, 2, 3, 4, 5, 6, 7, 8, 9,];
+
+const lineChartData1 = {
+  labels,
+  datasets: [
+    {
+      fill: true,
+      label: 'Dataset',
+      data: labels.map(() => Math.floor(Math.random() * 701) + 300),
+      borderWidth: 1,
+      pointRadius: 0,
+      borderColor: '#FF3C3C',
+      backgroundColor: '#FF3C3C22',
+    },
+  ],
+};
+
+const lineChartData2 = {
+  labels,
+  datasets: [
+    {
+      fill: true,
+      label: 'Dataset',
+      data: labels.map(() => Math.floor(Math.random() * 701) + 300),
+      borderWidth: 1,
+      pointRadius: 0,
+      borderColor: '#28FF98',
+      backgroundColor: '#28FF9822',
+    },
+  ],
+};
+
 const filter = {
   menu1: [
     {
@@ -92,9 +124,9 @@ const tableData = {
     [
       'Avalance AVAX',
       '$58.3k',
-      <label className='text-red-300'><i className='fa fa-heart'/> 0.04%</label>,
-      <label className='text-red-300'><i className='fa fa-heart'/> 0.04%</label>,
-      <label className='text-red-300'><i className='fa fa-heart'/> 0.04%</label>,
+      <label className='text-red-300'><i className='fa fa-sort-down'/> 0.04%</label>,
+      <label className='text-red-300'><i className='fa fa-sort-down'/> 0.04%</label>,
+      <label className='text-red-300'><i className='fa fa-sort-down'/> 0.04%</label>,
       '$5,656,087,725',
       '$165,585,252',
       <div>
@@ -107,10 +139,217 @@ const tableData = {
             }}
             percent={50}
           />
-          <label className='ml-3 text-[9px]'>VVS</label>
+          <label className='ml-3 text-[0.6rem]'>VVS</label>
         </div>
       </div>,
-      <div className='max-w-[250px] h-[30px] m-auto'><LineChart/></div>,
+      <div className='max-w-[250px] h-[1rem] m-auto'><LineChart data={lineChartData1}/></div>,
+    ],
+    [
+      'Avalance AVAX',
+      '$58.3k',
+      <label className='text-red-300'><i className='fa fa-sort-down'/> 0.04%</label>,
+      <label className='text-red-300'><i className='fa fa-sort-down'/> 0.04%</label>,
+      <label className='text-red-300'><i className='fa fa-sort-down'/> 0.04%</label>,
+      '$5,656,087,725',
+      '$165,585,252',
+      <div>
+        <label className='block text-left text-sm'>34,025,379,637,657 VVS</label>
+        <div className='flex'>
+          <ProgressBar 
+            options={{
+              parentClasses: 'bg-stone-300',
+              childClasses: 'bg-stone-700'
+            }}
+            percent={50}
+          />
+          <label className='ml-3 text-[0.6rem]'>VVS</label>
+        </div>
+      </div>,
+      <div className='max-w-[250px] h-[1rem] m-auto'><LineChart data={lineChartData1}/></div>,
+    ],
+    [
+      'Avalance AVAX',
+      '$58.3k',
+      <label className='text-red-300'><i className='fa fa-sort-down'/> 0.04%</label>,
+      <label className='text-red-300'><i className='fa fa-sort-down'/> 0.04%</label>,
+      <label className='text-red-300'><i className='fa fa-sort-down'/> 0.04%</label>,
+      '$5,656,087,725',
+      '$165,585,252',
+      <div>
+        <label className='block text-left text-sm'>34,025,379,637,657 VVS</label>
+        <div className='flex'>
+          <ProgressBar 
+            options={{
+              parentClasses: 'bg-stone-300',
+              childClasses: 'bg-stone-700'
+            }}
+            percent={50}
+          />
+          <label className='ml-3 text-[0.6rem]'>VVS</label>
+        </div>
+      </div>,
+      <div className='max-w-[250px] h-[1rem] m-auto'><LineChart data={lineChartData1}/></div>,
+    ],
+    [
+      'Avalance AVAX',
+      '$58.3k',
+      <label className='text-red-300'><i className='fa fa-sort-down'/> 0.04%</label>,
+      <label className='text-red-300'><i className='fa fa-sort-down'/> 0.04%</label>,
+      <label className='text-red-300'><i className='fa fa-sort-down'/> 0.04%</label>,
+      '$5,656,087,725',
+      '$165,585,252',
+      <div>
+        <label className='block text-left text-sm'>34,025,379,637,657 VVS</label>
+        <div className='flex'>
+          <ProgressBar 
+            options={{
+              parentClasses: 'bg-stone-300',
+              childClasses: 'bg-stone-700'
+            }}
+            percent={50}
+          />
+          <label className='ml-3 text-[0.6rem]'>VVS</label>
+        </div>
+      </div>,
+      <div className='max-w-[250px] h-[1rem] m-auto'><LineChart data={lineChartData1}/></div>,
+    ],
+    [
+      'Avalance AVAX',
+      '$58.3k',
+      <label className='text-red-300'><i className='fa fa-sort-down'/> 0.04%</label>,
+      <label className='text-red-300'><i className='fa fa-sort-down'/> 0.04%</label>,
+      <label className='text-red-300'><i className='fa fa-sort-down'/> 0.04%</label>,
+      '$5,656,087,725',
+      '$165,585,252',
+      <div>
+        <label className='block text-left text-sm'>34,025,379,637,657 VVS</label>
+        <div className='flex'>
+          <ProgressBar 
+            options={{
+              parentClasses: 'bg-stone-300',
+              childClasses: 'bg-stone-700'
+            }}
+            percent={50}
+          />
+          <label className='ml-3 text-[0.6rem]'>VVS</label>
+        </div>
+      </div>,
+      <div className='max-w-[250px] h-[1rem] m-auto'><LineChart data={lineChartData1}/></div>,
+    ],
+    [
+      'Avalance AVAX',
+      '$58.3k',
+      <label className='text-red-300'><i className='fa fa-sort-down'/> 0.04%</label>,
+      <label className='text-red-300'><i className='fa fa-sort-down'/> 0.04%</label>,
+      <label className='text-red-300'><i className='fa fa-sort-down'/> 0.04%</label>,
+      '$5,656,087,725',
+      '$165,585,252',
+      <div>
+        <label className='block text-left text-sm'>34,025,379,637,657 VVS</label>
+        <div className='flex'>
+          <ProgressBar 
+            options={{
+              parentClasses: 'bg-stone-300',
+              childClasses: 'bg-stone-700'
+            }}
+            percent={50}
+          />
+          <label className='ml-3 text-[0.6rem]'>VVS</label>
+        </div>
+      </div>,
+      <div className='max-w-[250px] h-[1rem] m-auto'><LineChart data={lineChartData1}/></div>,
+    ],
+    [
+      'Avalance AVAX',
+      '$58.3k',
+      <label className='text-red-300'><i className='fa fa-sort-down'/> 0.04%</label>,
+      <label className='text-red-300'><i className='fa fa-sort-down'/> 0.04%</label>,
+      <label className='text-red-300'><i className='fa fa-sort-down'/> 0.04%</label>,
+      '$5,656,087,725',
+      '$165,585,252',
+      <div>
+        <label className='block text-left text-sm'>34,025,379,637,657 VVS</label>
+        <div className='flex'>
+          <ProgressBar 
+            options={{
+              parentClasses: 'bg-stone-300',
+              childClasses: 'bg-stone-700'
+            }}
+            percent={50}
+          />
+          <label className='ml-3 text-[0.6rem]'>VVS</label>
+        </div>
+      </div>,
+      <div className='max-w-[250px] h-[1rem] m-auto'><LineChart data={lineChartData1}/></div>,
+    ],
+    [
+      'Avalance AVAX',
+      '$58.3k',
+      <label className='text-red-300'><i className='fa fa-sort-down'/> 0.04%</label>,
+      <label className='text-red-300'><i className='fa fa-sort-down'/> 0.04%</label>,
+      <label className='text-red-300'><i className='fa fa-sort-down'/> 0.04%</label>,
+      '$5,656,087,725',
+      '$165,585,252',
+      <div>
+        <label className='block text-left text-sm'>34,025,379,637,657 VVS</label>
+        <div className='flex'>
+          <ProgressBar 
+            options={{
+              parentClasses: 'bg-stone-300',
+              childClasses: 'bg-stone-700'
+            }}
+            percent={50}
+          />
+          <label className='ml-3 text-[0.6rem]'>VVS</label>
+        </div>
+      </div>,
+      <div className='max-w-[250px] h-[1rem] m-auto'><LineChart data={lineChartData1}/></div>,
+    ],
+    [
+      'Avalance AVAX',
+      '$58.3k',
+      <label className='text-red-300'><i className='fa fa-sort-down'/> 0.04%</label>,
+      <label className='text-red-300'><i className='fa fa-sort-down'/> 0.04%</label>,
+      <label className='text-red-300'><i className='fa fa-sort-down'/> 0.04%</label>,
+      '$5,656,087,725',
+      '$165,585,252',
+      <div>
+        <label className='block text-left text-sm'>34,025,379,637,657 VVS</label>
+        <div className='flex'>
+          <ProgressBar 
+            options={{
+              parentClasses: 'bg-stone-300',
+              childClasses: 'bg-stone-700'
+            }}
+            percent={50}
+          />
+          <label className='ml-3 text-[0.6rem]'>VVS</label>
+        </div>
+      </div>,
+      <div className='max-w-[250px] h-[1rem] m-auto'><LineChart data={lineChartData1}/></div>,
+    ],
+    [
+      'Avalance AVAX',
+      '$58.3k',
+      <label className='text-red-300'><i className='fa fa-sort-down'/> 0.04%</label>,
+      <label className='text-red-300'><i className='fa fa-sort-down'/> 0.04%</label>,
+      <label className='text-red-300'><i className='fa fa-sort-down'/> 0.04%</label>,
+      '$5,656,087,725',
+      '$165,585,252',
+      <div>
+        <label className='block text-left text-sm'>34,025,379,637,657 VVS</label>
+        <div className='flex'>
+          <ProgressBar 
+            options={{
+              parentClasses: 'bg-stone-300',
+              childClasses: 'bg-stone-700'
+            }}
+            percent={50}
+          />
+          <label className='ml-3 text-[0.6rem]'>VVS</label>
+        </div>
+      </div>,
+      <div className='max-w-[250px] h-[1rem] m-auto'><LineChart data={lineChartData1}/></div>,
     ]
   ]
 }
@@ -120,33 +359,37 @@ const DeFi = () => {
     <Layout>
       {/* Line Chart Cards */}
       <div className='flex w-full'>
-        <div className='w-1/2 m-5 rounded-lg bg-gradient-card'>
-          <div className='flex justify-between px-8 py-8'>
-            <h6 className='text-white text-lg'>Market Capital</h6>
-            <div className=''>
-              <label className='text-white text-sm'>$5,656,087,725</label>
-              <br/>
-              <label htmlFor='' className='text-pink-400 text-xs'>0.04%</label>
+        <div className='p-5 w-1/2'>
+          <div className='rounded-lg bg-gradient-card'>
+            <div className='flex justify-between px-8 py-8'>
+              <h6 className='text-white text-lg'>Market Capital</h6>
+              <div className=''>
+                <label className='text-white text-sm'>$5,656,087,725</label>
+                <br/>
+                <label htmlFor='' className='text-[#FF8080] text-xs'><i className='fa fa-sort-down'/> 0.04%</label>
+              </div>
             </div>
-          </div>
-          <div className="relative w-full pt-[25%] mt-6">
-            <div className='absolute left-0 top-0 w-full h-full'>
-              <LineChart/>
+            <div className="relative w-full pt-[25%] mt-6">
+              <div className='absolute left-0 top-0 w-full h-full'>
+                <LineChart data={lineChartData1}/>
+              </div>
             </div>
           </div>
         </div>
-        <div className='w-1/2 m-5 rounded-lg bg-gradient-card'>
-          <div className='flex justify-between px-8 py-8'>
-            <h6 className='text-white text-lg'>Market Capital</h6>
-            <div>
-              <label className='text-white text-sm'>$5,656,087,725</label>
-              <br/>
-              <label htmlFor='' className='text-pink-400 text-xs'>0.04%</label>
+        <div className='p-5 w-1/2'>
+          <div className='rounded-lg bg-gradient-card'>
+            <div className='flex justify-between px-8 py-8'>
+              <h6 className='text-white text-lg'>Trading Volume</h6>
+              <div>
+                <label className='text-white text-sm'>$5,656,087,725</label>
+                <br/>
+                <label htmlFor='' className='text-[#80FF9C] text-xs'><i className='fa fa-sort-up'/> 12.8%</label>
+              </div>
             </div>
-          </div>
-          <div className="relative w-full pt-[25%] mt-6">
-            <div className='absolute left-0 top-0 w-full h-full'>
-              <LineChart/>
+            <div className="relative w-full pt-[25%] mt-6">
+              <div className='absolute left-0 top-0 w-full h-full'>
+                <LineChart data={lineChartData2}/>
+              </div>
             </div>
           </div>
         </div>
@@ -199,7 +442,7 @@ const DeFi = () => {
               type='button'
               className='mr-8 px-8 py-3 rounded bg-gradient-btn text-white'
             >
-              <i className='mr-3 fa fa-arrow-right'/>
+              <i className='mr-3 fa fa-arrow-down'/>
               Losers
             </button>
             <button
@@ -213,7 +456,7 @@ const DeFi = () => {
         </div>
       </div>
       {/* Table */}
-      <div className='mt-16 overflow-x-auto'>
+      <div className='mt-8 overflow-x-auto'>
         <ConexioTable tableData={tableData}/>
       </div>
     </Layout>
