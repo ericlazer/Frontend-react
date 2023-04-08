@@ -46,7 +46,7 @@ const Insights = () => {
         <div className='mt-16'>
           <p className='text-center text-[40px] font-bold text-white'>Crypto Prices Today</p>
           <div className='m-8'>
-            <CoinMainTable CoinData={CoinData} />
+            {/* <CoinMainTable CoinData={CoinData} /> */}
           </div>
         </div>
       </div>
