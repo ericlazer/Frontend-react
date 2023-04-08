@@ -110,18 +110,12 @@ const Layout = ({ children }) => {
           </div>
         </div>
       </div>
-      <div
-        className="flex overflow-auto"
-        style={{ height: "calc(100vh - 100px)" }}
-      >
+      <div className="flex overflow-auto h-[calc(100vh-100px)]">
         <div
-          className="flex flex-col text-xl text-white gap-1"
+          className={`flex flex-col text-xl text-white transtion-all duration-500 ease-in-out px-${isSlidebarCollapsed ? 0 : 5}`}
           style={{
-            height: "calc(100vh - 136px)",
-            padding: isSlidebarCollapsed ? "0" : "0 20px",
             width: isSlidebarCollapsed ? 0 : "300px",
             opacity: isSlidebarCollapsed ? 0 : 1,
-            transition: "all 0.5s ease-in-out",
           }}
         >
           <div className="overflow-y-auto">
@@ -129,14 +123,10 @@ const Layout = ({ children }) => {
               menuItems.map(({ path, label }) => (
                 <Link key={path} to={path}>
                   <div
-                    className={`cursor-pointer transition ease-in-out duration-300 hover:text-white rounded-lg p-3 ${
-                      activeMenu.includes(path)
-                        ? "text-white font-semibold"
-                        : "text-[#747474]"
-                    }`}
-                    style={
-                      activeMenu.includes(path) ? activeLinkStyle : linkStyle
-                    }
+                    className={`cursor-pointer transition ease-in-out duration-300 hover:text-white rounded-lg p-3 
+                      ${ activeMenu.includes(path) ? "text-white font-semibold" : "text-[#747474]" }
+                      ${ activeMenu.includes(path) ? activeLinkStyle : linkStyle }
+                    `}
                   >
                     {label}
                   </div>
