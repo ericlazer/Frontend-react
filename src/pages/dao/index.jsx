@@ -107,7 +107,7 @@ const DeFi = () => {
           </div>
           <div className="relative w-full pt-[25%] mt-6">
             <div className='absolute left-0 top-0 w-full h-full'>
-              <LineChart/>
+              {/* <LineChart /> */}
             </div>
           </div>
         </div>
@@ -122,7 +122,7 @@ const DeFi = () => {
           </div>
           <div className="relative w-full pt-[25%] mt-6">
             <div className='absolute left-0 top-0 w-full h-full'>
-              <LineChart/>
+              {/* <LineChart/> */}
             </div>
           </div>
         </div>
