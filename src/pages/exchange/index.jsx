@@ -172,7 +172,7 @@ const Exchange = () => {
                     cardView === 'detail' ?
                     <div className='absolute w-full h-full top-0 left-0 pb-8 bg-[#313131d4] overflow-y-auto'>
                       <div className='text-right px-8 py-8'>
-                        <a class='text-white text-sm' onClick={() => changeCardView(key, 'origin')}><i className='fa fa-copy'/> Show in table</a>
+                        <a className='text-white text-sm' onClick={() => changeCardView(key, 'origin')}><i className='fa fa-copy'/> Show in table</a>
                       </div>
                       <div className='flex justify-center'>
                         <table className='w-[90%]'>
