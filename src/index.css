@@ -55,6 +55,22 @@ code {
   background: #555;
 }
 
+
+.bg-zoom-hover {
+  position: relative;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: inherit;
+  background-position: center;
+  transition: all 0.3s ease-in-out;
+  transform: scale(1);
+}
+
+.bg-zoom-hover:hover {
+  transform: scale(1.1);
+}
+
 /* Background Style */
 .light {
   position: absolute;
