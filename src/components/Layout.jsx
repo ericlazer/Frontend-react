@@ -155,7 +155,7 @@ const Layout = ({ children }) => {
           style={{
             width: isSlidebarCollapsed ? "100%" : "calc(100% - 300px)",
           }}
-          className="py-8 px-16 h-full overflow-auto"
+          className="py-24 px-16 h-full overflow-auto"
         >
           <div
             className={`absolute bottom-10 ${
