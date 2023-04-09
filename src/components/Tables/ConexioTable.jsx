@@ -5,9 +5,8 @@ export default ({tableOption = {}, tableData}) => {
         <tr>
           {
             tableData.columns && tableData.columns.map((column, key) => {
-              console.log(column);
               return (
-                <th key={key} className='px-3 py-2 bg-[#313131] text-white font-normal' >
+                <th key={key} className={`px-5 py-2 bg-[#313131] text-white font-normal text-${column.align}`}>
                   {column.header}
                 </th>
               )
@@ -22,7 +21,7 @@ export default ({tableOption = {}, tableData}) => {
               <tr key={key} className='text-white text-center hover:brightness-125'>
                 {
                   row.map((item, i) => {
-                    return <td key={i} className='px-3 py-2 bg-[#262626]'>{item}</td>
+                    return <td key={i} className={`px-5 py-2 bg-[#262626] text-${tableData.columns[i].align}`}>{item}</td>
                   })
                 }
               </tr>
