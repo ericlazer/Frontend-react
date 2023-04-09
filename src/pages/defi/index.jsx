@@ -3,8 +3,6 @@ import Layout from '../../components/Layout'
 import LineChart from '../../components/Charts/LineChart'
 import ConexioTable from '../../components/Tables/ConexioTable'
 import ProgressBar from '../../components/ProgressBar'
-import CoinMainTable from '../../components/Tables/CoinMainTable'
-import CoinMarketImg from '../../assets/img/CoinMarket.gif'
 
 const labels = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9,0, 1, 2, 3, 4, 5, 6, 7, 8, 9,0, 1, 2, 3, 4, 5, 6, 7, 8, 9,0, 1, 2, 3, 4, 5, 6, 7, 8, 9,0, 1, 2, 3, 4, 5, 6, 7, 8, 9,0, 1, 2, 3, 4, 5, 6, 7, 8, 9,0, 1, 2, 3, 4, 5, 6, 7, 8, 9,0, 1, 2, 3, 4, 5, 6, 7, 8, 9,];
 

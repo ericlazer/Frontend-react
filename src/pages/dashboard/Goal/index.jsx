@@ -1,5 +1,4 @@
 import React from 'react'
-import LinkIcon from '../../../assets/icon/LinkIcon.png'
 
 const Goal = () => {
   return (
@@ -13,7 +12,7 @@ const Goal = () => {
           </p>
           <div className='flex gap-4 mt-6 text-[14px] items-center hover:opacity-[0.5] transition ease-in-out cursor-pointer'>
             <p>Learn More</p>
-            <img src={LinkIcon} alt="Link Icon" className='w-3 h-3' />
+            <img src="/icon/LinkIcon.png" alt="Link Icon" className='w-3 h-3' />
           </div>
         </div>
         <div className='rounded-[34px] border-2 border-gray-600 p-10 hover:border-white text-white cursor-pointer transition ease-in-out'>
@@ -23,7 +22,7 @@ const Goal = () => {
           </p>
           <div className='flex gap-4 mt-6 items-center text-[14px] hover:opacity-[0.5] transition ease-in-out cursor-pointer'>
             <p>Learn More</p>
-            <img src={LinkIcon} alt="Link Icon" className='w-3 h-3' />
+            <img src="/icon/LinkIcon.png" alt="Link Icon" className='w-3 h-3' />
           </div>
         </div>
         <div className='rounded-[34px] border-2 border-gray-600 p-10 hover:border-white text-white cursor-pointer transition ease-in-out'>
@@ -33,7 +32,7 @@ const Goal = () => {
           </p>
           <div className='flex gap-4 mt-6 text-[14px] items-center hover:opacity-[0.5] transition ease-in-out cursor-pointer'>
             <p>Learn More</p>
-            <img src={LinkIcon} alt="Link Icon" className='w-3 h-3' />
+            <img src="/icon/LinkIcon.png" alt="Link Icon" className='w-3 h-3' />
           </div>
         </div>
         <div className='rounded-[34px] border-2 border-gray-600 p-10 hover:border-white text-white cursor-pointer transition ease-in-out'>
@@ -43,7 +42,7 @@ const Goal = () => {
           </p>
           <div className='flex gap-4 mt-6 text-[14px] items-center hover:opacity-[0.5] transition ease-in-out cursor-pointer'>
             <p>Learn More</p>
-            <img src={LinkIcon} alt="Link Icon" className='w-3 h-3' />
+            <img src="/icon/LinkIcon.png" alt="Link Icon" className='w-3 h-3' />
           </div>
         </div>
       </div>

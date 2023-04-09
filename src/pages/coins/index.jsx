@@ -84,8 +84,13 @@ const Coins = () => {
         {
           coinBoxes.map(item => (
             <Link key={item.label} to={item.link}>
-              <div className="h-[200px] text-white text-2xl bg-box-image rounded-lg p-5 transition border border-gray-500/0 hover:border-gray-500/100">
-                {item.label}
+              <div
+                className="h-[350px] text-white text-2xl rounded-[30px] p-5 transition border border-gray-500/0 hover:border-gray-500/100 bg-zoom-hover"
+                style={{
+                  backgroundImage: `url('/img/CoinImages/${item.label}.png')`,
+                }}
+              >
+                <div className="bottom-10 font-semibold absolute">{item.label}</div>
               </div>
             </Link>
           ))
