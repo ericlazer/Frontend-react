@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import Dashboard from './pages/dashboard';
 import Home from './pages/home';
+import Pins from './pages/pins';
 import Coins from './pages/coins';
 import NFT from './pages/nft';
 import Dapp from './pages/dapp';
@@ -13,6 +14,7 @@ import Exchange from './pages/exchange'
 import Calendar from './pages/calendar';
 import Research from './pages/research';
 import TopCoins from './pages/coins/TopCoins';
+import TradingCoins from './pages/coins/TradingCoins';
 import Liquidation from './pages/coins/Liquidation';
 
 function App() {
@@ -22,8 +24,10 @@ function App() {
         {/* <Route path = "/" element ={<Navigate to = "/signup"/>} /> */}
         <Route path="/" element={<Dashboard />} />
         <Route path="/home" element={<Home />} />
+        <Route path="/pins" element={<Pins />} />
         <Route exact path="/coins" element={<Coins />} />
         <Route exact path="/coins/rank" element={<TopCoins />} />
+        <Route exact path="/coins/trading" element={<TradingCoins />} />
         <Route exact path="/coins/liquidation" element={<Liquidation />} />
         <Route path="/defi" element={<DeFi />} />
         <Route path="/exchange" element={<Exchange />} />

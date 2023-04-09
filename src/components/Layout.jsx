@@ -33,20 +33,35 @@ const activeLinkStyle = {
 const Layout = ({ children }) => {
   const [activeMenu, setActiveMenu] = useState("");
   const [isSlidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
     setActiveMenu(location.pathname);
-
     document.body.classList.add('overflow-hidden');
 
+    handleResize();
+
+    // Add an event listener for the window 'resize' event
+    window.addEventListener("resize", handleResize);
+    
     return () => {
       document.body.classList.remove('overflow-hidden');
+      window.removeEventListener("resize", handleResize);
     };
   }, [location]);
 
+  const handleResize = () => {
+    setIsMobile(window.innerWidth < 768);
+  };
+
+  const toggleSlidebar = () => {
+    setIsSidebarCollapsed(!isSlidebarCollapsed);
+  };
+  
   const menuItems = [
     { path: "/home", label: "Home" },
+    { path: "/pins", label: "Pins" },
     { path: "/coins", label: "Coins" },
     { path: "/defi", label: "DeFi" },
     { path: "/exchange", label: "Exchange" },
@@ -59,10 +74,6 @@ const Layout = ({ children }) => {
     { path: "/calendar", label: "Calendar" },
     { path: "/research", label: "Research" },
   ];
-
-  const toggleSlidebar = () => {
-    setIsSidebarCollapsed(!isSlidebarCollapsed);
-  };
 
   return (
     <div className="overflow-y-hidden">
@@ -109,12 +120,18 @@ const Layout = ({ children }) => {
           </div>
         </div>
       </div>
-      <div className="flex overflow-auto h-[calc(100vh-100px)]">
+      <div className="flex overflow-auto h-[calc(100vh-100px)] relative">
         <div
-          className={`flex flex-col text-xl text-white transtion-all duration-500 ease-in-out px-${isSlidebarCollapsed ? 0 : 5}`}
+          className={`flex flex-col text-xl text-white transition-all duration-500 ease-in-out rounded-r-xl
+            px-${ isSlidebarCollapsed || isMobile ? 0 : 5} 
+            ${(isMobile && !isSlidebarCollapsed) ? 'z-20' : ''} 
+            ${isMobile && 'absolute'} 
+            ${isMobile && 'bg-[#323232]'}
+          `}
           style={{
-            width: isSlidebarCollapsed ? 0 : "300px",
-            opacity: isSlidebarCollapsed ? 0 : 1,
+            width: (isSlidebarCollapsed) ? 0 : "300px",
+            opacity: (isSlidebarCollapsed) ? 0 : 1,
+            height: (isMobile && !isSlidebarCollapsed) ? '100%' : 'auto',
           }}
         >
           <div className="overflow-y-auto">
@@ -153,13 +170,16 @@ const Layout = ({ children }) => {
         </div>
         <div
           style={{
-            width: isSlidebarCollapsed ? "100%" : "calc(100% - 300px)",
+            width:
+              (isSlidebarCollapsed || isMobile)
+                ? "100vw"
+                : "calc(100% - 300px)",
           }}
           className="py-24 px-16 h-full overflow-auto"
         >
           <div
-            className={`absolute bottom-10 ${
-              isSlidebarCollapsed ? "-ml-[55px]" : "-ml-[80px]"
+            className={`absolute bottom-[70px] z-[100] transition-all duration-500 ${
+              isSlidebarCollapsed ? "-ml-[55px]" : ( isMobile ? "ml-[150px]" :  "-ml-[80px]")
             }`}
           >
             <button   
