@@ -13,6 +13,7 @@ import Exchange from './pages/exchange'
 import Calendar from './pages/calendar';
 import Research from './pages/research';
 import TopCoins from './pages/coins/TopCoins';
+import Liquidation from './pages/coins/Liquidation';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route exact path="/coins" element={<Coins />} />
         <Route exact path="/coins/rank" element={<TopCoins />} />
+        <Route exact path="/coins/liquidation" element={<Liquidation />} />
         <Route path="/defi" element={<DeFi />} />
         <Route path="/exchange" element={<Exchange />} />
         <Route path="/nft" element={<NFT />} />
