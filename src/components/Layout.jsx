@@ -5,7 +5,6 @@ import {
   ArrowLeftIcon,
   ArrowRightIcon,
 } from "@heroicons/react/outline";
-import UserPNG from "../assets/img/user.png";
 
 // Styles for animation
 const containerStyle = {
@@ -75,7 +74,7 @@ const Layout = ({ children }) => {
       <div className='light x9 -z-[10]'></div>
       <div className="flex justify-between px-5 py-10">
         <div className="ml-10 flex gap-4 items-center">
-          <img src={UserPNG} />
+          <img src="/img/user.png" />
           <div className="flex flex-col">
             <span className="text-xl text-white whitespace-nowrap">
               James Mark
@@ -125,8 +124,12 @@ const Layout = ({ children }) => {
                   <div
                     className={`cursor-pointer transition ease-in-out duration-300 hover:text-white rounded-lg p-3 
                       ${ activeMenu.includes(path) ? "text-white font-semibold" : "text-[#747474]" }
-                      ${ activeMenu.includes(path) ? activeLinkStyle : linkStyle }
                     `}
+                    style={
+                      activeMenu.includes(path)
+                        ? activeLinkStyle
+                        : linkStyle
+                    }
                   >
                     {label}
                   </div>
@@ -159,7 +162,7 @@ const Layout = ({ children }) => {
               isSlidebarCollapsed ? "-ml-[55px]" : "-ml-[80px]"
             }`}
           >
-            <button
+            <button   
               className="rounded-full border-2 border-white p-3 transition hover:bg-gray-600"
               onClick={toggleSlidebar}
             >

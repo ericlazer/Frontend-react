@@ -4,9 +4,6 @@ import React, {
 import Layout from '../../components/Layout'
 import LineChart from '../../components/Charts/LineChart'
 import ConexioTable from '../../components/Tables/ConexioTable'
-import ProgressBar from '../../components/ProgressBar'
-import CoinMainTable from '../../components/Tables/CoinMainTable'
-import CoinMarketImg from '../../assets/img/CoinMarket.gif'
 import { nearer } from 'q'
 
 const filter = {

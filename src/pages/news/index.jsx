@@ -1,7 +1,5 @@
 import React from 'react'
 import Layout from '../../components/Layout'
-import CoinMainTable from '../../components/Tables/CoinMainTable'
-import CoinMarketImg from '../../assets/img/CoinMarket.gif'
 
 const News = () => {
 
@@ -26,7 +24,6 @@ const News = () => {
         <div className='flex justify-between mt-10 gap-10'>
           <div className='bg-black w-[50%] flex px-8 py-16 rounded-lg'>
             <div>
-              <img src={CoinMarketImg} className='w-[200px]' alt="Coin Explore" />
             </div>
             <div className='m-auto'>
               <div className='text-[32px] text-white font-bold'>Coin Market List</div>

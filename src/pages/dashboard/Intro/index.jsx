@@ -1,13 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Logo from '../../../assets/img/Logo.png'
-import PreviewAppImg from '../../../assets/img/dashboard.png'
 
 const Intro = () => {
   return (
     <>
       <div className='flex justify-between'>
-        <img src={ Logo } className='sm:w-[250px] w-[130px]' alt="Logo" />
+        <img src="/img/Logo.png" className='sm:w-[250px] w-[130px]' alt="Logo" />
         <div className='flex text-xl gap-0 sm:gap-10 text-white items-center'>
           <Link><div className='text-[14px] tracking-[.05em] text-gray-300 hover:text-white transition ease-in-out hidden sm:block'>HOW-TO</div></Link>
           <Link><div className='text-[14px] tracking-[.05em] text-gray-300 hover:text-white transition ease-in-out hidden sm:block'>CAREER</div></Link>
@@ -20,7 +18,7 @@ const Intro = () => {
         <br />
         <span className='text-white'>TODAY</span>
       </div>
-      <div className='mt-4 text-center text-sm sm:text-base text-gray-300'>
+      <div className='mt-4 text-center text-sm sm:text-base text-gray-300'>git
         Welcome to the future of blockchain! Our CONEXIO is the ultimate solution for all your Blockchain information <br /> needs.
         With our technology and user-friendly platform, you can easily manage, store information and <br/> get recent news about Blockchain.
       </div>
@@ -33,7 +31,7 @@ const Intro = () => {
         </Link>
       </div>
       <div className='mt-16'>
-        <img src={PreviewAppImg} className='m-auto' alt="Preview App Image" />
+        <img src="/img/LandingPange.png" className='m-auto' alt="Preview App Image" />
       </div>
     </>
   )
