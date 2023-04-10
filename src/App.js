@@ -13,7 +13,7 @@ import Directory from './pages/directory';
 import Exchange from './pages/exchange'
 import Calendar from './pages/calendar';
 import Research from './pages/research';
-import TopCoins from './pages/coins/TopCoins';
+import CoinRanks from './pages/coins/Ranks';
 import TradingCoins from './pages/coins/TradingCoins';
 import Liquidation from './pages/coins/Liquidation';
 
@@ -26,7 +26,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/pins" element={<Pins />} />
         <Route exact path="/coins" element={<Coins />} />
-        <Route exact path="/coins/rank" element={<TopCoins />} />
+        <Route exact path="/coins/rank" element={<CoinRanks />} />
         <Route exact path="/coins/trading" element={<TradingCoins />} />
         <Route exact path="/coins/liquidation" element={<Liquidation />} />
         <Route path="/defi" element={<DeFi />} />

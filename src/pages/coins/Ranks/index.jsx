@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Layout from "../../../components/Layout";
+import AllCoins from "../../../components/Coins/AllCoins";
 import TrendingCoins from "../../../components/Coins/TrendingCoins";
 
 const CoinRank = () => {
@@ -17,7 +18,7 @@ const CoinRank = () => {
                 }`}
               onClick={() => setCategory(0)}
             >
-              Trending
+              Coins
             </div>
             <div
               className={`text-white/50 cursor-pointer p-2 rounded-md transition hover:bg-gray-600 ${
@@ -25,7 +26,7 @@ const CoinRank = () => {
                 }`}
               onClick={() => setCategory(1)}
             >
-              Top Coins
+              Trending Coins
             </div>
             <div
               className={`text-white/50 cursor-pointer p-2 rounded-md transition hover:bg-gray-600 ${
@@ -38,7 +39,8 @@ const CoinRank = () => {
           </div>
         </div>
         <div>
-          {category === 0 && <TrendingCoins />}
+          {category === 0 && <AllCoins />}
+          {category === 1 && <TrendingCoins />}
         </div>
       </div>
     </Layout>

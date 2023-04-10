@@ -2,27 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import socketIOClient from "socket.io-client";
 import Layout from "../../components/Layout";
-import {
-  CoinMainTable,
-  CoinChangeTable,
-  CoinTokenInsightTable,
-  NFTMainTable,
-} from "../../components/Tables";
 import { API_URL } from "../../config/constants";
 
 // const socket = socketIOClient(API_URL);
-
-const showTable = (type, data, loading) => {
-  if (type === 0) {
-    return <CoinMainTable CoinData={data} loading={loading} />;
-  } else if (type === 1) {
-    return <CoinTokenInsightTable CoinData={data} loading={loading} />;
-  } else if (type === 2) {
-    return <CoinChangeTable CoinData={data} loading={loading} />;
-  } else if (type === 3) {
-    return <NFTMainTable />;
-  }
-};
 
 const Coins = () => {
   const [coinData, setCoinData] = useState([]);
