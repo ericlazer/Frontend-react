@@ -175,7 +175,7 @@ const Layout = ({ children }) => {
                 ? "100vw"
                 : "calc(100% - 300px)",
           }}
-          className="py-24 px-16 h-full overflow-auto"
+          className="pt-8 pb-24 px-16 h-full overflow-auto"
         >
           <div
             className={`absolute bottom-[70px] z-[100] transition-all duration-500 ${

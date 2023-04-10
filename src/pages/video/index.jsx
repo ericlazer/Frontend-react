@@ -1,6 +1,9 @@
 import React from "react";
 import Layout from "../../components/Layout";
+import LineChart from "../../components/Charts/LineChart";
 import ConexioTable from "../../components/ConexioTable";
+import CoinMainTable from "../../components/Tables/CoinMainTable";
+import CoinMarketImg from "../../assets/img/CoinMarket.gif";
 
 const filter = {
   menu1: [
@@ -105,7 +108,7 @@ const DeFi = () => {
           </div>
           <div className="relative w-full pt-[25%] mt-6">
             <div className="absolute left-0 top-0 w-full h-full">
-              {/* <LineChart /> */}
+              <LineChart />
             </div>
           </div>
         </div>
@@ -122,7 +125,7 @@ const DeFi = () => {
           </div>
           <div className="relative w-full pt-[25%] mt-6">
             <div className="absolute left-0 top-0 w-full h-full">
-              {/* <LineChart/> */}
+              <LineChart />
             </div>
           </div>
         </div>

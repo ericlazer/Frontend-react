@@ -3,7 +3,7 @@ import axios from "axios";
 import ImageWithFallback from "../ImageWithFallback";
 import { API_BASE } from "../../config/constants";
 import { chains } from "../../data/data";
-import { coinPriceFormat } from "../../utils/formatPrice";
+import { coinPriceFormat } from "../../utils/format";
 import { Default } from "react-awesome-spinners";
 
 const TrendingCoins = () => {
