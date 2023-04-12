@@ -16,6 +16,8 @@ import Research from './pages/research';
 import CoinRanks from './pages/coins/Ranks';
 import TradingCoins from './pages/coins/TradingCoins';
 import Liquidation from './pages/coins/Liquidation';
+import DeFiTVL from './pages/defi/tvl';
+
 
 function App() {
   return (
@@ -29,7 +31,8 @@ function App() {
         <Route exact path="/coins/rank" element={<CoinRanks />} />
         <Route exact path="/coins/trading" element={<TradingCoins />} />
         <Route exact path="/coins/liquidation" element={<Liquidation />} />
-        <Route path="/defi" element={<DeFi />} />
+        <Route exact path="/defi" element={<DeFi />} />
+        <Route exact path="/defi/tvl" element={<DeFiTVL />} />
         <Route path="/exchange" element={<Exchange />} />
         <Route path="/nft" element={<NFT />} />
         <Route path="/dapp" element={<Dapp />} />

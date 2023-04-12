@@ -1,577 +1,164 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import socketIOClient from "socket.io-client";
 import Layout from "../../components/Layout";
-import LineChart from "../../components/Charts/LineChart";
-import ConexioTable from "../../components/ConexioTable";
-import ProgressBar from "../../components/ProgressBar";
+import { API_URL } from "../../config/constants";
 
-const labels = [
-  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5,
-  6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1,
-  2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7,
-  8, 9,
-];
+// const socket = socketIOClient(API_URL);
 
-const lineChartData1 = {
-  labels,
-  datasets: [
-    {
-      fill: true,
-      label: "Dataset",
-      data: labels.map(() => Math.floor(Math.random() * 701) + 300),
-      borderWidth: 1,
-      pointRadius: 0,
-      borderColor: "#FF3C3C",
-      backgroundColor: "#FF3C3C22",
-    },
-  ],
-};
+const DeFiTVL = () => {
+  const [coinData, setCoinData] = useState([]);
+  const [tableNumber, setTableNumber] = useState(0);
+  const [pageNum, setPageNum] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
+  const [startNum, setStartNum] = useState(0);
 
-const lineChartData2 = {
-  labels,
-  datasets: [
-    {
-      fill: true,
-      label: "Dataset",
-      data: labels.map(() => Math.floor(Math.random() * 701) + 300),
-      borderWidth: 1,
-      pointRadius: 0,
-      borderColor: "#28FF98",
-      backgroundColor: "#28FF9822",
-    },
-  ],
-};
+  useEffect(() => {
+    // setIsLoading(true);
+    // socket.on('TotalCoinInfo', async (data) => {
+    //   if (data.coinData) {
+    //     setCoinData(data.coinData);
+    //     setIsLoading(false);
+    //   }
+    //   setStartNum(data.startNum)
+    // })
+    // console.log("err")
+    // // Remove the listener on unmount to prevent memory leaks
+    // return () => {
+    //   socket.off('TotalCoinInfo')
+    // };
+  }, []);
 
-const filter = {
-  menu1: [
-    {
-      name: "Spot",
-      selected: true,
-    },
-    {
-      name: "Derivatives",
-      selected: false,
-    },
-    {
-      name: "DEX",
-      selected: false,
-    },
-    {
-      name: "Lending",
-      selected: false,
-    },
-  ],
-  menu2: [
-    {
-      name: "1D",
-      selected: true,
-    },
-    {
-      name: "7D",
-      selected: false,
-    },
-    {
-      name: "1M",
-      selected: false,
-    },
-    {
-      name: "3M",
-      selected: false,
-    },
-    {
-      name: "1Y",
-      selected: false,
-    },
-  ],
-};
+  useEffect(() => {
+    // if (startNum !== pageNum) {
+    //   setIsLoading(true)
+    // }
+    // socket.emit('NextCoinInfo', pageNum);
+  }, [coinData]);
 
-const tableData = {
-  columns: [
-    {
-      header: "Name",
-      name: "name",
-    },
-    {
-      header: "Price",
-      name: "price",
-    },
-    {
-      header: "1h%",
-      name: "1h",
-    },
-    {
-      header: "24h%",
-      name: "24h",
-    },
-    {
-      header: "7d%",
-      name: "7d",
-    },
-    {
-      header: "Market Cap",
-      name: "marketcap",
-    },
-    {
-      header: "Volumn(24h)",
-      name: "volumn",
-    },
-    {
-      header: "Circulating Supply",
-      name: "circulating",
-    },
-    {
-      header: "Last 7 Days",
-      name: "last",
-    },
-  ],
-  rows: [
-    [
-      "Avalance AVAX",
-      "$58.3k",
-      <label className="text-red-300">
-        <i className="fa fa-sort-down" /> 0.04%
-      </label>,
-      <label className="text-red-300">
-        <i className="fa fa-sort-down" /> 0.04%
-      </label>,
-      <label className="text-red-300">
-        <i className="fa fa-sort-down" /> 0.04%
-      </label>,
-      "$5,656,087,725",
-      "$165,585,252",
-      <div>
-        <label className="block text-left text-sm">
-          34,025,379,637,657 VVS
-        </label>
-        <div className="flex">
-          <ProgressBar
-            options={{
-              parentClasses: "bg-stone-300",
-              childClasses: "bg-stone-700",
-            }}
-            percent={50}
-          />
-          <label className="ml-3 text-[0.6rem]">VVS</label>
-        </div>
-      </div>,
-      <div className="max-w-[250px] h-[1rem] m-auto">
-        <LineChart data={lineChartData1} />
-      </div>,
-    ],
-    [
-      "Avalance AVAX",
-      "$58.3k",
-      <label className="text-red-300">
-        <i className="fa fa-sort-down" /> 0.04%
-      </label>,
-      <label className="text-red-300">
-        <i className="fa fa-sort-down" /> 0.04%
-      </label>,
-      <label className="text-red-300">
-        <i className="fa fa-sort-down" /> 0.04%
-      </label>,
-      "$5,656,087,725",
-      "$165,585,252",
-      <div>
-        <label className="block text-left text-sm">
-          34,025,379,637,657 VVS
-        </label>
-        <div className="flex">
-          <ProgressBar
-            options={{
-              parentClasses: "bg-stone-300",
-              childClasses: "bg-stone-700",
-            }}
-            percent={50}
-          />
-          <label className="ml-3 text-[0.6rem]">VVS</label>
-        </div>
-      </div>,
-      <div className="max-w-[250px] h-[1rem] m-auto">
-        <LineChart data={lineChartData1} />
-      </div>,
-    ],
-    [
-      "Avalance AVAX",
-      "$58.3k",
-      <label className="text-red-300">
-        <i className="fa fa-sort-down" /> 0.04%
-      </label>,
-      <label className="text-red-300">
-        <i className="fa fa-sort-down" /> 0.04%
-      </label>,
-      <label className="text-red-300">
-        <i className="fa fa-sort-down" /> 0.04%
-      </label>,
-      "$5,656,087,725",
-      "$165,585,252",
-      <div>
-        <label className="block text-left text-sm">
-          34,025,379,637,657 VVS
-        </label>
-        <div className="flex">
-          <ProgressBar
-            options={{
-              parentClasses: "bg-stone-300",
-              childClasses: "bg-stone-700",
-            }}
-            percent={50}
-          />
-          <label className="ml-3 text-[0.6rem]">VVS</label>
-        </div>
-      </div>,
-      <div className="max-w-[250px] h-[1rem] m-auto">
-        <LineChart data={lineChartData1} />
-      </div>,
-    ],
-    [
-      "Avalance AVAX",
-      "$58.3k",
-      <label className="text-red-300">
-        <i className="fa fa-sort-down" /> 0.04%
-      </label>,
-      <label className="text-red-300">
-        <i className="fa fa-sort-down" /> 0.04%
-      </label>,
-      <label className="text-red-300">
-        <i className="fa fa-sort-down" /> 0.04%
-      </label>,
-      "$5,656,087,725",
-      "$165,585,252",
-      <div>
-        <label className="block text-left text-sm">
-          34,025,379,637,657 VVS
-        </label>
-        <div className="flex">
-          <ProgressBar
-            options={{
-              parentClasses: "bg-stone-300",
-              childClasses: "bg-stone-700",
-            }}
-            percent={50}
-          />
-          <label className="ml-3 text-[0.6rem]">VVS</label>
-        </div>
-      </div>,
-      <div className="max-w-[250px] h-[1rem] m-auto">
-        <LineChart data={lineChartData1} />
-      </div>,
-    ],
-    [
-      "Avalance AVAX",
-      "$58.3k",
-      <label className="text-red-300">
-        <i className="fa fa-sort-down" /> 0.04%
-      </label>,
-      <label className="text-red-300">
-        <i className="fa fa-sort-down" /> 0.04%
-      </label>,
-      <label className="text-red-300">
-        <i className="fa fa-sort-down" /> 0.04%
-      </label>,
-      "$5,656,087,725",
-      "$165,585,252",
-      <div>
-        <label className="block text-left text-sm">
-          34,025,379,637,657 VVS
-        </label>
-        <div className="flex">
-          <ProgressBar
-            options={{
-              parentClasses: "bg-stone-300",
-              childClasses: "bg-stone-700",
-            }}
-            percent={50}
-          />
-          <label className="ml-3 text-[0.6rem]">VVS</label>
-        </div>
-      </div>,
-      <div className="max-w-[250px] h-[1rem] m-auto">
-        <LineChart data={lineChartData1} />
-      </div>,
-    ],
-    [
-      "Avalance AVAX",
-      "$58.3k",
-      <label className="text-red-300">
-        <i className="fa fa-sort-down" /> 0.04%
-      </label>,
-      <label className="text-red-300">
-        <i className="fa fa-sort-down" /> 0.04%
-      </label>,
-      <label className="text-red-300">
-        <i className="fa fa-sort-down" /> 0.04%
-      </label>,
-      "$5,656,087,725",
-      "$165,585,252",
-      <div>
-        <label className="block text-left text-sm">
-          34,025,379,637,657 VVS
-        </label>
-        <div className="flex">
-          <ProgressBar
-            options={{
-              parentClasses: "bg-stone-300",
-              childClasses: "bg-stone-700",
-            }}
-            percent={50}
-          />
-          <label className="ml-3 text-[0.6rem]">VVS</label>
-        </div>
-      </div>,
-      <div className="max-w-[250px] h-[1rem] m-auto">
-        <LineChart data={lineChartData1} />
-      </div>,
-    ],
-    [
-      "Avalance AVAX",
-      "$58.3k",
-      <label className="text-red-300">
-        <i className="fa fa-sort-down" /> 0.04%
-      </label>,
-      <label className="text-red-300">
-        <i className="fa fa-sort-down" /> 0.04%
-      </label>,
-      <label className="text-red-300">
-        <i className="fa fa-sort-down" /> 0.04%
-      </label>,
-      "$5,656,087,725",
-      "$165,585,252",
-      <div>
-        <label className="block text-left text-sm">
-          34,025,379,637,657 VVS
-        </label>
-        <div className="flex">
-          <ProgressBar
-            options={{
-              parentClasses: "bg-stone-300",
-              childClasses: "bg-stone-700",
-            }}
-            percent={50}
-          />
-          <label className="ml-3 text-[0.6rem]">VVS</label>
-        </div>
-      </div>,
-      <div className="max-w-[250px] h-[1rem] m-auto">
-        <LineChart data={lineChartData1} />
-      </div>,
-    ],
-    [
-      "Avalance AVAX",
-      "$58.3k",
-      <label className="text-red-300">
-        <i className="fa fa-sort-down" /> 0.04%
-      </label>,
-      <label className="text-red-300">
-        <i className="fa fa-sort-down" /> 0.04%
-      </label>,
-      <label className="text-red-300">
-        <i className="fa fa-sort-down" /> 0.04%
-      </label>,
-      "$5,656,087,725",
-      "$165,585,252",
-      <div>
-        <label className="block text-left text-sm">
-          34,025,379,637,657 VVS
-        </label>
-        <div className="flex">
-          <ProgressBar
-            options={{
-              parentClasses: "bg-stone-300",
-              childClasses: "bg-stone-700",
-            }}
-            percent={50}
-          />
-          <label className="ml-3 text-[0.6rem]">VVS</label>
-        </div>
-      </div>,
-      <div className="max-w-[250px] h-[1rem] m-auto">
-        <LineChart data={lineChartData1} />
-      </div>,
-    ],
-    [
-      "Avalance AVAX",
-      "$58.3k",
-      <label className="text-red-300">
-        <i className="fa fa-sort-down" /> 0.04%
-      </label>,
-      <label className="text-red-300">
-        <i className="fa fa-sort-down" /> 0.04%
-      </label>,
-      <label className="text-red-300">
-        <i className="fa fa-sort-down" /> 0.04%
-      </label>,
-      "$5,656,087,725",
-      "$165,585,252",
-      <div>
-        <label className="block text-left text-sm">
-          34,025,379,637,657 VVS
-        </label>
-        <div className="flex">
-          <ProgressBar
-            options={{
-              parentClasses: "bg-stone-300",
-              childClasses: "bg-stone-700",
-            }}
-            percent={50}
-          />
-          <label className="ml-3 text-[0.6rem]">VVS</label>
-        </div>
-      </div>,
-      <div className="max-w-[250px] h-[1rem] m-auto">
-        <LineChart data={lineChartData1} />
-      </div>,
-    ],
-    [
-      "Avalance AVAX",
-      "$58.3k",
-      <label className="text-red-300">
-        <i className="fa fa-sort-down" /> 0.04%
-      </label>,
-      <label className="text-red-300">
-        <i className="fa fa-sort-down" /> 0.04%
-      </label>,
-      <label className="text-red-300">
-        <i className="fa fa-sort-down" /> 0.04%
-      </label>,
-      "$5,656,087,725",
-      "$165,585,252",
-      <div>
-        <label className="block text-left text-sm">
-          34,025,379,637,657 VVS
-        </label>
-        <div className="flex">
-          <ProgressBar
-            options={{
-              parentClasses: "bg-stone-300",
-              childClasses: "bg-stone-700",
-            }}
-            percent={50}
-          />
-          <label className="ml-3 text-[0.6rem]">VVS</label>
-        </div>
-      </div>,
-      <div className="max-w-[250px] h-[1rem] m-auto">
-        <LineChart data={lineChartData1} />
-      </div>,
-    ],
-  ],
-};
+  const getNextCoins = () => {
+    setIsLoading(true);
+    let temp = pageNum;
+    temp += 50;
+    setPageNum(temp);
+  };
 
-const DeFi = () => {
+  const getPrevCoins = () => {
+    setIsLoading(true);
+    let temp = pageNum;
+    temp -= 50;
+    if (temp < 0) temp = 0;
+    setPageNum(temp);
+  };
+
+  const coinBoxes = [
+    { label: "Overview TVL", name:"TVL", link: "/defi/tvl" },
+    { label: "Fees & Revenue", name:"Fee", link: "/defi/liquidation" },
+    { label: "Yields", name:"Yield", link: "/defi/chart" },
+    { label: "Bridge Overview", name:"Bridge", link: "/defi/trading" },
+    { label: "Dex Liquidations", name:"Dex liquidation", link: "/defi/exchange" },
+    { label: "Dex Overview", name:"Dex overview", link: "/defi/coinbreakdown" },
+  ];
+
   return (
     <Layout>
-      {/* Line Chart Cards */}
-      <div className="flex w-full">
-        <div className="p-5 w-1/2">
-          <div className="rounded-lg bg-gradient-card">
-            <div className="flex justify-between px-8 py-8">
-              <h6 className="text-white text-lg">Market Capital</h6>
-              <div className="">
-                <label className="text-white text-sm">$5,656,087,725</label>
-                <br />
-                <label htmlFor="" className="text-[#FF8080] text-xs">
-                  <i className="fa fa-sort-down" /> 0.04%
-                </label>
+      <div className="w-full grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-10">
+        {
+          coinBoxes.map(item => (
+            <Link key={item.label} to={item.link}>
+              <div
+                className="h-[200px] lg:h-[250px] xl:h-[350px] text-white text-lg lg:text-2xl rounded-[30px] p-5 transition border border-gray-500/0 hover:border-gray-500/100 bg-zoom-hover"
+                style={{
+                  backgroundImage: `url('/img/DefiImages/${item.name}.png')`,
+                }}
+              >
+                <div className="bottom-10 font-semibold absolute">{item.label}</div>
               </div>
+            </Link>
+          ))
+        }
+        {/* <div className="flex items-center">
+          <input
+            className="bg-black p-4 rounded-md w-[500px] text-white outline-0 border-0 mx-auto flex"
+            placeholder="Search by name, type & more"
+          />
+          <div className="text-white text-[14px] font">
+            <button className="border-2 border-white px-6 py-2 rounded-[10px] min-w-[100px] transition ease-in-out hover:bg-white hover:text-black duration-300">
+              Sign Up
+            </button>
+            <button className="border-2 border-white px-6 py-2 rounded-[10px] min-w-[100px] transition ease-in-out hover:bg-white hover:text-black duration-300 ml-4">
+              Login
+            </button>
+          </div>
+        </div>
+        <div className="flex justify-between mt-10 gap-10">
+          <div className="bg-black w-[50%] flex px-8 py-16 rounded-lg">
+            <div>
+              <img
+                src={CoinMarketImg}
+                className="w-[200px]"
+                alt="Coin Explore"
+              />
             </div>
-            <div className="relative w-full pt-[25%] mt-6">
-              <div className="absolute left-0 top-0 w-full h-full">
-                <LineChart data={lineChartData1} />
+            <div className="m-auto">
+              <div className="text-[32px] text-white font-bold">
+                Coin Market List
+              </div>
+              <div className="text-[18px] text-white">
+                Get all informaion about Coins
+              </div>
+              <button className="border-2 border-white px-6 py-2 rounded-[10px] min-w-[100px] transition ease-in-out hover:bg-white hover:text-black duration-300 text-white mt-8">
+                Explore All
+              </button>
+            </div>
+          </div>
+          <div className="bg-black w-[50%] flex px-8 py-16 bg-[url('assets/img/trendingCoin.gif')] bg-cover bg-no-repeat relative rounded-lg">
+            <div>
+              <div className="text-[32px] text-white font-bold">
+                Trending Coins Today
               </div>
             </div>
           </div>
         </div>
-        <div className="p-5 w-1/2">
-          <div className="rounded-lg bg-gradient-card">
-            <div className="flex justify-between px-8 py-8">
-              <h6 className="text-white text-lg">Trading Volume</h6>
-              <div>
-                <label className="text-white text-sm">$5,656,087,725</label>
-                <br />
-                <label htmlFor="" className="text-[#80FF9C] text-xs">
-                  <i className="fa fa-sort-up" /> 12.8%
-                </label>
-              </div>
-            </div>
-            <div className="relative w-full pt-[25%] mt-6">
-              <div className="absolute left-0 top-0 w-full h-full">
-                <LineChart data={lineChartData2} />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      {/* Filter */}
-      <div>
-        <h3 className="p-5 text-white text-xl">DeFi</h3>
-        <div className="flex w-full justify-between">
-          <div className="">
-            <div className="flex w-max py-2 bg-transparent border rounded-md border-stone-700 text-sm">
-              {filter.menu1.map((item, key) => {
-                return (
-                  <button
-                    key={key}
-                    type="button"
-                    className={`mx-2 px-2 py-1 rounded ${
-                      item.selected
-                        ? "bg-[#323232] text-white"
-                        : "text-stone-500"
-                    }`}
-                  >
-                    {item.name}
-                  </button>
-                );
-              })}
-            </div>
-            <div className="flex w-max mt-2 py-2 bg-transparent border rounded-md border-stone-700 text-sm">
-              {filter.menu2.map((item, key) => {
-                return (
-                  <button
-                    key={key}
-                    type="button"
-                    className={`mx-2 px-2 py-1 rounded ${
-                      item.selected
-                        ? "bg-[#323232] text-white"
-                        : "text-stone-500"
-                    }`}
-                  >
-                    {item.name}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-          <div className="flex w-max h-max text-lg">
-            <button
-              type="button"
-              className="mr-8 px-8 py-3 rounded bg-gradient-btn text-white"
-            >
-              <i className="mr-3 fa fa-star" />
-              Gainers
+        <div className="mt-16">
+          <p className="text-center text-[40px] font-bold text-white">
+            Crypto Prices Today
+          </p>
+          <div className="flex gap-3 mt-8">
+            <button className={`text-white py-2 px-5 bg-gray-700 rounded-lg tracking-[1px] transition ease-in-out hover:opacity-[0.5] ${tableNumber === 0 && "!bg-blue-700 !opacity-[1]"}`} onClick={() => setTableNumber(0)}>
+              CryptoInfo
             </button>
-            <button
-              type="button"
-              className="mr-8 px-8 py-3 rounded bg-gradient-btn text-white"
-            >
-              <i className="mr-3 fa fa-arrow-down" />
-              Losers
+            <button className={`text-white py-2 px-5 bg-gray-700 rounded-lg tracking-[1px] transition ease-in-out hover:opacity-[0.5] ${tableNumber === 1 && "!bg-blue-700 !opacity-[1]"}`} onClick={() => setTableNumber(1)}>
+              CryptoATH
             </button>
-            <button
-              type="button"
-              className="px-8 py-3 rounded bg-gradient-btn text-white"
-            >
-              <i className="mr-3 fa fa-table" />
-              Table View
+            <button className={`text-white py-2 px-5 bg-gray-700 rounded-lg tracking-[1px] transition ease-in-out hover:opacity-[0.5] ${tableNumber === 2 && "!bg-blue-700 !opacity-[1]"}`} onClick={() => setTableNumber(2)}>
+              CryptoHourly
+            </button>
+            <button className={`text-white py-2 px-5 bg-gray-700 rounded-lg tracking-[1px] transition ease-in-out hover:opacity-[0.5] ${tableNumber === 3 && "!bg-blue-700 !opacity-[1]"}`} onClick={() => setTableNumber(3)}>
+              NFT
             </button>
           </div>
-        </div>
-      </div>
-      {/* Table */}
-      <div className="mt-8 overflow-x-auto">
-        <ConexioTable tableData={tableData} />
+          <div className="m-8">
+            {
+              // coinData && showTable(tableNumber, coinData, isLoading)
+            }
+          </div>
+          <div className="flex gap-5 justify-center">
+            <button className="bg-gray-800 py-2 px-5 text-white font-bold rounded-md hover:bg-gray-600 transition ease-in-out" onClick={() => {
+              getPrevCoins();
+            }}>
+              Prev
+            </button>
+            <button className="bg-gray-800 py-2 px-5 text-white font-bold rounded-md hover:bg-gray-600 transition ease-in-out" onClick={() => {
+              getNextCoins();
+            }}>
+              Next
+            </button>
+          </div>
+        </div> */}
       </div>
     </Layout>
   );
 };
 
-export default DeFi;
+export default DeFiTVL;
