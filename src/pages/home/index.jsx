@@ -3,13 +3,13 @@ import Layout from "../../components/Layout";
 const Home = () => {
   return (
     <Layout>
-      <div className="flex justify-between items-center">
-        <div className="text-white text-xl">
-          Your Pins
-        </div>
-        <div className="text-white px-5 py-3 cursor-pointer bg-[#212121] mr-10 rounded-lg transition hover:bg-gray-600">
-          Manage Pins
-        </div>
+      <div className="grid grid-cols-3 gap-5">
+        <div className="bg-gradient-card1 h-[300px] rounded-lg"></div>
+        <div className="bg-gradient-card1 h-[300px] rounded-lg"></div>
+        <div className="bg-gradient-card1 h-[300px] rounded-lg"></div>
+        <div className="bg-gradient-card1 h-[300px] rounded-lg"></div>
+        <div className="bg-gradient-card1 h-[300px] rounded-lg"></div>
+        <div className="bg-gradient-card1 h-[300px] rounded-lg"></div>
       </div>
     </Layout>
   );

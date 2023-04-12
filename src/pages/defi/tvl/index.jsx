@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Layout from "../../../components/Layout";
-import Chains from "../../../components/DeFi/TVL/Chains";
-import Protocols from "../../../components/DeFi/TVL/Protocols";
+import Chains from "../../../components/DeFi/Chains";
+import Protocols from "../../../components/DeFi/Protocols";
 
 const DeFiTVL = () => {
   const [category, setCategory] = useState(0);
@@ -15,7 +15,7 @@ const DeFiTVL = () => {
             <div
               className={`text-white/50 cursor-pointer p-2 rounded-md transition hover:bg-gray-600 ${
                 category === 0 && "!bg-button-hover"
-                }`}
+              }`}
               onClick={() => setCategory(0)}
             >
               Chains
@@ -23,7 +23,7 @@ const DeFiTVL = () => {
             <div
               className={`text-white/50 cursor-pointer p-2 rounded-md transition hover:bg-gray-600 ${
                 category === 1 && "!bg-button-hover"
-                }`}
+              }`}
               onClick={() => setCategory(1)}
             >
               Protocols

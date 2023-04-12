@@ -24,7 +24,18 @@ export const coinPriceFormat = (price) => {
 
 // Change percent type
 export const percentFormat = (num) => {
-  return (Math.abs(num - 1) * 100).toFixed(2) + '%';
+  if (num)
+    return (Math.abs(num - 1) * 100).toFixed(2) + '%';
+  else
+    return num
+}
+
+// Change percent type
+export const normalPercentFormat = (num) => {
+  if (num)
+    return num.toFixed(2) + '%';
+  else
+    return num
 }
 
 // marketCap format

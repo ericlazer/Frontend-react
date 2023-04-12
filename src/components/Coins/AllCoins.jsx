@@ -98,7 +98,6 @@ const AllCoins = () => {
   };
 
   const handlePageClick = ({ selected: selectedPage }) => {
-    console.log(selectedPage);
     setCurrentPage(selectedPage);
   };
 
