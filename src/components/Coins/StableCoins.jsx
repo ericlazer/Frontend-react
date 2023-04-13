@@ -118,7 +118,7 @@ const StableCoins = () => {
           })}
         </select>
       </div>
-      <div className="mt-5">
+      <div className="mt-5 overflow-x-auto overflow-y-hidden">
         <ConexioTable tableData={tableData} isLoading={isLoading} />
         <ReactPaginate
           pageCount={tableData.totalPages}
