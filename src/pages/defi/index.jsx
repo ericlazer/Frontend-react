@@ -53,7 +53,7 @@ const DeFiTVL = () => {
 
   const coinBoxes = [
     { label: "Overview TVL", name:"TVL", link: "/defi/tvl" },
-    { label: "Fees & Revenue", name:"Fee", link: "/defi/liquidation" },
+    { label: "Fees & Revenue", name:"Fee", link: "/defi/fee" },
     { label: "Yields", name:"Yield", link: "/defi/yield" },
     { label: "Bridge Overview", name:"Bridge", link: "/defi/bridge" },
     { label: "Dex Liquidations", name:"Dex liquidation", link: "/defi/dex" },
