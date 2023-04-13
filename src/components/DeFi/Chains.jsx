@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { API_BASE } from "../../../config/constants";
-import { coinPriceFormat, marketCapFormat } from "../../../utils/format";
-import ConexioTable from "../../ConexioTable";
+import { API_BASE } from "../../config/constants";
+import { coinPriceFormat, marketCapFormat } from "../../utils/format";
+import ConexioTable from "../ConexioTable";
+import ImageWithFallback from "../ImageWithFallback";
 import ReactPaginate from "react-paginate";
 
 const columns = [
@@ -12,23 +13,18 @@ const columns = [
     align: "left",
   },
   {
-    header: "Coin",
-    name: "coin",
+    header: "Chain",
+    name: "chainFullName",
     align: "left",
   },
   {
-    header: "Name",
-    name: "name",
+    header: "Symbol",
+    name: "chainShortName",
     align: "center",
   },
   {
-    header: "Price",
-    name: "price",
-    align: "right",
-  },
-  {
-    header: "Market Cap",
-    name: "marketcup",
+    header: "TVL",
+    name: "tvl",
     align: "right",
   },
 ];
@@ -37,7 +33,7 @@ const filter = {
   showCount: [25, 50, 100],
 };
 
-const Protocols = () => {
+const Chains = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [showCountOption, setShowCountOption] = useState(filter.showCount[0]);
   const [isLoading, setIsLoading] = useState(false);
@@ -46,7 +42,7 @@ const Protocols = () => {
   const fetchData = async () => {
     setIsLoading(true);
     const response = await axios.get(
-      `${API_BASE}/coin/stablecoins?page=${
+      `${API_BASE}/defi/tvlchain?page=${
         currentPage + 1
       }}&pageSize=${showCountOption}`
     );
@@ -68,17 +64,18 @@ const Protocols = () => {
       data.data.map((row, key) => {
         newData.rows.push([
           showCountOption * currentPage + (key + 1),
-          <div>
-            <img
-              src={row.imgURL}
-              className="inline-block w-[1.5rem] h-[1.5rem] mr-3"
-              alt="CoinIcon"
-            />
-            {row.symbol}
+          row.chainFullName,
+          <div className="flex items-center gap-4">
+            {row.chainShortName && (
+              <ImageWithFallback
+                src={`https://lcw.nyc3.cdn.digitaloceanspaces.com/production/currencies/32/${row.chainShortName.toLowerCase()}.png`}
+                fallback="/img/CoinImages/blank.png"
+                className="rounded-full w-7"
+              />
+            )}
+            {row.chainShortName}
           </div>,
-          row.name,
-          coinPriceFormat(row.price),
-          marketCapFormat(row.marketCap),
+          marketCapFormat(row.tvl),
         ]);
       });
     }
@@ -139,4 +136,4 @@ const Protocols = () => {
   );
 };
 
-export default Protocols;
+export default Chains;

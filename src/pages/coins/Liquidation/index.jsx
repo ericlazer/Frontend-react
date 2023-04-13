@@ -75,7 +75,7 @@ const Liquidation = () => {
       const response = await axios.get(
         `${API_BASE}/coin/${gainerLoserOption}?${
           filter.timeChanged[timeChangedOption].name
-        }=true&page=${currentPage + 1}}&pageSize=${showCountOption}`
+        }=true&page=${currentPage + 1}&pageSize=${showCountOption}`
       );
       drawTable(response.data);
       setIsLoading(false);
