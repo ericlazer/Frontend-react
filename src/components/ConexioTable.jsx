@@ -37,7 +37,7 @@ export default ({ tableOption = {}, tableData, isLoading }) => {
                   return (
                     <td
                       key={i}
-                      className={`px-5 py-2 border border-[#313131] text-${tableData.columns[i].align}`}
+                      className={`px-3 py-2 border border-[#313131] text-${tableData.columns[i].align}`}
                     >
                       {item}
                     </td>

@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import { API_BASE } from "../../config/constants";
-import { coinPriceFormat, marketCapFormat } from "../../utils/format";
+import { marketCapFormat } from "../../utils/format";
 import ConexioTable from "../ConexioTable";
 import ImageWithFallback from "../ImageWithFallback";
 import ReactPaginate from "react-paginate";
@@ -39,29 +39,14 @@ const Chains = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [tableData, setTableData] = useState({});
 
-  const fetchData = async () => {
-    setIsLoading(true);
-    const response = await axios.get(
-      `${API_BASE}/defi/tvlchain?page=${
-        currentPage + 1
-      }}&pageSize=${showCountOption}`
-    );
-    drawTable(response.data);
-    setIsLoading(false);
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, [showCountOption, currentPage]);
-
-  const drawTable = (data) => {
+  const drawTable = useCallback((data) => {
     let newData = {
       columns,
       rows: [],
       totalPages: 0,
     };
     if (data.data.length) {
-      data.data.map((row, key) => {
+      data.data.forEach((row, key) => {
         newData.rows.push([
           showCountOption * currentPage + (key + 1),
           row.chainFullName,
@@ -81,7 +66,22 @@ const Chains = () => {
     }
     newData.totalPages = data.totalPages;
     setTableData(newData);
-  };
+  }, [showCountOption, currentPage]);
+
+  const fetchData = useCallback(async () => {
+    setIsLoading(true);
+    const response = await axios.get(
+      `${API_BASE}/defi/tvlchain?page=${
+        currentPage + 1
+      }}&pageSize=${showCountOption}`
+    );
+    drawTable(response.data);
+    setIsLoading(false);
+  }, [showCountOption, currentPage, drawTable]);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
 
   const handleSelectOption = (event, selectType) => {
     const { value } = event.target;
