@@ -1,11 +1,12 @@
 import React from "react";
-import { CheckCircleIcon } from "@heroicons/react/outline";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
 const PlanDetail = ({ content }) => {
   return (
-    <div className="flex gap-4">
+    <div className="flex gap-4 items-center">
       <div className="w-4">
-        <CheckCircleIcon className="w-6 h-6 text-white" />
+        <FontAwesomeIcon icon={faCheck} className="text-white w-3 px-[4px] py-[2px] border-2 border-white rounded-full" />
       </div>
       <p className="text-white text-[14px]">{content}</p>
     </div>

@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import socketIOClient from "socket.io-client";
+// import socketIOClient from "socket.io-client";
 import Layout from "../../components/Layout";
-import { API_URL } from "../../config/constants";
+// import { API_URL } from "../../config/constants";
 
 // const socket = socketIOClient(API_URL);
 
 const Coins = () => {
   const [coinData, setCoinData] = useState([]);
-  const [tableNumber, setTableNumber] = useState(0);
+  // const [tableNumber, setTableNumber] = useState(0);
   const [pageNum, setPageNum] = useState(0);
-  const [isLoading, setIsLoading] = useState(false);
-  const [startNum, setStartNum] = useState(0);
+  // const [isLoading, setIsLoading] = useState(false);
+  // const [startNum, setStartNum] = useState(0);
 
   useEffect(() => {
     // setIsLoading(true);
@@ -36,20 +36,20 @@ const Coins = () => {
     // socket.emit('NextCoinInfo', pageNum);
   }, [coinData]);
 
-  const getNextCoins = () => {
-    setIsLoading(true);
-    let temp = pageNum;
-    temp += 50;
-    setPageNum(temp);
-  };
+  // const getNextCoins = () => {
+  //   setIsLoading(true);
+  //   let temp = pageNum;
+  //   temp += 50;
+  //   setPageNum(temp);
+  // };
 
-  const getPrevCoins = () => {
-    setIsLoading(true);
-    let temp = pageNum;
-    temp -= 50;
-    if (temp < 0) temp = 0;
-    setPageNum(temp);
-  };
+  // const getPrevCoins = () => {
+  //   setIsLoading(true);
+  //   let temp = pageNum;
+  //   temp -= 50;
+  //   if (temp < 0) temp = 0;
+  //   setPageNum(temp);
+  // };
 
   const coinBoxes = [
     { label: "Ranks", name: "Ranks", link: "/coins/rank" },

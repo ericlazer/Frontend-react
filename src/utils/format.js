@@ -24,18 +24,21 @@ export const coinPriceFormat = (price) => {
 
 // Change percent type
 export const percentFormat = (num) => {
-  if (num)
+  if (typeof num === "number") {
     return (Math.abs(num - 1) * 100).toFixed(2) + '%';
-  else
-    return num
+  }
+  else {
+    return num;
+  }
 }
 
 // Change percent type
 export const normalPercentFormat = (num) => {
-  if (num)
+  if (typeof num === "number") {
     return num.toFixed(2) + '%';
-  else
-    return num
+  } else {
+    return num;
+  }
 }
 
 // marketCap format
@@ -45,6 +48,6 @@ export const marketCapFormat = (num) => {
   } else if (num >= 1000000) {
     return '$' + (num / 1000000).toFixed(2) + "M";
   } else {
-    return '$' + num.toFixed(2);
+    return '$' + num.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   }
 };

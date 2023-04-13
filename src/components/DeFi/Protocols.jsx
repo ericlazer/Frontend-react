@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import { API_BASE } from "../../config/constants";
 import { normalPercentFormat, marketCapFormat } from "../../utils/format";
@@ -59,29 +59,14 @@ const Protocols = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [tableData, setTableData] = useState({});
 
-  const fetchData = async () => {
-    setIsLoading(true);
-    const response = await axios.get(
-      `${API_BASE}/defi/getprotocol?page=${
-        currentPage + 1
-      }}&pageSize=${showCountOption}`
-    );
-    drawTable(response.data);
-    setIsLoading(false);
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, [showCountOption, currentPage]);
-
-  const drawTable = (data) => {
+  const drawTable = useCallback ((data) => {
     let newData = {
       columns,
       rows: [],
       totalPages: 0,
     };
     if (data.data.length) {
-      data.data.map((row, key) => {
+      data.data.forEach((row, key) => {
         newData.rows.push([
           showCountOption * currentPage + (key + 1),
           <div className="flex gap-4 items-center">
@@ -115,7 +100,22 @@ const Protocols = () => {
     }
     newData.totalPages = data.totalPages;
     setTableData(newData);
-  };
+  }, [currentPage, showCountOption]);
+  
+  const fetchData = useCallback(async () => {
+    setIsLoading(true);
+    const response = await axios.get(
+      `${API_BASE}/defi/getprotocol?page=${
+        currentPage + 1
+      }}&pageSize=${showCountOption}`
+    );
+    drawTable(response.data);
+    setIsLoading(false);
+  }, [currentPage, showCountOption, drawTable]);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
 
   const handleSelectOption = (event, selectType) => {
     const { value } = event.target;
