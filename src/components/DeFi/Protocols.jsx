@@ -18,9 +18,14 @@ const columns = [
     align: "left",
   },
   {
-    header: "Chain",
+    header: "Category",
     name: "chain",
     align: "center",
+  },
+  {
+    header: "Chain",
+    name: "chains",
+    align: "right",
   },
   {
     header: "Chains",
@@ -58,15 +63,20 @@ const Protocols = () => {
   const [showCountOption, setShowCountOption] = useState(filter.showCount[0]);
   const [isLoading, setIsLoading] = useState(false);
   const [tableData, setTableData] = useState({});
+  let responseData = {totalPages: 0, data: []};
+  let expendView = -1;
 
   const fetchData = async () => {
     setIsLoading(true);
-    const response = await axios.get(
+    responseData = await axios.get(
       `${API_BASE}/defi/getprotocol?page=${
         currentPage + 1
       }}&pageSize=${showCountOption}`
     );
-    drawTable(response.data);
+    console.log(responseData.data);
+
+    expendView = -1;
+    drawTable(responseData.data, expendView);
     setIsLoading(false);
   };
 
@@ -74,16 +84,18 @@ const Protocols = () => {
     fetchData();
   }, [showCountOption, currentPage]);
 
-  const drawTable = (data) => {
+  const drawTable = (data, expend) => {
     let newData = {
       columns,
       rows: [],
       totalPages: 0,
     };
+    console.log(data.data, expend);
     if (data.data.length) {
-      data.data.map((row, key) => {
+      console.log("STEP 1");
+      data.data.map((row, rowIndex) => {
         newData.rows.push([
-          showCountOption * currentPage + (key + 1),
+          showCountOption * currentPage + (rowIndex + 1),
           <div className="flex gap-4 items-center">
             <ImageWithFallback
               src={row.logo}
@@ -94,6 +106,40 @@ const Protocols = () => {
           </div>,
           row.category,
           row.chain,
+          <div className="relative w-full h-full">
+            {
+              row.chains.map((chain, key) => {
+                if(key < 3) {
+                  return (
+                    <label key={key} className="mr-2">{chain}</label>
+                  )
+                }
+              })
+            }
+            {
+              row.chains.length > 3 ?
+              <>
+                <a
+                  className="text-yellow-500"
+                  onClick={() => handleExpendView(rowIndex)}
+                >
+                  more +{row.chains.length - 3}
+                </a>
+                {
+                  expend === rowIndex ?
+                  <div className="absolute flex flex-wrap w-[200px] top-0 right-0 p-3 translate-x-[calc(100%+20px)] bg-[#323232] rounded z-10">
+                    {
+                      row.chains.map((chain, key) => {
+                        if(key >= 3) { 
+                          return <label key={key} className="mr-2">{chain}</label>
+                        }
+                      })
+                    }
+                  </div> : <></>
+                }
+              </> : <></>
+            }
+          </div>,
           <div className={`text-[${row.change_1d > 0 ? '#80FF9C' : '#FF8080'}]`}>
             {
               normalPercentFormat(row.change_1h)
@@ -114,6 +160,7 @@ const Protocols = () => {
       });
     }
     newData.totalPages = data.totalPages;
+    console.log(newData);
     setTableData(newData);
   };
 
@@ -127,6 +174,11 @@ const Protocols = () => {
         break;
     }
   };
+
+  const handleExpendView = (rowIndex) => {
+    expendView = (expendView === rowIndex) ? -1 : rowIndex;
+    drawTable(responseData.data, expendView);
+  }
 
   const handlePageClick = ({ selected: selectedPage }) => {
     console.log(selectedPage);
@@ -149,7 +201,7 @@ const Protocols = () => {
           })}
         </select>
       </div>
-      <div className="mt-5">
+      <div className="mt-5 overflow-x-auto overflow-y-hidden">
         <ConexioTable tableData={tableData} isLoading={isLoading} />
         <ReactPaginate
           pageCount={tableData.totalPages}
