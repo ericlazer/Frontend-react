@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import {
-  SearchCircleIcon,
-  ArrowLeftIcon,
-  ArrowRightIcon,
-} from "@heroicons/react/outline";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEllipsisH, faMagnifyingGlass, faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 // Styles for animation
 const containerStyle = {
@@ -85,7 +82,7 @@ const Layout = ({ children }) => {
       <div className='light x9 -z-[10]'></div>
       <div className="flex justify-between px-5 py-10">
         <div className="ml-10 flex gap-4 items-center">
-          <img src="/img/user.png" />
+          <img src="/img/user.png" alt="user" />
           <div className="flex flex-col">
             <span className="text-xl text-white whitespace-nowrap">
               James Mark
@@ -95,27 +92,14 @@ const Layout = ({ children }) => {
         </div>
         <div className="flex mr-10 items-center gap-4">
           <div className="flex bg-[#212121] rounded-2xl items-center px-4 py-3 gap-2">
-            <SearchCircleIcon className="text-white w-7" />
+            <FontAwesomeIcon icon={faMagnifyingGlass} className="text-white"/>
             <input
               placeholder="Search"
               className="bg-transparent border-none outline-none text-white"
             />
           </div>
           <div className="flex gap-3 text-white cursor-pointer transition hover:bg-[#212121] px-5 py-4 rounded-2xl">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="1.5"
-              stroke="currentColor"
-              className="w-6 h-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </svg>
+            <FontAwesomeIcon className="px-[2px] py-[1px] border-2 border-white rounded-full" icon={faEllipsisH} />
             More Options
           </div>
         </div>
@@ -159,9 +143,9 @@ const Layout = ({ children }) => {
                     className="text-black rounded-lg"
                   >
                     {label === "Research & Insights" ? (
-                      <img src={`/img/menuImages/Research.png`} />
+                      <img src={`/img/menuImages/Research.png`} alt="Category" />
                     ) : (
-                      <img src={`/img/menuImages/${label}.png`} />
+                      <img src={`/img/menuImages/${label}.png`} alt="Category" />
                     )}
                   </div>
                 </Link>
@@ -183,13 +167,13 @@ const Layout = ({ children }) => {
             }`}
           >
             <button   
-              className="rounded-full border-2 border-white p-3 transition hover:bg-gray-600"
+              className="rounded-full border-2 border-white px-3 py-2 transition hover:bg-gray-600"
               onClick={toggleSlidebar}
             >
               {isSlidebarCollapsed ? (
-                <ArrowRightIcon className="text-white w-4" />
+                <FontAwesomeIcon icon={faArrowLeft} className="text-white" />
               ) : (
-                <ArrowLeftIcon className="text-white w-4" />
+                <FontAwesomeIcon icon={faArrowRight} className="text-white" />
               )}
             </button>
           </div>

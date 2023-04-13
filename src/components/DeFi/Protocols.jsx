@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import { API_BASE } from "../../config/constants";
 import { normalPercentFormat, marketCapFormat } from "../../utils/format";
@@ -162,7 +162,22 @@ const Protocols = () => {
     newData.totalPages = data.totalPages;
     console.log(newData);
     setTableData(newData);
-  };
+  }, [currentPage, showCountOption]);
+  
+  const fetchData = useCallback(async () => {
+    setIsLoading(true);
+    const response = await axios.get(
+      `${API_BASE}/defi/getprotocol?page=${
+        currentPage + 1
+      }}&pageSize=${showCountOption}`
+    );
+    drawTable(response.data);
+    setIsLoading(false);
+  }, [currentPage, showCountOption, drawTable]);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
 
   const handleSelectOption = (event, selectType) => {
     const { value } = event.target;

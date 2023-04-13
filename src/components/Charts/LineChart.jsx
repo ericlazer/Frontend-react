@@ -53,6 +53,8 @@ export const options = {
   maintainAspectRatio: false,
 };
 
-export default ({data}) => {
+const LineChart = ({data}) => {
   return <Line options={options} data={data} />;
 }
+
+export default LineChart;

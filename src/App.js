@@ -17,6 +17,8 @@ import CoinRanks from './pages/coins/Ranks';
 import TradingCoins from './pages/coins/TradingCoins';
 import Liquidation from './pages/coins/Liquidation';
 import DeFiTVL from './pages/defi/tvl';
+import Bridge from './pages/defi/bridge'
+import Yield from './pages/defi/yield'
 
 
 function App() {
@@ -33,6 +35,8 @@ function App() {
         <Route exact path="/coins/liquidation" element={<Liquidation />} />
         <Route exact path="/defi" element={<DeFi />} />
         <Route exact path="/defi/tvl" element={<DeFiTVL />} />
+        <Route exact path="/defi/bridge" element={<Bridge />} />
+        <Route exact path="/defi/yield" element={<Yield />} />
         <Route path="/exchange" element={<Exchange />} />
         <Route path="/nft" element={<NFT />} />
         <Route path="/dapp" element={<Dapp />} />
