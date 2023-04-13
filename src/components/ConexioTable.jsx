@@ -21,7 +21,7 @@ export default ({ tableOption = {}, tableData, isLoading }) => {
       <tbody>
         {isLoading ? (
           <tr>
-            <td colSpan={tableData.columns.length} className="h-[calc(100vh-300px)] text-center">
+            <td colSpan={tableData.columns && tableData.columns.length} className="h-[calc(100vh-300px)] text-center">
               <Default color="#a1a1a1" />
             </td>
           </tr>
