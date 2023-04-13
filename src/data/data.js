@@ -50,6 +50,7 @@ export const chains = [
 ];
 
 export const chainImages = {
+  "bitcoin": 'btc.png',
   "ethereum": "eth.png",
   "binance": "bnb.png",
   "bsc": "bnb.png",
@@ -97,4 +98,16 @@ export const chainImages = {
   "energyweb": "energy.png",
   "callisto": "clo.png",
   "solana": "sol.png",
+  "algorand": "algo.png",
+  "polkadot": 'dot.png',
+  "eos": 'eos.png',
+  "zilliqa": 'zil.png',
+  "cosmos": 'atom.png',
+  "tezos": 'xtz.png',
+  "cardano": 'ada.png',
+  "aptos": 'apt.png',
+  "near": 'near.png',
+  "elrond": 'erd.png',
+  "ethereumclassic": 'etc.png',
+  "litecoin": 'ltc.png',
 }

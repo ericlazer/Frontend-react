@@ -1,10 +1,12 @@
 import React, { useEffect, useState, useCallback } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
-import { API_BASE } from "../../config/constants";
-import { normalPercentFormat, marketCapFormat } from "../../utils/format";
 import ConexioTable from "../ConexioTable";
 import ReactPaginate from "react-paginate";
 import ImageWithFallback from "../ImageWithFallback";
+import { API_BASE } from "../../config/constants";
+import { chainImages } from "../../data/data";
+import { normalPercentFormat, marketCapFormat } from "../../utils/format";
 
 const columns = [
   {
@@ -63,106 +65,120 @@ const Protocols = () => {
   const [showCountOption, setShowCountOption] = useState(filter.showCount[0]);
   const [isLoading, setIsLoading] = useState(false);
   const [tableData, setTableData] = useState({});
-  let responseData = {totalPages: 0, data: []};
+  let responseData = { totalPages: 0, data: [] };
   let expendView = -1;
 
-  const fetchData = async () => {
+  const drawTable = useCallback(
+    (data, expend) => {
+      let newData = {
+        columns,
+        rows: [],
+        totalPages: 0,
+      };
+
+      if (data.data.length) {
+        data.data.forEach((row, rowIndex) => {
+          newData.rows.push([
+            showCountOption * currentPage + (rowIndex + 1),
+            <div className="flex gap-4 items-center">
+              <ImageWithFallback
+                src={row.logo}
+                fallback="/img/CoinImages/blank.png"
+                className="rounded-full w-7"
+              />
+              {row.name}
+            </div>,
+            row.category,
+            row.chain,
+            <div className="relative w-full h-full">
+              <div className="flex gap-1 w-5">
+                {row.chains
+                  .filter((_, key) => key < 3)
+                  .map((chain, key) => (
+                    <ImageWithFallback
+                      key={key}
+                      className="w-5 mr-2"
+                      src={`https://lcw.nyc3.cdn.digitaloceanspaces.com/production/currencies/32/${
+                        chainImages[chain.toLowerCase()]
+                        }`}
+                      fallback="/img/CoinImages/blank.png"
+                      alt="Chain"
+                    />
+                  ))}
+              </div>
+              {row.chains.length > 3 ? (
+                <>
+                  <Link
+                    className="text-yellow-500"
+                    onClick={() => handleExpendView(rowIndex)}
+                  >
+                    more +{row.chains.length - 3}
+                  </Link>
+                  {expend === rowIndex ? (
+                    <div className="absolute flex flex-wrap w-[200px] top-0 right-0 p-3 translate-x-[calc(100%+20px)] bg-[#323232] rounded z-10">
+                      {row.chains
+                        .filter((_, key) => key >= 3)
+                        .map((chain, key) => (
+                          <ImageWithFallback
+                            key={key}
+                            className="w-5 mr-2"
+                            src={`https://lcw.nyc3.cdn.digitaloceanspaces.com/production/currencies/32/${
+                              chainImages[chain.toLowerCase()]
+                              }`}
+                            fallback="/img/CoinImages/blank.png"
+                            alt="Chain"
+                          />
+                        ))}
+                    </div>
+                  ) : (
+                    <></>
+                  )}
+                </>
+              ) : (
+                <></>
+              )}
+            </div>,
+            <div
+              className={`text-[${row.change_1d > 0 ? "#80FF9C" : "#FF8080"}]`}
+            >
+              {normalPercentFormat(row.change_1h)}
+            </div>,
+            <div
+              className={`text-[${row.change_1d > 0 ? "#80FF9C" : "#FF8080"}]`}
+            >
+              {normalPercentFormat(row.change_1d)}
+            </div>,
+            <div
+              className={`text-[${row.change_1d > 0 ? "#80FF9C" : "#FF8080"}]`}
+            >
+              {normalPercentFormat(row.change_7d)}
+            </div>,
+            marketCapFormat(row.tvl),
+          ]);
+        });
+      }
+      newData.totalPages = data.totalPages;
+      setTableData(newData);
+    },
+    [showCountOption, currentPage]
+  );
+
+  const fetchData = useCallback(async () => {
     setIsLoading(true);
     responseData = await axios.get(
       `${API_BASE}/defi/getprotocol?page=${
         currentPage + 1
       }}&pageSize=${showCountOption}`
     );
-    console.log(responseData.data);
 
     expendView = -1;
     drawTable(responseData.data, expendView);
     setIsLoading(false);
-  };
+  }, [showCountOption, currentPage, drawTable]);
 
   useEffect(() => {
     fetchData();
-  }, [showCountOption, currentPage]);
-
-  const drawTable = (data, expend) => {
-    let newData = {
-      columns,
-      rows: [],
-      totalPages: 0,
-    };
-    console.log(data.data, expend);
-    if (data.data.length) {
-      console.log("STEP 1");
-      data.data.map((row, rowIndex) => {
-        newData.rows.push([
-          showCountOption * currentPage + (rowIndex + 1),
-          <div className="flex gap-4 items-center">
-            <ImageWithFallback
-              src={row.logo}
-              fallback="/img/CoinImages/blank.png"
-              className="rounded-full w-7"
-            />
-            {row.name}
-          </div>,
-          row.category,
-          row.chain,
-          <div className="relative w-full h-full">
-            {
-              row.chains.map((chain, key) => {
-                if(key < 3) {
-                  return (
-                    <label key={key} className="mr-2">{chain}</label>
-                  )
-                }
-              })
-            }
-            {
-              row.chains.length > 3 ?
-              <>
-                <a
-                  className="text-yellow-500"
-                  onClick={() => handleExpendView(rowIndex)}
-                >
-                  more +{row.chains.length - 3}
-                </a>
-                {
-                  expend === rowIndex ?
-                  <div className="absolute flex flex-wrap w-[200px] top-0 right-0 p-3 translate-x-[calc(100%+20px)] bg-[#323232] rounded z-10">
-                    {
-                      row.chains.map((chain, key) => {
-                        if(key >= 3) { 
-                          return <label key={key} className="mr-2">{chain}</label>
-                        }
-                      })
-                    }
-                  </div> : <></>
-                }
-              </> : <></>
-            }
-          </div>,
-          <div className={`text-[${row.change_1d > 0 ? '#80FF9C' : '#FF8080'}]`}>
-            {
-              normalPercentFormat(row.change_1h)
-            }
-          </div>,
-          <div className={`text-[${row.change_1d > 0 ? '#80FF9C' : '#FF8080'}]`}>
-            {
-              normalPercentFormat(row.change_1d)
-            }
-          </div>,
-          <div className={`text-[${row.change_1d > 0 ? '#80FF9C' : '#FF8080'}]`}>
-            {
-              normalPercentFormat(row.change_7d)
-            }
-          </div>,
-          marketCapFormat(row.tvl),
-        ]);
-      });
-    }
-    newData.totalPages = data.totalPages;
-    console.log(newData);
-    setTableData(newData);
-  };
+  }, [fetchData]);
 
   const handleSelectOption = (event, selectType) => {
     const { value } = event.target;
@@ -176,12 +192,11 @@ const Protocols = () => {
   };
 
   const handleExpendView = (rowIndex) => {
-    expendView = (expendView === rowIndex) ? -1 : rowIndex;
+    expendView = expendView === rowIndex ? -1 : rowIndex;
     drawTable(responseData.data, expendView);
-  }
+  };
 
   const handlePageClick = ({ selected: selectedPage }) => {
-    console.log(selectedPage);
     setCurrentPage(selectedPage);
   };
 

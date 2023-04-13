@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 // import socketIOClient from "socket.io-client";
 import Layout from "../../components/Layout";
@@ -7,9 +7,9 @@ import Layout from "../../components/Layout";
 // const socket = socketIOClient(API_URL);
 
 const Coins = () => {
-  const [coinData, setCoinData] = useState([]);
+  // const [coinData, setCoinData] = useState([]);
   // const [tableNumber, setTableNumber] = useState(0);
-  const [pageNum, setPageNum] = useState(0);
+  // const [pageNum, setPageNum] = useState(0);
   // const [isLoading, setIsLoading] = useState(false);
   // const [startNum, setStartNum] = useState(0);
 
@@ -29,12 +29,12 @@ const Coins = () => {
     // };
   }, []);
 
-  useEffect(() => {
+  // useEffect(() => {
     // if (startNum !== pageNum) {
     //   setIsLoading(true)
     // }
     // socket.emit('NextCoinInfo', pageNum);
-  }, [coinData]);
+  // }, [coinData]);
 
   // const getNextCoins = () => {
   //   setIsLoading(true);
