@@ -20,7 +20,8 @@ import DeFiTVL from './pages/defi/tvl';
 import DefiFee from './pages/defi/fee';
 import Bridge from './pages/defi/bridge'
 import Yield from './pages/defi/yield'
-
+import Dex from './pages/defi/dex'
+import DexBreakDown from './pages/defi/breakdown'
 
 function App() {
   return (
@@ -39,6 +40,8 @@ function App() {
         <Route exact path="/defi/fee" element={<DefiFee />} />
         <Route exact path="/defi/bridge" element={<Bridge />} />
         <Route exact path="/defi/yield" element={<Yield />} />
+        <Route exact path="/defi/dex" element={<Dex />} />
+        <Route exact path="/defi/dexbreakdown" element={<DexBreakDown />} />
         <Route path="/exchange" element={<Exchange />} />
         <Route path="/nft" element={<NFT />} />
         <Route path="/dapp" element={<Dapp />} />

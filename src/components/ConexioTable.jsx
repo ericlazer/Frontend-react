@@ -1,6 +1,6 @@
 import { Default } from "react-awesome-spinners";
 
-export default ({ tableOption = {}, tableData, isLoading }) => {
+const Table = ({ tableOption = {}, tableData, isLoading }) => {
   return (
     <table className="w-full text-sm bg-[#262626]">
       <thead>
@@ -37,7 +37,7 @@ export default ({ tableOption = {}, tableData, isLoading }) => {
                   return (
                     <td
                       key={i}
-                      className={`px-3 py-2 border border-[#313131] text-${tableData.columns[i].align}`}
+                      className={`px-3 py-2 border border-[#313131] text-${tableData.columns[i] && tableData.columns[i].align}`}
                     >
                       {item}
                     </td>
@@ -52,3 +52,5 @@ export default ({ tableOption = {}, tableData, isLoading }) => {
     </table>
   );
 };
+
+export default Table

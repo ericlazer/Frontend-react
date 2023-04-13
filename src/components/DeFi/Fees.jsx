@@ -1,10 +1,12 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback, useRef } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { API_BASE } from "../../config/constants";
-import { normalPercentFormat, marketCapFormat } from "../../utils/format";
+import { marketCapFormat } from "../../utils/format";
 import ConexioTable from "../ConexioTable";
 import ReactPaginate from "react-paginate";
 import ImageWithFallback from "../ImageWithFallback";
+import { chainImages } from "../../data/data";
 
 const columns = [
   {
@@ -13,18 +15,18 @@ const columns = [
     align: "left",
   },
   {
-    header: "Protocol",
+    header: "Name",
     name: "name",
     align: "left",
   },
   {
     header: "Category",
-    name: "chain",
+    name: "category",
     align: "center",
   },
   {
     header: "Chain",
-    name: "chains",
+    name: "chain",
     align: "right",
   },
   {
@@ -33,22 +35,17 @@ const columns = [
     align: "right",
   },
   {
-    header: "1h %",
-    name: "change_1h",
-    align: "center",
+    header: "Daily Fees",
+    name: "dailyFees",
+    align: "right",
   },
   {
-    header: "1d %",
-    name: "change_1d",
-    align: "center",
+    header: "Daily Revenue",
+    name: "dailyRevenue",
+    align: "right",
   },
   {
-    header: "7d %",
-    name: "change_7d",
-    align: "center",
-  },
-  {
-    header: "Tvl",
+    header: "TVL",
     name: "tvl",
     align: "right",
   },
@@ -63,37 +60,23 @@ const Fees = () => {
   const [showCountOption, setShowCountOption] = useState(filter.showCount[0]);
   const [isLoading, setIsLoading] = useState(false);
   const [tableData, setTableData] = useState({});
-  let responseData = {totalPages: 0, data: []};
-  let expendView = -1;
+  const responseData = useRef({ totalPages: 0, data: [] });
+  const expendView = useRef(-1);
 
-  const fetchData = async () => {
-    setIsLoading(true);
-    responseData = await axios.get(
-      `${API_BASE}/defi/getprotocol?page=${
-        currentPage + 1
-      }}&pageSize=${showCountOption}`
-    );
-    console.log(responseData.data);
+  const handleExpendView = useCallback((rowIndex) => {
+    expendView.current = expendView.current === rowIndex ? -1 : rowIndex;
+    drawTable(responseData.current.data, expendView.current);
+  }, []);
 
-    expendView = -1;
-    drawTable(responseData.data, expendView);
-    setIsLoading(false);
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, [showCountOption, currentPage]);
-
-  const drawTable = (data, expend) => {
+  const drawTable = useCallback((data, expend) => {
     let newData = {
       columns,
       rows: [],
       totalPages: 0,
     };
-    console.log(data.data, expend);
-    if (data.data.length) {
-      console.log("STEP 1");
-      data.data.map((row, rowIndex) => {
+
+    if (data && data.length) {
+      data.forEach((row, rowIndex) => {
         newData.rows.push([
           showCountOption * currentPage + (rowIndex + 1),
           <div className="flex gap-4 items-center">
@@ -107,54 +90,55 @@ const Fees = () => {
           row.category,
           row.chain,
           <div className="relative w-full h-full">
-            {
-              row.chains.map((chain, key) => {
-                if(key < 3) {
-                  return (
-                    <label key={key} className="mr-2">{chain}</label>
-                  )
-                }
-              })
-            }
-            {
-              row.chains.length > 3 ?
+            <div className="flex gap-1 w-5">
+              {row.chains
+                .filter((_, key) => key < 3)
+                .map((chain, key) => (
+                  <ImageWithFallback
+                    key={key}
+                    className="w-5 mr-2"
+                    src={`https://lcw.nyc3.cdn.digitaloceanspaces.com/production/currencies/32/${
+                      chainImages[chain.toLowerCase()]
+                    }`}
+                    fallback="/img/CoinImages/blank.png"
+                    alt="Chain"
+                  />
+                ))}
+            </div>
+            {row.chains.length > 3 ? (
               <>
-                <a
+                <Link
                   className="text-yellow-500"
                   onClick={() => handleExpendView(rowIndex)}
                 >
                   more +{row.chains.length - 3}
-                </a>
-                {
-                  expend === rowIndex ?
+                </Link>
+                {expend === rowIndex ? (
                   <div className="absolute flex flex-wrap w-[200px] top-0 right-0 p-3 translate-x-[calc(100%+20px)] bg-[#323232] rounded z-10">
-                    {
-                      row.chains.map((chain, key) => {
-                        if(key >= 3) { 
-                          return <label key={key} className="mr-2">{chain}</label>
-                        }
-                      })
-                    }
-                  </div> : <></>
-                }
-              </> : <></>
-            }
+                    {row.chains
+                      .filter((_, key) => key >= 3)
+                      .map((chain, key) => (
+                        <ImageWithFallback
+                          key={key}
+                          className="w-5 mr-2"
+                          src={`https://lcw.nyc3.cdn.digitaloceanspaces.com/production/currencies/32/${
+                            chainImages[chain.toLowerCase()]
+                          }`}
+                          fallback="/img/CoinImages/blank.png"
+                          alt="Chain"
+                        />
+                      ))}
+                  </div>
+                ) : (
+                  <></>
+                )}
+              </>
+            ) : (
+              <></>
+            )}
           </div>,
-          <div className={`text-[${row.change_1d > 0 ? '#80FF9C' : '#FF8080'}]`}>
-            {
-              normalPercentFormat(row.change_1h)
-            }
-          </div>,
-          <div className={`text-[${row.change_1d > 0 ? '#80FF9C' : '#FF8080'}]`}>
-            {
-              normalPercentFormat(row.change_1d)
-            }
-          </div>,
-          <div className={`text-[${row.change_1d > 0 ? '#80FF9C' : '#FF8080'}]`}>
-            {
-              normalPercentFormat(row.change_7d)
-            }
-          </div>,
+          marketCapFormat(row.dailyFees),
+          marketCapFormat(row.dailyRevenue),
           marketCapFormat(row.tvl),
         ]);
       });
@@ -162,7 +146,25 @@ const Fees = () => {
     newData.totalPages = data.totalPages;
     console.log(newData);
     setTableData(newData);
-  };
+  }, [showCountOption, currentPage]);
+
+  const fetchData = useCallback(async () => {
+    setIsLoading(true);
+    const response = await axios.get(
+      `${API_BASE}/defi/getfee?page=${
+        currentPage + 1
+      }}&pageSize=${showCountOption}`
+    );
+    responseData.current = response.data;
+
+    expendView.current = -1;
+    drawTable(responseData.current.data, expendView.current);
+    setIsLoading(false);
+  }, [showCountOption, currentPage, drawTable]);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
 
   const handleSelectOption = (event, selectType) => {
     const { value } = event.target;
@@ -174,11 +176,6 @@ const Fees = () => {
         break;
     }
   };
-
-  const handleExpendView = (rowIndex) => {
-    expendView = (expendView === rowIndex) ? -1 : rowIndex;
-    drawTable(responseData.data, expendView);
-  }
 
   const handlePageClick = ({ selected: selectedPage }) => {
     console.log(selectedPage);

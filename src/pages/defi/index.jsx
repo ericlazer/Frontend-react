@@ -51,7 +51,7 @@ const DeFiTVL = () => {
   //   setPageNum(temp);
   // };
 
-  const coinBoxes = [
+  const defiBoxes = [
     { label: "Overview TVL", name:"TVL", link: "/defi/tvl" },
     { label: "Fees & Revenue", name:"Fee", link: "/defi/fee" },
     { label: "Yields", name:"Yield", link: "/defi/yield" },
@@ -64,7 +64,7 @@ const DeFiTVL = () => {
     <Layout>
       <div className="w-full grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-10">
         {
-          coinBoxes.map(item => (
+          defiBoxes.map(item => (
             <Link key={item.label} to={item.link}>
               <div
                 className="h-[200px] lg:h-[250px] xl:h-[350px] text-white text-lg lg:text-2xl rounded-[30px] p-5 transition border border-gray-500/0 hover:border-gray-500/100 bg-zoom-hover"

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback, useRef } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import ConexioTable from "../ConexioTable";
@@ -65,8 +65,13 @@ const Protocols = () => {
   const [showCountOption, setShowCountOption] = useState(filter.showCount[0]);
   const [isLoading, setIsLoading] = useState(false);
   const [tableData, setTableData] = useState({});
-  let responseData = { totalPages: 0, data: [] };
-  let expendView = -1;
+  const responseData = useRef({ totalPages: 0, data: [] });
+  const expendView = useRef(-1);
+
+  const handleExpendView = useCallback((rowIndex) => {
+    expendView.current = expendView.current === rowIndex ? -1 : rowIndex;
+    drawTable(responseData.current.data, expendView.current);
+  }, []);
 
   const drawTable = useCallback(
     (data, expend) => {
@@ -76,8 +81,8 @@ const Protocols = () => {
         totalPages: 0,
       };
 
-      if (data.data.length) {
-        data.data.forEach((row, rowIndex) => {
+      if (data && data.length) {
+        data.forEach((row, rowIndex) => {
           newData.rows.push([
             showCountOption * currentPage + (rowIndex + 1),
             <div className="flex gap-4 items-center">
@@ -165,14 +170,15 @@ const Protocols = () => {
 
   const fetchData = useCallback(async () => {
     setIsLoading(true);
-    responseData = await axios.get(
+    const response = await axios.get(
       `${API_BASE}/defi/getprotocol?page=${
         currentPage + 1
       }}&pageSize=${showCountOption}`
     );
+    responseData.current = response.data;
 
-    expendView = -1;
-    drawTable(responseData.data, expendView);
+    expendView.current = -1;
+    drawTable(responseData.current.data, expendView.current);
     setIsLoading(false);
   }, [showCountOption, currentPage, drawTable]);
 
@@ -190,12 +196,7 @@ const Protocols = () => {
         break;
     }
   };
-
-  const handleExpendView = (rowIndex) => {
-    expendView = expendView === rowIndex ? -1 : rowIndex;
-    drawTable(responseData.data, expendView);
-  };
-
+  
   const handlePageClick = ({ selected: selectedPage }) => {
     setCurrentPage(selectedPage);
   };
