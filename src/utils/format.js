@@ -43,11 +43,13 @@ export const normalPercentFormat = (num) => {
 
 // marketCap format
 export const marketCapFormat = (num) => {
-  if (num >= 1000000000) {
-    return '$' + (num / 1000000000).toFixed(2) + "B";
-  } else if (num >= 1000000) {
-    return '$' + (num / 1000000).toFixed(2) + "M";
-  } else {
-    return '$' + num.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  if (typeof num === "number") {
+    if (num >= 1000000000) {
+      return '$' + (num / 1000000000).toFixed(2) + "B";
+    } else if (num >= 1000000) {
+      return '$' + (num / 1000000).toFixed(2) + "M";
+    } else {
+      return '$' + num.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
   }
 };
