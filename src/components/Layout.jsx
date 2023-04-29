@@ -132,7 +132,7 @@ const Layout = ({ children }) => {
   ];
 
   return (
-    <div className="overflow-y-hidden">
+    <div className="overflow-y-hidden justify-between flex flex-col h-screen">
       <div
         className={`fixed inset-0 transition-opacity duration-300 ${
           (isMobile && !isSidebarCollapsed) || !isSocialSlidebarCollapsed
@@ -181,10 +181,10 @@ const Layout = ({ children }) => {
           </div>
         </div>
       </div>
-      <div className="flex overflow-auto h-[calc(100vh-100px)] relative">
+      <div className="flex h-[calc(100vh-100px)]">
         <div
           ref={leftBarRef}
-          className={`flex flex-col text-xl text-white transition-all duration-500 ease-in-out rounded-r-xl
+          className={`flex flex-col text-xl text-white transition-all duration-500 ease-in-out rounded-r-xl 
             px-${isSidebarCollapsed || isMobile ? 0 : 5} 
             ${isMobile && !isSidebarCollapsed ? "z-20" : ""}   
             ${isMobile && "absolute"} 
@@ -193,7 +193,7 @@ const Layout = ({ children }) => {
           style={{
             width: isSidebarCollapsed ? 0 : "300px",
             opacity: isSidebarCollapsed ? 0 : 1,
-            height: isMobile && !isSidebarCollapsed ? "100%" : "auto",
+            height: isMobile && !isSidebarCollapsed ? "80%" : "auto",
           }}
         >
           <div className="overflow-y-auto">
