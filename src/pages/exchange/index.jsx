@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import Layout from "../../components/Layout";
-import LineChart from "../../components/Charts/LineChart";
-import { Link } from "react-router-dom";
+import ChartCard from "../../components/Cards/ChartCard";
 
 const filter = {
   menu1: [
@@ -46,42 +45,10 @@ const filter = {
   ],
 };
 
-const labels = [
-  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3,
-];
-
-const lineChartData = {
-  labels,
-  datasets: [
-    {
-      fill: true,
-      label: "Dataset",
-      data: labels.map(() => Math.floor(Math.random() * 701) + 300),
-      borderWidth: 1,
-      pointRadius: 0,
-      borderColor: "#28FF98",
-      backgroundColor: "#28FF9822",
-    },
-  ],
-};
-
 const Exchange = () => {
-  const [cardsView, setCardsView] = useState([
-    "origin",
-    "origin",
-    "origin",
-    "origin",
-  ]);
-
-  function changeCardView(index, status) {
-    const newCardView = [...cardsView];
-    newCardView[index] = status;
-    setCardsView(newCardView);
-  }
 
   return (
     <Layout>
-      {/* Filter */}
       <div>
         <h3 className="p-5 text-white text-xl">Exchange</h3>
         <div className="flex w-full justify-between">
@@ -147,103 +114,47 @@ const Exchange = () => {
         </div>
       </div>
       {/* Line Chart Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 mt-14">
-        {cardsView.map((cardView, key) => {
-          return (
-            <div key={key} className="p-5">
-              <div className=" relative rounded-lg bg-gradient-card">
-                <div className={`${cardView === "detail" ? " blur-sm" : ""}`}>
-                  <div className="flex justify-between px-8 py-8">
-                    <div className="flex ml-5">
-                      <div>
-                        <i className="fa fa-bitcoin px-3 py-2 bg-yellow-600 text-white text-[2rem] rotate-12 rounded-full" />
-                      </div>
-                      <div className="ml-3">
-                        <h5 className="text-white text-xl">Bitcoin</h5>
-                        <label className="text-stone-500 text-sm">BTC</label>
-                      </div>
-                    </div>
-                    <div>
-                      {cardView === "origin" ? (
-                        <Link
-                          className="text-white text-sm"
-                          onClick={() => changeCardView(key, "detail")}
-                        >
-                          <i className="fa fa-copy" /> View detail
-                        </Link>
-                      ) : (
-                        <></>
-                      )}
-                    </div>
-                  </div>
-                  <div className="relative w-full pt-[25%] mt-6">
-                    <div className="absolute left-0 top-0 w-full h-full">
-                      <LineChart data={lineChartData} />
-                    </div>
-                  </div>
-                </div>
-                {cardView === "detail" ? (
-                  <div className="absolute w-full h-full top-0 left-0 pb-8 bg-[#313131d4] overflow-y-auto">
-                    <div className="text-right px-8 py-8">
-                      <Link
-                        className="text-white text-sm"
-                        onClick={() => changeCardView(key, "origin")}
-                      >
-                        <i className="fa fa-copy" /> Show in table
-                      </Link>
-                    </div>
-                    <div className="flex justify-center">
-                      <table className="w-[90%]">
-                        <tbody>
-                          <tr className="w-full h-[4rem] bg-[#333333]">
-                            <td className="px-8 text-white">Score</td>
-                            <td className="px-8 text-right">
-                              <label className="px-[3rem] py-2 bg-[#1C4608] text-[#77FF36] rounded-[3rem] inline-block">
-                                9.0
-                              </label>
-                            </td>
-                          </tr>
-                          <tr className="w-full h-[4rem] bg-[#434343]">
-                            <td className="px-8 py-3 text-white">
-                              Trading Value(24h)
-                            </td>
-                            <td className="px-8 py-3 text-right">
-                              <label className="text-white">
-                                $13,242,570,135
-                              </label>
-                              <br />
-                              <label className="text-[#77FF36] text-[0.6rem]">
-                                0.04%
-                              </label>
-                            </td>
-                          </tr>
-                          <tr className="w-full h-[4rem] bg-[#333333]">
-                            <td className="px-8 py-3 text-white">
-                              Avg Liquidity
-                            </td>
-                            <td className="px-8 py-3 text-right">
-                              <label className="text-white">864</label>
-                            </td>
-                          </tr>
-                          <tr className="w-full h-[4rem] bg-[#434343]">
-                            <td className="px-8 py-3 text-white">
-                              Weekly Visits
-                            </td>
-                            <td className="px-8 py-3 text-right">
-                              <label className="text-white">14,280,411</label>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                ) : (
-                  <></>
-                )}
-              </div>
-            </div>
-          );
-        })}
+      <div className="grid grid-cols-1 md:grid-cols-2 mt-14 gap-10">
+        <ChartCard
+          header="Exchange"
+          height={350}
+          name="Binance"
+          symbol=""
+          imgURL="https://lcw.nyc3.cdn.digitaloceanspaces.com/production/exchanges/binance.png"
+          value="$150,545,658"
+          change={-2.87}
+          charData={[7, 3, 1, 2, 5, 7, 5, 8, 9, 5, 4, 2, 5, 3]}
+        />
+        <ChartCard
+          header="Exchange"
+          height={350}
+          name="Coinbase"
+          symbol=""
+          imgURL="https://lcw.nyc3.cdn.digitaloceanspaces.com/production/currencies/64/__coin.png"
+          value="$92,236,722"
+          change={4.87}
+          charData={[2, 5, 6, 4, 4, 5, 7, 6, 2, 4, 3, 6, 5, 7]}
+      />
+        <ChartCard
+          header="Exchange"
+          height={350}
+          name="Kraken"
+          symbol=""
+          imgURL="https://lcw.nyc3.cdn.digitaloceanspaces.com/production/exchanges/kraken.png"
+          value="$50,321,256"
+          change={-3.2}
+          charData={[4, 5, 3, 2, 8, 2, 5, 3, 6, 4, 3, 2, 6, 3]}
+      />
+        <ChartCard
+          header="Exchange"
+          height={350}
+          name="Gemini"
+          symbol=""
+          imgURL="https://lcw.nyc3.cdn.digitaloceanspaces.com/production/exchanges/gemini.png"
+          value="$30,325,163"
+          change={7.4}
+          charData={[3, 5, 2, 1, 5, 3, 6, 2, 3, 5, 2, 1, 5, 9]}
+        />
       </div>
     </Layout>
   );

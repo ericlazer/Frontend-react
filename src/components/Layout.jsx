@@ -13,6 +13,10 @@ import {
   faDiscord,
   faTelegramPlane,
 } from "@fortawesome/free-brands-svg-icons";
+import Twitter from "./SocialBar/Twitter";
+import Reddit from "./SocialBar/Reddit";
+import Discord from "./SocialBar/Discord";
+import Telegram from "./SocialBar/Telegram";
 
 // Styles for animation
 const containerStyle = {
@@ -41,8 +45,10 @@ const activeLinkStyle = {
 const Layout = ({ children }) => {
   const [activeMenu, setActiveMenu] = useState("");
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
-  const [isSocialSlidebarCollapsed, setIsSocialSlideBarCollapsed] = useState(true);
+  const [isSocialSlidebarCollapsed, setIsSocialSlideBarCollapsed] =
+    useState(true);
   const [isMobile, setIsMobile] = useState(false);
+  const [selectedSocial, setSelectedSocial] = useState("");
   const leftBarRef = useRef();
   const location = useLocation();
 
@@ -96,9 +102,10 @@ const Layout = ({ children }) => {
     setIsSidebarCollapsed(!isSidebarCollapsed);
   };
 
-  const handleSocialIconClick = (e) => {
+  const handleSocialIconClick = (social) => (e) => {
     e.preventDefault();
     setIsSocialSlideBarCollapsed(!isSocialSlidebarCollapsed);
+    setSelectedSocial(social);
   };
 
   const menuItems = [
@@ -117,14 +124,22 @@ const Layout = ({ children }) => {
     { path: "/research", label: "Research" },
   ];
 
+  const SocialData = [
+    { category: "twitter", component: <Twitter /> },
+    { category: "reddit", component: <Reddit /> },
+    { category: "discord", component: <Discord /> },
+    { category: "telegram", component: <Telegram /> },
+  ];
+
   return (
     <div className="overflow-y-hidden">
       <div
-        className={`fixed inset-0 z-10 transition-opacity duration-300 ${
-          ((isMobile && !isSidebarCollapsed) || !isSocialSlidebarCollapsed)
+        className={`fixed inset-0 transition-opacity duration-300 ${
+          (isMobile && !isSidebarCollapsed) || !isSocialSlidebarCollapsed
             ? "bg-[rgba(0,0,0,0.5)] backdrop-blur-[5px]"
-            : "bg-opacity-0 pointer-events-none"
-        }`}
+            : "bg-opacity-0 pointer-events-none" } 
+          ${isSocialSlidebarCollapsed ? "z-20" : "z-40"}
+        `}
         onClick={handleClickOutside}
       ></div>
 
@@ -235,7 +250,7 @@ const Layout = ({ children }) => {
           className="h-full overflow-auto"
         >
           <div
-            className={`absolute bottom-[70px] z-[100] transition-all duration-500 ${
+            className={`absolute bottom-[70px] z-30 transition-all duration-500 ${
               isSidebarCollapsed
                 ? "-ml-[15px]"
                 : isMobile
@@ -257,12 +272,20 @@ const Layout = ({ children }) => {
           {children}
         </div>
         <div
-          className="fixed top-0 right-0 bottom-0 w-[300px] bg-[#323232] z-20 transition transition-all ease-in-out"
+          className="fixed top-0 right-0 bottom-0 w-[300px] p-4 bg-[#323232] z-50 transition transition-all ease-in-out"
           style={{
-            transform: !isSocialSlidebarCollapsed ? "translateX(0)" : "translateX(100%)",
+            transform: !isSocialSlidebarCollapsed
+              ? "translateX(0)"
+              : "translateX(100%)",
           }}
         >
-          {/* Right sidebar content */}
+          {SocialData.map((item, index) => {
+            return (
+              <div key={index}>
+                {item.category === selectedSocial && item.component}
+              </div>
+            );
+          })}
         </div>
       </div>
       <div className="fixed bottom-0 left-0 right-0 flex justify-center gap-6 py-4 px-4 backdrop-blur-sm">
@@ -271,28 +294,28 @@ const Layout = ({ children }) => {
           size="2x"
           color="#1c9cea"
           className="bg-zoom-hover cursor-pointer"
-          onClick={handleSocialIconClick}
+          onClick={handleSocialIconClick("twitter")}
         />
         <FontAwesomeIcon
           icon={faRedditAlien}
           size="2x"
           color="#f74300"
           className="bg-zoom-hover cursor-pointer"
-          onClick={handleSocialIconClick}
+          onClick={handleSocialIconClick("reddit")}
         />
         <FontAwesomeIcon
           icon={faDiscord}
           size="2x"
           color="#5562ea"
           className="bg-zoom-hover cursor-pointer"
-          onClick={handleSocialIconClick}
+          onClick={handleSocialIconClick("discord")}
         />
         <FontAwesomeIcon
           icon={faTelegramPlane}
           size="2x"
           color="#0084c6"
           className="bg-zoom-hover cursor-pointer"
-          onClick={handleSocialIconClick}
+          onClick={handleSocialIconClick("telegram")}
         />
       </div>
     </div>
