@@ -121,7 +121,7 @@ const Exchange = () => {
               })}
             </div>
           </div>
-          <div className="flex w-max h-max text-lg">
+          <div className="w-max h-max text-lg hidden md:flex">
             <button
               type="button"
               className="mr-8 px-8 py-3 rounded bg-gradient-btn text-white"
@@ -147,10 +147,10 @@ const Exchange = () => {
         </div>
       </div>
       {/* Line Chart Cards */}
-      <div className="flex w-full flex-wrap mt-14">
+      <div className="grid grid-cols-1 md:grid-cols-2 mt-14">
         {cardsView.map((cardView, key) => {
           return (
-            <div key={key} className="p-5 w-1/2">
+            <div key={key} className="p-5">
               <div className=" relative rounded-lg bg-gradient-card">
                 <div className={`${cardView === "detail" ? " blur-sm" : ""}`}>
                   <div className="flex justify-between px-8 py-8">
@@ -166,7 +166,7 @@ const Exchange = () => {
                     <div>
                       {cardView === "origin" ? (
                         <Link
-                          class="text-white text-sm"
+                          className="text-white text-sm"
                           onClick={() => changeCardView(key, "detail")}
                         >
                           <i className="fa fa-copy" /> View detail

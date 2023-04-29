@@ -8,8 +8,8 @@ import { coinPriceFormat, percentFormat } from "../../utils/format";
 const NFTImages = [
   "/img/nfts/1.jpg",
   "/img/nfts/2.jpg",
-  "/img/nfts/3.jpg",
-  "/img/nfts/4.jpg"
+  "/img/nfts/4.gif",
+  "/img/nfts/4.jpg",
 ]
 
 const Home = () => {
@@ -83,7 +83,7 @@ const Home = () => {
             losers && losers.map((item, index) => (
               <div key={index} className="flex justify-between mt-3 items-center">
                 <div className="flex gap-3 items-center">
-                  <img src={item.imgURL} alt="Coin Gainers" className="rounded-full" />
+                  <img src={item.imgURL} alt="Coin Losers" className="rounded-full" />
                   <div className="flex flex-col">
                     <p className="text-[14px] text-white">{item.name}</p>
                     <p className="text-[12px] text-white opacity-[0.5]">{item.symbol}</p>

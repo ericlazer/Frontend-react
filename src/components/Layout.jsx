@@ -1,7 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEllipsisH, faMagnifyingGlass, faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import {
+  faEllipsisH,
+  faMagnifyingGlass,
+  faArrowLeft,
+  faArrowRight,
+} from "@fortawesome/free-solid-svg-icons";
+import {
+  faTwitter,
+  faRedditAlien,
+  faDiscord,
+  faTelegramPlane,
+} from "@fortawesome/free-brands-svg-icons";
 
 // Styles for animation
 const containerStyle = {
@@ -29,33 +40,67 @@ const activeLinkStyle = {
 
 const Layout = ({ children }) => {
   const [activeMenu, setActiveMenu] = useState("");
-  const [isSlidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  const [isSocialSlidebarCollapsed, setIsSocialSlideBarCollapsed] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
+  const leftBarRef = useRef();
   const location = useLocation();
 
   useEffect(() => {
     setActiveMenu(location.pathname);
-    document.body.classList.add('overflow-hidden');
-
+    preventBodyScroll();
     handleResize();
+    addEventListeners();
 
-    // Add an event listener for the window 'resize' event
-    window.addEventListener("resize", handleResize);
-    
-    return () => {
-      document.body.classList.remove('overflow-hidden');
-      window.removeEventListener("resize", handleResize);
-    };
+    return removeEventListeners;
   }, [location]);
 
+  useEffect(() => {
+    handleResize();
+  }, [isMobile, isSidebarCollapsed]);
+
+  // stop scroll
+  const preventBodyScroll = () => {
+    document.body.classList.add("overflow-hidden");
+  };
+
+  // get event for mobile device
   const handleResize = () => {
     setIsMobile(window.innerWidth < 768);
   };
 
-  const toggleSlidebar = () => {
-    setIsSidebarCollapsed(!isSlidebarCollapsed);
+  // add when component mount
+  const addEventListeners = () => {
+    window.addEventListener("resize", handleResize);
+    document.addEventListener("mousedown", handleClickOutside);
   };
-  
+
+  // remove when component unmount
+  const removeEventListeners = () => {
+    document.body.classList.remove("overflow-hidden");
+    window.removeEventListener("resize", handleResize);
+    document.removeEventListener("mousedown", handleClickOutside);
+  };
+
+  // when we click outside of sidebar
+  const handleClickOutside = () => {
+    if (isMobile && !isSidebarCollapsed) {
+      setIsSidebarCollapsed(true);
+    }
+    if (!isSocialSlidebarCollapsed) {
+      setIsSocialSlideBarCollapsed(true);
+    }
+  };
+
+  const toggleSidebar = () => {
+    setIsSidebarCollapsed(!isSidebarCollapsed);
+  };
+
+  const handleSocialIconClick = (e) => {
+    e.preventDefault();
+    setIsSocialSlideBarCollapsed(!isSocialSlidebarCollapsed);
+  };
+
   const menuItems = [
     { path: "/home", label: "Home" },
     { path: "/pins", label: "Pins" },
@@ -74,48 +119,66 @@ const Layout = ({ children }) => {
 
   return (
     <div className="overflow-y-hidden">
-      <div className='light x1 -z-[10]'></div>
-      <div className='light x3 -z-[10]'></div>
-      <div className='light x4 -z-[10]'></div>
-      <div className='light x6 -z-[10]'></div>
-      <div className='light x7 -z-[10]'></div>
-      <div className='light x9 -z-[10]'></div>
+      <div
+        className={`fixed inset-0 z-10 transition-opacity duration-300 ${
+          ((isMobile && !isSidebarCollapsed) || !isSocialSlidebarCollapsed)
+            ? "bg-[rgba(0,0,0,0.5)] backdrop-blur-[5px]"
+            : "bg-opacity-0 pointer-events-none"
+        }`}
+        onClick={handleClickOutside}
+      ></div>
+
+      <div className="light x1 -z-[10]"></div>
+      <div className="light x3 -z-[10]"></div>
+      <div className="light x4 -z-[10]"></div>
+      <div className="light x6 -z-[10]"></div>
+      <div className="light x7 -z-[10]"></div>
+      <div className="light x9 -z-[10]"></div>
       <div className="flex justify-between px-5 py-10">
         <div className="ml-10 flex gap-4 items-center">
-          <img src="/img/user.png" alt="user" />
+          <img
+            src="/img/elon.jpg"
+            alt="Elon Musk"
+            width={54}
+            className="rounded-full"
+          />
           <div className="flex flex-col">
             <span className="text-xl text-white whitespace-nowrap">
-              James Mark
+              Elon Musk
             </span>
             <span className="text-[#747474]">BASIC PLAN</span>
           </div>
         </div>
-        <div className="flex mr-10 items-center gap-4">
+        <div className="mr-10 items-center gap-4 hidden md:flex">
           <div className="flex bg-[#212121] rounded-2xl items-center px-4 py-3 gap-2">
-            <FontAwesomeIcon icon={faMagnifyingGlass} className="text-white"/>
+            <FontAwesomeIcon icon={faMagnifyingGlass} className="text-white" />
             <input
               placeholder="Search"
               className="bg-transparent border-none outline-none text-white"
             />
           </div>
           <div className="flex gap-3 text-white cursor-pointer transition hover:bg-[#212121] px-5 py-4 rounded-2xl">
-            <FontAwesomeIcon className="px-[2px] py-[1px] border-2 border-white rounded-full" icon={faEllipsisH} />
+            <FontAwesomeIcon
+              className="px-[2px] py-[1px] border-2 border-white rounded-full"
+              icon={faEllipsisH}
+            />
             More Options
           </div>
         </div>
       </div>
       <div className="flex overflow-auto h-[calc(100vh-100px)] relative">
         <div
+          ref={leftBarRef}
           className={`flex flex-col text-xl text-white transition-all duration-500 ease-in-out rounded-r-xl
-            px-${ isSlidebarCollapsed || isMobile ? 0 : 5} 
-            ${(isMobile && !isSlidebarCollapsed) ? 'z-20' : ''} 
-            ${isMobile && 'absolute'} 
-            ${isMobile && 'bg-[#323232]'}
+            px-${isSidebarCollapsed || isMobile ? 0 : 5} 
+            ${isMobile && !isSidebarCollapsed ? "z-20" : ""}   
+            ${isMobile && "absolute"} 
+            ${isMobile && "bg-[#323232]"}
           `}
           style={{
-            width: (isSlidebarCollapsed) ? 0 : "300px",
-            opacity: (isSlidebarCollapsed) ? 0 : 1,
-            height: (isMobile && !isSlidebarCollapsed) ? '100%' : 'auto',
+            width: isSidebarCollapsed ? 0 : "300px",
+            opacity: isSidebarCollapsed ? 0 : 1,
+            height: isMobile && !isSidebarCollapsed ? "100%" : "auto",
           }}
         >
           <div className="overflow-y-auto">
@@ -124,12 +187,14 @@ const Layout = ({ children }) => {
                 <Link key={path} to={path}>
                   <div
                     className={`cursor-pointer transition ease-in-out duration-300 hover:text-white rounded-lg p-3 
-                      ${ activeMenu.includes(path) ? "text-white font-semibold" : "text-[#747474]" }
+                      ${
+                        activeMenu.includes(path)
+                          ? "text-white font-semibold"
+                          : "text-[#747474]"
+                      }
                     `}
                     style={
-                      activeMenu.includes(path)
-                        ? activeLinkStyle
-                        : linkStyle
+                      activeMenu.includes(path) ? activeLinkStyle : linkStyle
                     }
                   >
                     {label}
@@ -143,9 +208,15 @@ const Layout = ({ children }) => {
                     className="text-black rounded-lg"
                   >
                     {label === "Research & Insights" ? (
-                      <img src={`/img/menuImages/Research.png`} alt="Category" />
+                      <img
+                        src={`/img/menuImages/Research.png`}
+                        alt="Category"
+                      />
                     ) : (
-                      <img src={`/img/menuImages/${label}.png`} alt="Category" />
+                      <img
+                        src={`/img/menuImages/${label}.png`}
+                        alt="Category"
+                      />
                     )}
                   </div>
                 </Link>
@@ -155,24 +226,28 @@ const Layout = ({ children }) => {
         <div
           style={{
             width:
-              (isSlidebarCollapsed || isMobile)
-                ? "100vw"
-                : "calc(100% - 300px)",
-            padding: isMobile ? '32px 16px' : '32px 64px',
-            paddingBottom: '50px'
+              isSidebarCollapsed || isMobile ? "100vw" : "calc(100% - 300px)",
+            paddingLeft: isMobile ? "16px" : "64px",
+            paddingRight: isMobile ? "16px" : "64px",
+            paddingTop: "32px",
+            paddingBottom: "100px",
           }}
           className="h-full overflow-auto"
         >
           <div
             className={`absolute bottom-[70px] z-[100] transition-all duration-500 ${
-              isSlidebarCollapsed ? "-ml-[15px]" : ( isMobile ? "ml-[200px]" :  "-ml-[80px]")
+              isSidebarCollapsed
+                ? "-ml-[15px]"
+                : isMobile
+                ? "ml-[200px]"
+                : "-ml-[80px]"
             }`}
           >
-            <button   
+            <button
               className="rounded-full border-2 border-white px-3 py-2 transition hover:bg-gray-600"
-              onClick={toggleSlidebar}
+              onClick={toggleSidebar}
             >
-              {isSlidebarCollapsed ? (
+              {isSidebarCollapsed ? (
                 <FontAwesomeIcon icon={faArrowRight} className="text-white" />
               ) : (
                 <FontAwesomeIcon icon={faArrowLeft} className="text-white" />
@@ -181,6 +256,44 @@ const Layout = ({ children }) => {
           </div>
           {children}
         </div>
+        <div
+          className="fixed top-0 right-0 bottom-0 w-[300px] bg-[#323232] z-20 transition transition-all ease-in-out"
+          style={{
+            transform: !isSocialSlidebarCollapsed ? "translateX(0)" : "translateX(100%)",
+          }}
+        >
+          {/* Right sidebar content */}
+        </div>
+      </div>
+      <div className="fixed bottom-0 left-0 right-0 flex justify-center gap-6 py-4 px-4 backdrop-blur-sm">
+        <FontAwesomeIcon
+          icon={faTwitter}
+          size="2x"
+          color="#1c9cea"
+          className="bg-zoom-hover cursor-pointer"
+          onClick={handleSocialIconClick}
+        />
+        <FontAwesomeIcon
+          icon={faRedditAlien}
+          size="2x"
+          color="#f74300"
+          className="bg-zoom-hover cursor-pointer"
+          onClick={handleSocialIconClick}
+        />
+        <FontAwesomeIcon
+          icon={faDiscord}
+          size="2x"
+          color="#5562ea"
+          className="bg-zoom-hover cursor-pointer"
+          onClick={handleSocialIconClick}
+        />
+        <FontAwesomeIcon
+          icon={faTelegramPlane}
+          size="2x"
+          color="#0084c6"
+          className="bg-zoom-hover cursor-pointer"
+          onClick={handleSocialIconClick}
+        />
       </div>
     </div>
   );
