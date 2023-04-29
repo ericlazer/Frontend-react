@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import Layout from "../../components/Layout";
 import LineChart from "../../components/Charts/LineChart";
-import ConexioTable from "../../components/ConexioTable";
-import { nearer } from "q";
 import { Link } from "react-router-dom";
 
 const filter = {
@@ -49,10 +47,7 @@ const filter = {
 };
 
 const labels = [
-  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5,
-  6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1,
-  2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7,
-  8, 9,
+  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3,
 ];
 
 const lineChartData = {
@@ -164,7 +159,7 @@ const Exchange = () => {
                         <i className="fa fa-bitcoin px-3 py-2 bg-yellow-600 text-white text-[2rem] rotate-12 rounded-full" />
                       </div>
                       <div className="ml-3">
-                        <h5 className="text-white text-xl">Bitcoins</h5>
+                        <h5 className="text-white text-xl">Bitcoin</h5>
                         <label className="text-stone-500 text-sm">BTC</label>
                       </div>
                     </div>
@@ -190,12 +185,12 @@ const Exchange = () => {
                 {cardView === "detail" ? (
                   <div className="absolute w-full h-full top-0 left-0 pb-8 bg-[#313131d4] overflow-y-auto">
                     <div className="text-right px-8 py-8">
-                      <a
+                      <Link
                         className="text-white text-sm"
                         onClick={() => changeCardView(key, "origin")}
                       >
                         <i className="fa fa-copy" /> Show in table
-                      </a>
+                      </Link>
                     </div>
                     <div className="flex justify-center">
                       <table className="w-[90%]">

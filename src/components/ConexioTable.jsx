@@ -52,5 +52,5 @@ const Table = ({ tableOption = {}, tableData, isLoading }) => {
     </table>
   );
 };
-
-export default Table
+ 
+export default Table 

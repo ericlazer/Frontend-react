@@ -31,7 +31,7 @@ const Intro = () => {
         </Link>
       </div>
       <div className='mt-16'>
-        <img src="/img/LandingPange.png" className='m-auto' alt="Preview App Image" />
+        <img src="/img/LandingPange.png" className='m-auto' alt="Preview App" />
       </div>
     </>
   )

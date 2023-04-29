@@ -1,98 +1,49 @@
 import React from "react";
 import Layout from "../../components/Layout";
-import LineChart from "../../components/Charts/LineChart";
-import ConexioTable from "../../components/ConexioTable";
 
-const filter = {
-  menu1: [
-    {
-      name: "Spot",
-      selected: true,
-    },
-    {
-      name: "Derivatives",
-      selected: false,
-    },
-    {
-      name: "DEX",
-      selected: false,
-    },
-    {
-      name: "Lending",
-      selected: false,
-    },
-  ],
-  menu2: [
-    {
-      name: "1D",
-      selected: true,
-    },
-    {
-      name: "7D",
-      selected: false,
-    },
-    {
-      name: "1M",
-      selected: false,
-    },
-    {
-      name: "3M",
-      selected: false,
-    },
-    {
-      name: "1Y",
-      selected: false,
-    },
-  ],
-};
-
-const tableData = {
-  columns: [
-    {
-      header: "Name",
-      name: "name",
-    },
-    {
-      header: "Price",
-      name: "price",
-    },
-    {
-      header: "1h%",
-      name: "1h",
-    },
-    {
-      header: "24h%",
-      name: "24h",
-    },
-    {
-      header: "7d%",
-      name: "7d",
-    },
-    {
-      header: "Market Cap",
-      name: "marketcap",
-    },
-    {
-      header: "Volumn(24h)",
-      name: "volumn",
-    },
-    {
-      header: "Circulating Supply",
-      name: "circulating",
-    },
-    {
-      header: "Last 7 Days",
-      name: "last",
-    },
-  ],
-  rows: [],
-};
+const VideosData = [
+  {
+    image: '/img/videos/1.png',
+    content: "European Central Bank | Digital Euro to Offer 'Maximum Privacy,' ?",
+    writer: 'By BBC Publisher',
+    dateAgo: 1,
+  },
+  {
+    image: '/img/videos/2.png',
+    content: "Top 5 Altcoins to Look Out For in April 2023!",
+    writer: 'By CMC Publisher',
+    dateAgo: 1,
+  },
+  {
+    image: '/img/videos/3.png',
+    content: "Is Ecoterra The Next 1000x Project? Recycle2Earn Will Be Huge?",
+    writer: 'By CMC Publisher',
+    dateAgo: 1,
+  },
+  {
+    image: '/img/videos/4.png',
+    content: "How blockchain works and how to mine crypto currency?",
+    writer: 'By CMC Publisher',
+    dateAgo: 1,
+  },
+  {
+    image: '/img/videos/5.png',
+    content: "How blockchain works and how to mine crypto currency",
+    writer: 'By CMC Publisher',
+    dateAgo: 1,
+  },
+  {
+    image: '/img/videos/6.png',
+    content: "How blockchain works and how to mine crypto currency",
+    writer: 'By CMC Publisher',
+    dateAgo: 1,
+  }
+]
 
 const DeFi = () => {
   return (
     <Layout>
-      {/* Line Chart Cards */}
-      <div className="flex w-full">
+      {/* <div className="flex w-full">
         <div className="w-1/2 m-5 rounded-lg bg-gradient-image">
           <div className="flex justify-between px-8 py-8">
             <h6 className="text-white text-lg">Market Capital</h6>
@@ -106,7 +57,7 @@ const DeFi = () => {
           </div>
           <div className="relative w-full pt-[25%] mt-6">
             <div className="absolute left-0 top-0 w-full h-full">
-              {/* <LineChart/> */}
+              <LineChart/>
             </div>
           </div>
         </div>
@@ -123,12 +74,11 @@ const DeFi = () => {
           </div>
           <div className="relative w-full pt-[25%] mt-6">
             <div className="absolute left-0 top-0 w-full h-full">
-              {/* <LineChart/> */}
+              <LineChart/>
             </div>
           </div>
         </div>
       </div>
-      {/* Filter */}
       <div>
         <h3 className="p-5 text-white text-xl">DeFi</h3>
         <div className="flex w-full justify-between">
@@ -192,10 +142,33 @@ const DeFi = () => {
             </button>
           </div>
         </div>
+      </div> */}
+      <div
+        className='px-10 py-5 text-[42px] text-white'
+      >
+        Videos
       </div>
-      {/* Table */}
-      <div>
-        <ConexioTable tableData={tableData} />
+      <div className='flex justify-between mt-5 px-5 text-white'>
+        
+      </div>
+      <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-16 mt-8 w-[80%] md:w-full  mx-auto'>
+        {
+          VideosData.map((item, index) => (
+            <div key={index} className='flex flex-col gap-4'>
+               <div className="relative">
+                <img src={item.image} alt="Blockchain News" className="w-full" />
+                <div className="absolute bottom-4 right-4">
+                  <i className="fa fa-play text-white text-xl px-4 py-[10px] bg-black opacity-[0.7] rounded-full"></i>
+                </div>
+              </div>
+              <p className='text-[18px] text-white'>{item.content}</p>
+              <div className='flex gap-4 text-[11px] text-white opacity-[0.5]'>
+                <span>{item.writer}</span>
+                <span>{item.dateAgo} Days Ago</span>
+              </div>
+            </div>
+          ))
+        }
       </div>
     </Layout>
   );

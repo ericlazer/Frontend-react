@@ -63,8 +63,8 @@ const Layout = ({ children }) => {
     { path: "/defi", label: "DeFi" },
     { path: "/exchange", label: "Exchange" },
     { path: "/nft", label: "NFT" },
-    { path: "/dapp", label: "Dapp" },
-    { path: "/dao", label: "Dao" },
+    // { path: "/dapp", label: "Dapp" },
+    // { path: "/dao", label: "Dao" },
     { path: "/news", label: "News" },
     { path: "/videos", label: "Videos" },
     { path: "/directory", label: "Directory" },
@@ -158,12 +158,14 @@ const Layout = ({ children }) => {
               (isSlidebarCollapsed || isMobile)
                 ? "100vw"
                 : "calc(100% - 300px)",
+            padding: isMobile ? '32px 16px' : '32px 64px',
+            paddingBottom: '50px'
           }}
-          className="pt-8 pb-24 px-16 h-full overflow-auto"
+          className="h-full overflow-auto"
         >
           <div
             className={`absolute bottom-[70px] z-[100] transition-all duration-500 ${
-              isSlidebarCollapsed ? "-ml-[55px]" : ( isMobile ? "ml-[150px]" :  "-ml-[80px]")
+              isSlidebarCollapsed ? "-ml-[15px]" : ( isMobile ? "ml-[200px]" :  "-ml-[80px]")
             }`}
           >
             <button   
@@ -171,9 +173,9 @@ const Layout = ({ children }) => {
               onClick={toggleSlidebar}
             >
               {isSlidebarCollapsed ? (
-                <FontAwesomeIcon icon={faArrowLeft} className="text-white" />
-              ) : (
                 <FontAwesomeIcon icon={faArrowRight} className="text-white" />
+              ) : (
+                <FontAwesomeIcon icon={faArrowLeft} className="text-white" />
               )}
             </button>
           </div>

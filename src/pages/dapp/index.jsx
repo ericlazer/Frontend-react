@@ -3,14 +3,6 @@ import Layout from '../../components/Layout'
 
 const Dapp = () => {
 
-  const CoinData = [
-    { id: 1, name: 'Bitcoin', price: '45632', hourlyChange: '-0.76', dailyChange: '-2.91', weeklyChange: '-1.12', marketCap: '$858.8B', volume: '$36.5B', lastSevenDays: 0.5 },
-    { id: 2, name: 'Ethereum', price: '1470', hourlyChange: '-1.28', dailyChange: '-4.22', weeklyChange: '-1.36', marketCap: '$168.3B', volume: '$22.3B', lastSevenDays: 0.5 },
-    { id: 3, name: 'Cardano', price: '121', hourlyChange: '+0.11', dailyChange: '+2.58', weeklyChange: '+25.25', marketCap: '$38.7B', volume: '$2.7B', lastSevenDays: 0.5 },
-    { id: 4, name: 'Binance Coin', price: '221', hourlyChange: '-0.94', dailyChange: '-1.89', weeklyChange: '+29.63', marketCap: '$34.1B', volume: '$2.2B', lastSevenDays: 0.5 },
-    { id: 5, name: 'Tether', price: '1', hourlyChange: '+0.06', dailyChange: '+0.06', weeklyChange: '+0.06', marketCap: '$33.6B', volume: '$120.9B', lastSevenDays: 0.5 }
-  ]
-
   return (
     <Layout>
       <div className='w-full'>
