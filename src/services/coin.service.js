@@ -2,13 +2,19 @@ import { handleResponse } from '../utils';
 import axios from 'axios';
 import { API_BASE } from '../config/constants';
 
-const getIntheBlockCoinData = async (coinName) => {
+export const getIntheBlockCoinData = async (coinName) => {
 
   const response = await axios.get(`${API_BASE}/coin/${coinName}`);
   // const coinData = await handleResponse(response);
   return response.data;
 }
 
-export const coinService = {
-  getIntheBlockCoinData,
+export const getTotalGainers = async () => {
+  const response = await axios.get(`${API_BASE}/coin/total_gainers`);
+  return response.data;
+}
+
+export const getTotalLosers = async () => {
+  const response = await axios.get(`${API_BASE}/coin/total_losers`);
+  return response.data;
 }

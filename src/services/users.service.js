@@ -1,4 +1,4 @@
-import  { authHeader, handleResponse } from '../utils';
+import  { handleResponse } from '../utils';
 import { API_BASE } from '../config/constants';
 
 const login = async (email, password) => {
