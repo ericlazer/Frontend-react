@@ -6,10 +6,10 @@ import { getTotalGainers, getTotalLosers } from '../../services/coin.service'
 import { coinPriceFormat, percentFormat } from "../../utils/format";
 
 const NFTImages = [
-  "/img/nfts/1.png",
-  "/img/nfts/2.png",
-  "/img/nfts/3.png",
-  "/img/nfts/4.png"
+  "/img/nfts/1.jpg",
+  "/img/nfts/2.jpg",
+  "/img/nfts/3.jpg",
+  "/img/nfts/4.jpg"
 ]
 
 const Home = () => {

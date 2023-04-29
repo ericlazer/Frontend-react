@@ -112,13 +112,6 @@ const Coins = () => {
               </button>
             </div>
           </div>
-          <div className="bg-black w-[50%] flex px-8 py-16 bg-[url('assets/img/trendingCoin.gif')] bg-cover bg-no-repeat relative rounded-lg">
-            <div>
-              <div className="text-[32px] text-white font-bold">
-                Trending Coins Today
-              </div>
-            </div>
-          </div>
         </div>
         <div className="mt-16">
           <p className="text-center text-[40px] font-bold text-white">
