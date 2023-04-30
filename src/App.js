@@ -13,6 +13,7 @@ import Directory from './pages/directory';
 import Exchange from './pages/exchange'
 import Calendar from './pages/calendar';
 import Research from './pages/research';
+import Learning from './pages/learning';
 import CoinRanks from './pages/coins/Ranks';
 import TradingCoins from './pages/coins/TradingCoins';
 import Liquidation from './pages/coins/Liquidation';
@@ -50,6 +51,7 @@ function App() {
         <Route path="/videos" element={<Videos />} />
         <Route path="/directory" element={<Directory />} />
         <Route path="/calendar" element={<Calendar />} />
+        <Route path="/learning" element={<Learning />} />
         <Route path="/research" element={<Research />} />
       </Routes>
     </div>
