@@ -125,7 +125,7 @@ const Home = () => {
           </div>
           <div className="mt-2 p-2">
             <div className="flex justify-between items-center">
-              <span className="text-[16px] text-white">Gemesis</span>
+              <span className="text-[16px] text-white">MEMELAND</span>
               <img src="/icon/LinkIcon.png" alt="Link Icon" className="w-4 h-4" />
             </div>
             <div className="grid grid-cols-3 mt-2">
