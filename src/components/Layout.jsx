@@ -121,6 +121,7 @@ const Layout = ({ children }) => {
     { path: "/videos", label: "Videos" },
     { path: "/directory", label: "Directory" },
     { path: "/calendar", label: "Calendar" },
+    { path: "/learning", label: "Learning" },
     { path: "/research", label: "Research" },
   ];
 
@@ -215,12 +216,12 @@ const Layout = ({ children }) => {
                     {label}
                   </div>
                   <div
+                    className={`${ label === "Research" && "mb-[50px]" } text-black rounded-lg `}
                     style={
                       activeMenu.includes(path)
                         ? activeContainerStyle
                         : containerStyle
                     }
-                    className="text-black rounded-lg"
                   >
                     {label === "Research & Insights" ? (
                       <img
@@ -270,6 +271,36 @@ const Layout = ({ children }) => {
             </button>
           </div>
           {children}
+          <div className="fixed bottom-0 left-0 md:left-[300px] right-0 flex justify-center gap-6 py-4 px-4 backdrop-blur-md">
+            <FontAwesomeIcon
+              icon={faTwitter}
+              size="2x"
+              color="#1c9cea"
+              className="bg-zoom-hover cursor-pointer"
+              onClick={handleSocialIconClick("twitter")}
+            />
+            <FontAwesomeIcon
+              icon={faRedditAlien}
+              size="2x"
+              color="#f74300"
+              className="bg-zoom-hover cursor-pointer"
+              onClick={handleSocialIconClick("reddit")}
+            />
+            <FontAwesomeIcon
+              icon={faDiscord}
+              size="2x"
+              color="#5562ea"
+              className="bg-zoom-hover cursor-pointer"
+              onClick={handleSocialIconClick("discord")}
+            />
+            <FontAwesomeIcon
+              icon={faTelegramPlane}
+              size="2x"
+              color="#0084c6"
+              className="bg-zoom-hover cursor-pointer"
+              onClick={handleSocialIconClick("telegram")}
+            />
+          </div>
         </div>
         <div
           className="fixed top-0 right-0 bottom-0 w-[300px] p-4 bg-[#323232] z-50 transition transition-all ease-in-out"
@@ -287,36 +318,6 @@ const Layout = ({ children }) => {
             );
           })}
         </div>
-      </div>
-      <div className="fixed bottom-0 left-0 right-0 flex justify-center gap-6 py-4 px-4 backdrop-blur-sm">
-        <FontAwesomeIcon
-          icon={faTwitter}
-          size="2x"
-          color="#1c9cea"
-          className="bg-zoom-hover cursor-pointer"
-          onClick={handleSocialIconClick("twitter")}
-        />
-        <FontAwesomeIcon
-          icon={faRedditAlien}
-          size="2x"
-          color="#f74300"
-          className="bg-zoom-hover cursor-pointer"
-          onClick={handleSocialIconClick("reddit")}
-        />
-        <FontAwesomeIcon
-          icon={faDiscord}
-          size="2x"
-          color="#5562ea"
-          className="bg-zoom-hover cursor-pointer"
-          onClick={handleSocialIconClick("discord")}
-        />
-        <FontAwesomeIcon
-          icon={faTelegramPlane}
-          size="2x"
-          color="#0084c6"
-          className="bg-zoom-hover cursor-pointer"
-          onClick={handleSocialIconClick("telegram")}
-        />
       </div>
     </div>
   );
