@@ -8,7 +8,7 @@ import { coinPriceFormat, percentFormat } from "../../utils/format";
 const NFTImages = [
   "/img/nfts/1.jpg",
   "/img/nfts/2.jpg",
-  "/img/nfts/4.gif",
+  "https://ipfs.io/ipfs/QmYTTuyEfWYsT5bGnzW3d2Z2EEnphFAZdpA2YC5QCKqDL7",
   "/img/nfts/4.jpg",
 ]
 
