@@ -12,9 +12,9 @@ const LearningCard = ({ status, header, content }) => {
       }}
     >
       {status === true ? (
-        <img src="/img/Learning/learn.png" className="rounded-lg" />
+        <img src="/img/Learning/learn.png" className="rounded-lg" alt="Learning" />
       ) : (
-        <img src="/img/Learning/lockedLearn.png" className="rounded-lg" />
+        <img src="/img/Learning/lockedLearn.png" className="rounded-lg" alt="Learning" />
       )}
       <div className="text-[22px] text-white">{header}</div>
       <div className="text-white">{content}</div>
