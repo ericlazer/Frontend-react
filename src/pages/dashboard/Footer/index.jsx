@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 const Footer = () => {
   return (
     <div className='pb-8 mt-16'>
-      <div className='text-4xl font-semibold text-white pt-12'>CONEXIO</div>
+      <div className='text-4xl font-semibold text-white pt-12'>DAISUGI</div>
       <div className='flex gap-24 mt-12'>
         <div className='flex flex-col gap-4'>
           <p className='text-gray-400'>Quick Links</p>
@@ -21,7 +21,7 @@ const Footer = () => {
         </div>
       </div>
       <div className='mt-12 text-center text-white'>
-        Copyright @CONEXIO 2023
+        Copyright @DAISUGI 2023
       </div>
     </div>
   )
