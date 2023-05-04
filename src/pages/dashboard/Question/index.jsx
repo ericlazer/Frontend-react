@@ -6,7 +6,7 @@ const Question = () => {
       <div>
         <p className="text-lg xl:text-2xl font-semibold text-white">
           For your common question find <br /> the answer, Email us at <br />
-          support@conexio.com
+          support@daisugi.com
         </p>
         <div className="flex gap-4 mt-6 items-center text-[14px] hover:opacity-[0.5] transition ease-in-out cursor-pointer text-white justify-center lg:justify-start">
           <p>Connect Support</p>
@@ -16,16 +16,16 @@ const Question = () => {
       <div className="flex flex-col gap-4 text-white w-full lg:w-[520px] mx-auto xl:mx-0 mt-12 text-sm md:text-xl font-medium">
         <p>What is crypto exchange ?</p>
         <p>
-          How do i open an account on a conexio ?
+          How do i open an account on a daisugi ?
         </p>
         <p>
-          What payment methods are available on conexio ?
+          What payment methods are available on daisugi ?
         </p>
         <p>
-          Why i have to choose conexio over other ?
+          Why i have to choose daisugi over other ?
         </p>
         <p>
-          Type of trade i can do using conexio ?
+          Type of trade i can do using daisugi ?
         </p>
       </div>
     </div>
