@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { API_BASE } from "../../config/constants";
 import { marketCapFormat } from "../../utils/format";
-import ConexioTable from "../ConexioTable";
+import DaisugiTable from "../DaisugiTable";
 import ReactPaginate from "react-paginate";
 import ImageWithFallback from "../ImageWithFallback";
 import { chainImages } from "../../data/data";
@@ -68,85 +68,88 @@ const Fees = () => {
     drawTable(responseData.current.data, expendView.current);
   }, []);
 
-  const drawTable = useCallback((data, expend) => {
-    let newData = {
-      columns,
-      rows: [],
-      totalPages: 0,
-    };
+  const drawTable = useCallback(
+    (data, expend) => {
+      let newData = {
+        columns,
+        rows: [],
+        totalPages: 0,
+      };
 
-    if (data && data.length) {
-      data.forEach((row, rowIndex) => {
-        newData.rows.push([
-          showCountOption * currentPage + (rowIndex + 1),
-          <div className="flex gap-4 items-center">
-            <ImageWithFallback
-              src={row.logo}
-              fallback="/img/CoinImages/blank.png"
-              className="rounded-full w-7"
-            />
-            {row.name}
-          </div>,
-          row.category,
-          row.chain,
-          <div className="relative w-full h-full">
-            <div className="flex gap-1 w-5">
-              {row.chains
-                .filter((_, key) => key < 3)
-                .map((chain, key) => (
-                  <ImageWithFallback
-                    key={key}
-                    className="w-5 mr-2"
-                    src={`https://lcw.nyc3.cdn.digitaloceanspaces.com/production/currencies/32/${
-                      chainImages[chain.toLowerCase()]
-                    }`}
-                    fallback="/img/CoinImages/blank.png"
-                    alt="Chain"
-                  />
-                ))}
-            </div>
-            {row.chains.length > 3 ? (
-              <>
-                <Link
-                  className="text-yellow-500"
-                  onClick={() => handleExpendView(rowIndex)}
-                >
-                  more +{row.chains.length - 3}
-                </Link>
-                {expend === rowIndex ? (
-                  <div className="absolute flex flex-wrap w-[200px] top-0 right-0 p-3 translate-x-[calc(100%+20px)] bg-[#323232] rounded z-10">
-                    {row.chains
-                      .filter((_, key) => key >= 3)
-                      .map((chain, key) => (
-                        <ImageWithFallback
-                          key={key}
-                          className="w-5 mr-2"
-                          src={`https://lcw.nyc3.cdn.digitaloceanspaces.com/production/currencies/32/${
-                            chainImages[chain.toLowerCase()]
-                          }`}
-                          fallback="/img/CoinImages/blank.png"
-                          alt="Chain"
-                        />
-                      ))}
-                  </div>
-                ) : (
-                  <></>
-                )}
-              </>
-            ) : (
-              <></>
-            )}
-          </div>,
-          marketCapFormat(row.dailyFees),
-          marketCapFormat(row.dailyRevenue),
-          marketCapFormat(row.tvl),
-        ]);
-      });
-    }
-    newData.totalPages = data.totalPages;
-    console.log(newData);
-    setTableData(newData);
-  }, [showCountOption, currentPage]);
+      if (data && data.length) {
+        data.forEach((row, rowIndex) => {
+          newData.rows.push([
+            showCountOption * currentPage + (rowIndex + 1),
+            <div className="flex gap-4 items-center">
+              <ImageWithFallback
+                src={row.logo}
+                fallback="/img/CoinImages/blank.png"
+                className="rounded-full w-7"
+              />
+              {row.name}
+            </div>,
+            row.category,
+            row.chain,
+            <div className="relative w-full h-full">
+              <div className="flex gap-1 w-5">
+                {row.chains
+                  .filter((_, key) => key < 3)
+                  .map((chain, key) => (
+                    <ImageWithFallback
+                      key={key}
+                      className="w-5 mr-2"
+                      src={`https://lcw.nyc3.cdn.digitaloceanspaces.com/production/currencies/32/${
+                        chainImages[chain.toLowerCase()]
+                      }`}
+                      fallback="/img/CoinImages/blank.png"
+                      alt="Chain"
+                    />
+                  ))}
+              </div>
+              {row.chains.length > 3 ? (
+                <>
+                  <Link
+                    className="text-yellow-500"
+                    onClick={() => handleExpendView(rowIndex)}
+                  >
+                    more +{row.chains.length - 3}
+                  </Link>
+                  {expend === rowIndex ? (
+                    <div className="absolute flex flex-wrap w-[200px] top-0 right-0 p-3 translate-x-[calc(100%+20px)] bg-[#323232] rounded z-10">
+                      {row.chains
+                        .filter((_, key) => key >= 3)
+                        .map((chain, key) => (
+                          <ImageWithFallback
+                            key={key}
+                            className="w-5 mr-2"
+                            src={`https://lcw.nyc3.cdn.digitaloceanspaces.com/production/currencies/32/${
+                              chainImages[chain.toLowerCase()]
+                            }`}
+                            fallback="/img/CoinImages/blank.png"
+                            alt="Chain"
+                          />
+                        ))}
+                    </div>
+                  ) : (
+                    <></>
+                  )}
+                </>
+              ) : (
+                <></>
+              )}
+            </div>,
+            marketCapFormat(row.dailyFees),
+            marketCapFormat(row.dailyRevenue),
+            marketCapFormat(row.tvl),
+          ]);
+        });
+      }
+      newData.totalPages = data.totalPages;
+      console.log(newData);
+      setTableData(newData);
+    },
+    [showCountOption, currentPage]
+  );
 
   const fetchData = useCallback(async () => {
     setIsLoading(true);
@@ -199,7 +202,7 @@ const Fees = () => {
         </select>
       </div>
       <div className="mt-5 overflow-x-auto overflow-y-hidden">
-        <ConexioTable tableData={tableData} isLoading={isLoading} />
+        <DaisugiTable tableData={tableData} isLoading={isLoading} />
         <ReactPaginate
           pageCount={tableData.totalPages}
           pageRangeDisplayed={3}

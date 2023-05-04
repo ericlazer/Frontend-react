@@ -1,7 +1,7 @@
 import React from "react";
 import Layout from "../../components/Layout";
 import LineChart from "../../components/Charts/LineChart";
-import ConexioTable from "../../components/ConexioTable";
+import DaisugiTable from "../../components/DaisugiTable";
 import ProgressBar from "../../components/ProgressBar";
 
 const labels = [
@@ -568,7 +568,7 @@ const DeFi = () => {
       </div>
       {/* Table */}
       <div className="mt-8 overflow-x-auto">
-        <ConexioTable tableData={tableData} />
+        <DaisugiTable tableData={tableData} />
       </div>
     </Layout>
   );

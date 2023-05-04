@@ -2,7 +2,7 @@ import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import { API_BASE } from "../../config/constants";
 import { marketCapFormat } from "../../utils/format";
-import ConexioTable from "../ConexioTable";
+import DaisugiTable from "../DaisugiTable";
 import ImageWithFallback from "../ImageWithFallback";
 import ReactPaginate from "react-paginate";
 
@@ -39,34 +39,37 @@ const Chains = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [tableData, setTableData] = useState({});
 
-  const drawTable = useCallback((data) => {
-    let newData = {
-      columns,
-      rows: [],
-      totalPages: 0,
-    };
-    if (data.data.length) {
-      data.data.forEach((row, key) => {
-        newData.rows.push([
-          showCountOption * currentPage + (key + 1),
-          row.chainFullName,
-          <div className="flex items-center gap-4">
-            {row.chainShortName && (
-              <ImageWithFallback
-                src={`https://lcw.nyc3.cdn.digitaloceanspaces.com/production/currencies/32/${row.chainShortName.toLowerCase()}.png`}
-                fallback="/img/CoinImages/blank.png"
-                className="rounded-full w-7"
-              />
-            )}
-            {row.chainShortName}
-          </div>,
-          marketCapFormat(row.tvl),
-        ]);
-      });
-    }
-    newData.totalPages = data.totalPages;
-    setTableData(newData);
-  }, [showCountOption, currentPage]);
+  const drawTable = useCallback(
+    (data) => {
+      let newData = {
+        columns,
+        rows: [],
+        totalPages: 0,
+      };
+      if (data.data.length) {
+        data.data.forEach((row, key) => {
+          newData.rows.push([
+            showCountOption * currentPage + (key + 1),
+            row.chainFullName,
+            <div className="flex items-center gap-4">
+              {row.chainShortName && (
+                <ImageWithFallback
+                  src={`https://lcw.nyc3.cdn.digitaloceanspaces.com/production/currencies/32/${row.chainShortName.toLowerCase()}.png`}
+                  fallback="/img/CoinImages/blank.png"
+                  className="rounded-full w-7"
+                />
+              )}
+              {row.chainShortName}
+            </div>,
+            marketCapFormat(row.tvl),
+          ]);
+        });
+      }
+      newData.totalPages = data.totalPages;
+      setTableData(newData);
+    },
+    [showCountOption, currentPage]
+  );
 
   const fetchData = useCallback(async () => {
     setIsLoading(true);
@@ -116,7 +119,7 @@ const Chains = () => {
         </select>
       </div>
       <div className="mt-5 overflow-x-auto overflow-y-hidden">
-        <ConexioTable tableData={tableData} isLoading={isLoading} />
+        <DaisugiTable tableData={tableData} isLoading={isLoading} />
         <ReactPaginate
           pageCount={tableData.totalPages}
           pageRangeDisplayed={3}

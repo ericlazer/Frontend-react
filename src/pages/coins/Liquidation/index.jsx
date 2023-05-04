@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ReactPaginate from "react-paginate";
 import Layout from "../../../components/Layout";
-import ConexioTable from "../../../components/ConexioTable";
+import DaisugiTable from "../../../components/DaisugiTable";
 import { API_BASE } from "../../../config/constants";
 import { coinPriceFormat, percentFormat } from "../../../utils/format";
 
@@ -221,7 +221,7 @@ const Liquidation = () => {
       </div>
       {/* Table */}
       <div className="mt-8 overflow-x-auto overflow-y-hidden">
-        <ConexioTable tableData={tableData} isLoading={isLoading} />
+        <DaisugiTable tableData={tableData} isLoading={isLoading} />
         <ReactPaginate
           pageCount={tableData.totalPages}
           pageRangeDisplayed={3}
