@@ -2,7 +2,7 @@ import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import { API_BASE } from "../../config/constants";
 import { coinPriceFormat, marketCapFormat } from "../../utils/format";
-import ConexioTable from "../ConexioTable";
+import DaisugiTable from "../DaisugiTable";
 import ReactPaginate from "react-paginate";
 
 const columns = [
@@ -43,33 +43,36 @@ const StableCoins = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [tableData, setTableData] = useState({});
 
-  const drawTable = useCallback((data) => {
-    let newData = {
-      columns,
-      rows: [],
-      totalPages: 0,
-    };
-    if (data.data.length) {
-      data.data.forEach((row, key) => {
-        newData.rows.push([
-          showCountOption * currentPage + (key + 1),
-          <div>
-            <img
-              src={row.imgURL}
-              className="inline-block w-[1.5rem] h-[1.5rem] mr-3"
-              alt="CoinIcon"
-            />
-            {row.symbol}
-          </div>,
-          row.name,
-          coinPriceFormat(row.price),
-          marketCapFormat(row.marketCap),
-        ]);
-      });
-    }
-    newData.totalPages = data.totalPages;
-    setTableData(newData);
-  }, [showCountOption, currentPage]);
+  const drawTable = useCallback(
+    (data) => {
+      let newData = {
+        columns,
+        rows: [],
+        totalPages: 0,
+      };
+      if (data.data.length) {
+        data.data.forEach((row, key) => {
+          newData.rows.push([
+            showCountOption * currentPage + (key + 1),
+            <div>
+              <img
+                src={row.imgURL}
+                className="inline-block w-[1.5rem] h-[1.5rem] mr-3"
+                alt="CoinIcon"
+              />
+              {row.symbol}
+            </div>,
+            row.name,
+            coinPriceFormat(row.price),
+            marketCapFormat(row.marketCap),
+          ]);
+        });
+      }
+      newData.totalPages = data.totalPages;
+      setTableData(newData);
+    },
+    [showCountOption, currentPage]
+  );
 
   const fetchData = useCallback(async () => {
     setIsLoading(true);
@@ -119,7 +122,7 @@ const StableCoins = () => {
         </select>
       </div>
       <div className="mt-5 overflow-x-auto overflow-y-hidden">
-        <ConexioTable tableData={tableData} isLoading={isLoading} />
+        <DaisugiTable tableData={tableData} isLoading={isLoading} />
         <ReactPaginate
           pageCount={tableData.totalPages}
           pageRangeDisplayed={3}

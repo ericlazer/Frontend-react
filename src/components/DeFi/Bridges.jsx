@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import ReactPaginate from "react-paginate";
-import ConexioTable from "../ConexioTable";
+import DaisugiTable from "../DaisugiTable";
 import { API_BASE } from "../../config/constants";
 import { marketCapFormat } from "../../utils/format";
 
@@ -127,7 +127,7 @@ const Bridges = () => {
         </select>
       </div>
       <div className="mt-5">
-        <ConexioTable tableData={tableData} isLoading={isLoading} />
+        <DaisugiTable tableData={tableData} isLoading={isLoading} />
         <ReactPaginate
           pageCount={tableData.totalPages}
           pageRangeDisplayed={3}
@@ -144,7 +144,7 @@ const Bridges = () => {
         />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Bridges
+export default Bridges;

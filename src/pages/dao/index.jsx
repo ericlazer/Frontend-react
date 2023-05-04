@@ -1,6 +1,6 @@
 import React from "react";
 import Layout from "../../components/Layout";
-import ConexioTable from "../../components/ConexioTable";
+import DaisugiTable from "../../components/DaisugiTable";
 
 const filter = {
   menu1: [
@@ -194,7 +194,7 @@ const DeFi = () => {
       </div>
       {/* Table */}
       <div>
-        <ConexioTable tableData={tableData} />
+        <DaisugiTable tableData={tableData} />
       </div>
     </Layout>
   );

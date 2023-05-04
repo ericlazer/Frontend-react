@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback, useRef } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import ConexioTable from "../ConexioTable";
+import DaisugiTable from "../DaisugiTable";
 import ReactPaginate from "react-paginate";
 import ImageWithFallback from "../ImageWithFallback";
 import { API_BASE } from "../../config/constants";
@@ -105,7 +105,7 @@ const Protocols = () => {
                       className="w-5 mr-2"
                       src={`https://lcw.nyc3.cdn.digitaloceanspaces.com/production/currencies/32/${
                         chainImages[chain.toLowerCase()]
-                        }`}
+                      }`}
                       fallback="/img/CoinImages/blank.png"
                       alt="Chain"
                     />
@@ -129,7 +129,7 @@ const Protocols = () => {
                             className="w-5 mr-2"
                             src={`https://lcw.nyc3.cdn.digitaloceanspaces.com/production/currencies/32/${
                               chainImages[chain.toLowerCase()]
-                              }`}
+                            }`}
                             fallback="/img/CoinImages/blank.png"
                             alt="Chain"
                           />
@@ -196,7 +196,7 @@ const Protocols = () => {
         break;
     }
   };
-  
+
   const handlePageClick = ({ selected: selectedPage }) => {
     setCurrentPage(selectedPage);
   };
@@ -218,7 +218,7 @@ const Protocols = () => {
         </select>
       </div>
       <div className="mt-5 overflow-x-auto overflow-y-hidden">
-        <ConexioTable tableData={tableData} isLoading={isLoading} />
+        <DaisugiTable tableData={tableData} isLoading={isLoading} />
         <ReactPaginate
           pageCount={tableData.totalPages}
           pageRangeDisplayed={3}

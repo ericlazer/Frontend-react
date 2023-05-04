@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import ReactPaginate from "react-paginate";
-import ConexioTable from "../ConexioTable";
+import DaisugiTable from "../DaisugiTable";
 import { API_BASE } from "../../config/constants";
 import ImageWithFallback from "../ImageWithFallback";
 import { marketCapFormat, normalPercentFormat } from "../../utils/format";
@@ -59,9 +59,7 @@ let columns = [
   },
 ];
 
-
 const Yields = () => {
-
   const [showCountOption, setShowCountOption] = useState(filter.showCount[0]);
   const [currentPage, setCurrentPage] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
@@ -91,7 +89,9 @@ const Yields = () => {
             </div>,
             <div className="flex items-center gap-4">
               <img
-                src={`https://lcw.nyc3.cdn.digitaloceanspaces.com/production/currencies/32/${chainImages[row.chain.toLowerCase()]}`}
+                src={`https://lcw.nyc3.cdn.digitaloceanspaces.com/production/currencies/32/${
+                  chainImages[row.chain.toLowerCase()]
+                }`}
                 alt={row.chain}
               />
               {row.chain}
@@ -159,7 +159,7 @@ const Yields = () => {
         </select>
       </div>
       <div className="mt-5">
-        <ConexioTable tableData={tableData} isLoading={isLoading} />
+        <DaisugiTable tableData={tableData} isLoading={isLoading} />
         <ReactPaginate
           pageCount={tableData.totalPages}
           pageRangeDisplayed={3}
@@ -176,7 +176,7 @@ const Yields = () => {
         />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Yields
+export default Yields;

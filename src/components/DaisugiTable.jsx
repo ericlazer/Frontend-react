@@ -21,7 +21,10 @@ const Table = ({ tableOption = {}, tableData, isLoading }) => {
       <tbody>
         {isLoading ? (
           <tr>
-            <td colSpan={tableData.columns && tableData.columns.length} className="h-[calc(100vh-300px)] text-center">
+            <td
+              colSpan={tableData.columns && tableData.columns.length}
+              className="h-[calc(100vh-300px)] text-center"
+            >
               <Default color="#a1a1a1" />
             </td>
           </tr>
@@ -37,7 +40,9 @@ const Table = ({ tableOption = {}, tableData, isLoading }) => {
                   return (
                     <td
                       key={i}
-                      className={`px-3 py-2 border border-[#313131] text-${tableData.columns[i] && tableData.columns[i].align}`}
+                      className={`px-3 py-2 border border-[#313131] text-${
+                        tableData.columns[i] && tableData.columns[i].align
+                      }`}
                     >
                       {item}
                     </td>
@@ -52,5 +57,5 @@ const Table = ({ tableOption = {}, tableData, isLoading }) => {
     </table>
   );
 };
- 
-export default Table 
+
+export default Table;
