@@ -1,9 +1,11 @@
 import React from "react";
 
-const LearningCard = ({ status, header, content }) => {
+const LearningCard = ({ status, imgURL, header, content }) => {
   return (
     <div
-      className="p-3 flex flex-col gap-3 w-[320px] rounded-lg"
+      className={`p-3 flex flex-col gap-3 w-[320px] rounded-lg 
+        ${!status && 'blur-[1.5px]'}`
+      }
       style={{
         backgroundImage:
           status === true
@@ -12,9 +14,13 @@ const LearningCard = ({ status, header, content }) => {
       }}
     >
       {status === true ? (
-        <img src="/img/Learning/learn.png" className="rounded-lg" alt="Learning" />
+        <img src={imgURL} className="rounded-lg" alt="Learning" />
       ) : (
-        <img src="/img/Learning/lockedLearn.png" className="rounded-lg" alt="Learning" />
+        <img
+          src={imgURL}
+          className="rounded-lg grayscale"
+          alt="Learning"
+        />
       )}
       <div className="text-[22px] text-white">{header}</div>
       <div className="text-white">{content}</div>
