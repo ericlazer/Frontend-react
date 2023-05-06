@@ -4,8 +4,8 @@ const KnowMore = () => {
   return (
     <div className="mt-20">
       <div>
-        <p className="text-4xl text-white">Know more about</p>
-        <p className="text-4xl text-white font-bold mt-4">DAISUGI</p>
+        <p className="text-4xl text-white font-[DotBold] md:text-6xl">Know more about</p>
+        <p className="text-4xl text-white font-bold mt-4 font-[DotBold] md:text-6xl">daisugi</p>
       </div>
       <div className="mx-auto 2xl:mx-0 mt-16 text-center 2xl:ml-32 2xl:text-left w-full md:w-[600px] px-1 md:px-5 text-base">
         <span className="text-sm md:text-base text-white leading-7">

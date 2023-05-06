@@ -7,11 +7,6 @@
   src: url('/public/font/OffBitTrial-DotBold.otf') format('opentype');
 }
 
-@font-face {
-  font-family: 'Dot';
-  src: url('/public/font/OffBitTrial-Dot.otf') format('opentype');
-}
-
 body {
   margin: 0;
   font-family: 'Poppins', 'Segoe UI', 'Roboto', 'Oxygen',
@@ -29,10 +24,6 @@ body {
 code { 
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-}
-
-.dashboard-background {
-  background: linear-gradient(139.43deg, #2B2B2B 6.41%, #19191A 76.94%);
 }
 
 /* Scroll bar Style */

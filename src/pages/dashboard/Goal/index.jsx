@@ -3,7 +3,7 @@ import React from 'react'
 const Goal = () => {
   return (
     <div className='mt-24'>
-      <p className='font-semibold text-4xl md:text-[56px] text-white ml-8'>OUR GOAL</p>
+      <p className='font-semibold text-4xl md:text-[56px] text-white ml-8 font-[DotBold]'>OUR GOAL</p>
       <div className='mt-12 grid md:grid-cols-2 xl:grid-cols-4 gap-4'>
         <div className='rounded-[34px] border-2 border-gray-600 p-10 hover:border-white text-white cursor-pointer transition ease-in-out'>
           <p className='text-2xl font-bold'>Education</p>
