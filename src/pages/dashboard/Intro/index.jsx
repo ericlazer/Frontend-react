@@ -15,10 +15,10 @@ const Intro = () => {
       </div>
       <div className='mt-8 justify-center items-center flex flex-col gap-5'>
         <div>
-          <img src="/img/LandingPage_tree.png" className='rounded-lg' width={800} alt="Landing Page Tree" />
+          <img src="/img/LandingPage_tree.png" className='rounded-lg' width={550} alt="Landing Page Tree" />
         </div>
-        <div className='text-2xl text-white text-center -mt-[50px] md:-mt-[100px] md:text-4xl font-[DotBold]'>
-          Gain a competitive edge with Daisugi - the ultimate cross-chain trading terminal.
+        <div className='text-2xl text-white text-center md:text-4xl font-[DotBold] w-[90%] lg:w-[40%]'>
+          Gain a competitive edge with Daisugi the ultimate cross-chain trading terminal.
         </div>
         <div>
           <Link to="/home">
