@@ -13,11 +13,14 @@ const Intro = () => {
           <Link to="/home"><div className='py-2 px-6 rounded-md px-8 duration-300 transition cursor-pointer ease-in-out text-[14px] hover:opacity-[0.8]' style={{background: 'radial-gradient(100% 341.37% at 0% 24.29%, #5C1693 0%, #201DAD 100%)'}}>Get Started</div></Link>
         </div> */}
       </div>
-      <div className='mt-16 flex justify-between'>
+      <div className='mt-8 justify-center items-center flex flex-col gap-5'>
         <div>
-          <img src="/img/LandingPage_tree.png" className='rounded-lg' width={500} alt="Landing Page Tree" />
+          <img src="/img/LandingPage_tree.png" className='rounded-lg' width={600} alt="Landing Page Tree" />
         </div>
-        <div className='flex flex-col'>
+        <div className='text-md text-white text-center -mt-[50px] md:text-2xl'>
+          Gain a competitive edge with Daisugi - the ultimate cross-chain trading terminal.
+        </div>
+        <div>
           <Link to="/home">
             <button className='text-sm font-semibold text-black bg-white px-6 py-3 rounded-md cursor-pointer transition ease-in-out duration-300 hover:opacity-[0.8]' style={{background: 'radial-gradient(100% 341.37% at 0% 24.29%, #FFFFFF 0%, #C8C8C8 100%)'}} >GET STARTED</button>
           </Link>

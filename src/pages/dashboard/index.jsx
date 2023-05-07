@@ -28,14 +28,15 @@ const Dashboard = () => {
           <KnowMore />
           <Goal />
           <Plan />
-          <Question />
-          <Subscribe />
+          {/* <Question /> */}
+          {/* <Subscribe /> */}
         </div>
       </div>
       <div
-        className="px-10 md:px-[100px] lg:px-[240px] bg-cover bg-no-repeat w-full bg-black"
-        // style={{ backgroundImage: "url('/img/footer_image.jpg')" }}
+        className="relative px-10 md:px-[50px] lg:px-[100px] xl:px-[200px] bg-cover bg-no-repeat w-full bg-black"
+        style={{ backgroundImage: "url('/img/footer_image1.png')" }}
       >
+        <div className="absolute -top-5 left-0 w-full h-8 bg-gradient-to-b from-transparent to-[rgba(0,0,0,0.5)] backdrop-blur-sm" />
         <Footer />
       </div>
     </div>
