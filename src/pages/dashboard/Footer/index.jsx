@@ -50,8 +50,8 @@ const Footer = () => {
           </div>
         </div>
         <div className="mt-10 md:mt-0">
-          <div className="flex flex-col">
-            <p className="text-gray-400 text-2xl font-semibold">For your common question find the answer, Email us at </p>
+          <div className="flex flex-col gap-3">
+            <p className="text-gray-400 text-2xl font-semibold">We value your feedback and would love <br /> to hear from you! Email us at </p>
             <p className="text-white text-2xl font-semibold">support@daisugi.com</p>
           </div>
         </div>

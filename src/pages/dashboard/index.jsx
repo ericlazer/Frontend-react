@@ -3,8 +3,8 @@ import Intro from "./Intro";
 import KnowMore from "./KnowMore";
 import Goal from "./Goal";
 import Plan from "./Plan";
-import Question from "./Question";
-import Subscribe from "./Subscribe";
+// import Question from "./Question";
+// import Subscribe from "./Subscribe";
 import Footer from "./Footer";
 
 const Dashboard = () => {

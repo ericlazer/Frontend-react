@@ -13,9 +13,9 @@ const Intro = () => {
           <Link to="/home"><div className='py-2 px-6 rounded-md px-8 duration-300 transition cursor-pointer ease-in-out text-[14px] hover:opacity-[0.8]' style={{background: 'radial-gradient(100% 341.37% at 0% 24.29%, #5C1693 0%, #201DAD 100%)'}}>Get Started</div></Link>
         </div> */}
       </div>
-      <div className='mt-8 justify-center items-center flex flex-col gap-8'>
+      <div className='mt-4 justify-center items-center flex flex-col gap-6'>
         <div>
-          <img src="/img/LandingPage_tree.png" className='rounded-lg' width={550} alt="Landing Page Tree" />
+          <img src="/img/LandingPage_tree.png" className='rounded-lg' width={600} alt="Landing Page Tree" />
         </div>
         <div className='text-2xl text-white text-center md:text-4xl font-[DotBold] w-[90%] lg:w-[50%]'>
           Gain a competitive edge with Daisugi the ultimate cross-chain trading terminal.
