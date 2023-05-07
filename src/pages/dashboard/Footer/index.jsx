@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <div className="relative pb-8">
-      <div className="text-4xl font-semibold text-white pt-12 font-[DotBold]">daisugi</div>
+      <div className="text-5xl font-semibold text-white pt-12 font-[DotBold]">daisugi</div>
       <div className="block md:flex justify-between">
         <div className="flex gap-24 mt-12">
           <div className="flex flex-col gap-4">
