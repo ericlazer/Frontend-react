@@ -13,12 +13,12 @@ const PlanDetail = ({ content }) => {
   );
 };
 
-const PlanButton = () => <div className='py-4 text-white rounded-md duration-300 transition cursor-pointer ease-in-out text-[14px] hover:opacity-[0.8] text-center' style={{background: 'radial-gradient(100% 341.37% at 0% 24.29%, #5C1693 0%, #201DAD 100%)'}}>Ged Started</div>
+const PlanButton = () => <div className='py-4 text-white rounded-md duration-300 transition cursor-pointer ease-in-out text-[14px] hover:opacity-[0.8] text-center' style={{background: 'radial-gradient(100% 341.37% at 0% 24.29%, #5C1693 0%, #201DAD 100%)'}}>Get Started</div>
 
 const Plan = () => {
   return (
     <div className="mt-24">
-      <p className="font-semibold text-4xl md:text-[56px] text-white ml-8">
+      <p className="font-semibold text-4xl md:text-[56px] text-white ml-8 font-[DotBold]">
         Choose your Plan
       </p>
       <div className="mt-8 grid md:grid-cols-2 xl:grid-cols-4 gap-5">

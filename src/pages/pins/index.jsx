@@ -73,20 +73,28 @@ const Pins = () => {
           </div>
           <div className="mt-2 p-2">
             <div className="flex justify-between items-center">
-              <span className="text-[16px] text-white">MEMELAND</span>
+              <span className="text-[16px] text-white">CAPTAINZ</span>
               <img src="/icon/LinkIcon.png" alt="Link Icon" className="w-4 h-4" />
             </div>
-            <div className="grid grid-cols-3 mt-2">
+            <div className="grid grid-cols-5 mt-2">
               <div>
-                <p className="text-[13px] text-white">3,402 ETH</p>
+                <p className="text-[13px] text-white">35,701 ETH</p>
                 <p className="text-[13px] text-white opacity-[0.5]">total volume</p>
               </div>
               <div className="text-center">
-                <p className="text-[13px] text-white">0.034 ETH</p>
+                <p className="text-[13px] text-white">7.75 ETH</p>
                 <p className="text-[13px] text-white opacity-[0.5]">floor price</p>
               </div>
+              <div className="text-center">
+                <p className="text-[13px] text-white">4,630</p>
+                <p className="text-[13px] text-white opacity-[0.5]">owners</p>
+              </div>
+              <div className="text-center">
+                <p className="text-[13px] text-white">7.3 WETH</p>
+                <p className="text-[13px] text-white opacity-[0.5]">best offer</p>
+              </div>
               <div className="text-right">
-                <p className="text-[13px] text-white">7%</p>
+                <p className="text-[13px] text-white">0.7%</p>
                 <p className="text-[13px] text-white opacity-[0.5]">listed</p>
               </div>
             </div>
