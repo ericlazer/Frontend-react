@@ -3,7 +3,7 @@ import {
   coinPriceFormat,
   normalPercentFormat,
 } from "../../utils/format";
-import { chainImages } from '../../data/data'
+import { chainImages } from '../../data/chain'
 
 const NFTListBox = ({ imgURL, name, networks, price, changed }) => {
   return (

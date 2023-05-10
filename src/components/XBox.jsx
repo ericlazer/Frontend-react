@@ -1,14 +1,14 @@
 import React from "react";
 import { Default } from "react-awesome-spinners";
 
-const XBox = ({ isBackground, imageURL, gap, header, isLoading, center, children }) => {
+const XBox = ({ isBackground, imgURL, gap, header, isLoading, center, children }) => {
   return (
     <div
       className={`h-[350px] md:h-[400px] ${
         isBackground && "bg-gradient-card1"
-      } border-2 ${center && "flex justify-center items-center"} border-[#323232] text-white text-lg lg:text-2xl rounded-[30px] p-5 transition hover:border-gray-500/100 bg-zoom-hover flex flex-col relative`}
+      } ${center && "flex justify-center items-center"} border-2 border-[#323232] text-white text-lg lg:text-2xl rounded-[30px] p-5 transition hover:border-gray-500/100 bg-zoom-hover flex flex-col relative`}
       style={{
-        backgroundImage: imageURL && `url(${imageURL})`
+        backgroundImage: imgURL && `url(${imgURL})`
       }}
     > 
       <div className={`absolute inset-0 flex items-center justify-center font-semibold z-10 ${isLoading ? "opacity-20" : "opacity-100"}`}>

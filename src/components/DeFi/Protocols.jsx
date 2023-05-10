@@ -5,7 +5,7 @@ import DaisugiTable from "../DaisugiTable";
 import ReactPaginate from "react-paginate";
 import ImageWithFallback from "../ImageWithFallback";
 import { API_BASE } from "../../config/constants";
-import { chainImages } from "../../data/data";
+import { chainImages } from "../../data/chain";
 import { normalPercentFormat, marketCapFormat } from "../../utils/format";
 
 const columns = [

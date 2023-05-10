@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import ImageWithFallback from "../ImageWithFallback";
 import { API_BASE } from "../../config/constants";
-import { chains } from "../../data/data";
+import { chains } from "../../data/chain";
 import { coinPriceFormat } from "../../utils/format";
 import { Default } from "react-awesome-spinners";
 

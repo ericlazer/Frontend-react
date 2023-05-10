@@ -1,67 +1,27 @@
 import React from "react";
 import Layout from "../../components/Layout";
 import XBox from "../../components/XBox";
-
-const Ventures = [
-  {
-    name: "Coinbase",
-    imgURL: "/img/directory/coinbase.png",
-  },
-  {
-    name: "NGC Ventures",
-    imgURL: "/img/directory/ngc.png",
-  },
-  {
-    name: "AU21 Capital",
-    imgURL: "/img/directory/au21.png",
-  },
-  {
-    name: "Digital Currency Group",
-    imgURL: "/img/directory/dcg.png",
-  },
-  {
-    name: "Shima Capital",
-    imgURL: "/img/directory/shima.png",
-  },
-  {
-    name: "Animoca Brands",
-    imgURL: "/img/directory/animoca.png",
-  },
-];
-
-const Companies = [
-  {
-    name: "Megaton",
-    imgURL: "/img/directory/megaton.png",
-  },
-  {
-    name: "NGC Ventures",
-    imgURL: "/img/directory/ngc.png",
-  },
-  {
-    name: "Liberty Leaf",
-    imgURL: "/img/directory/liberty.png",
-  },
-  {
-    name: "XcekPay",
-    imgURL: "/img/directory/xcel.png",
-  },
-  {
-    name: "Coinbase",
-    imgURL: "/img/directory/coinbase.png",
-  },
-  {
-    name: "Animoca Brands",
-    imgURL: "/img/directory/animoca.png",
-  },
-];
+import PeopleBox from "../../components/PeopleBox";
+import { Products, Ventures, Companies, People } from "./data";
 
 const Directory = () => {
   return (
     <Layout>
       <div className="w-full grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-10">
-        <XBox isBackground={true} header="Reviews & Product" imageURL="/img/directory/product.png">
-
+        <XBox isBackground={true} center={true} header="Reviews & Product">
+          <div className="grid grid-cols-2 gap-3">
+            {
+              Products.map((item, index) => (
+                <div key={index} className="flex gap-2 items-center">
+                  <img src={item.imgURL} alt={item.name} className="w-[60px] h-[60px] rounded-full" />
+                  <div className="flex flex-col">
+                    <p className="text-white text-[14px]">{item.name}</p>
+                    <span className="text-white text-[12px] opacity-[0.5] leading-[20px]">{item.description}</span>
+                  </div>
+                </div>
+              ))
+            }
+          </div>
         </XBox>
         <XBox isBackground={true} header="Active VC" center={true}>
           <div className="grid grid-cols-3 gap-8">
@@ -91,7 +51,21 @@ const Directory = () => {
             ))}
           </div>
         </XBox>
-        <XBox isBackground={true} header="People" imageURL="/img/directory/people.png">
+        <XBox isBackground={true} center={true} header="People">
+          <div className="grid grid-cols-2 gap-3">
+            {
+              People.map((item, index) => (
+                <PeopleBox
+                  key={index}
+                  name={item.name}
+                  imgURL={item.imgURL}
+                  role={item.role}
+                  company={item.company}
+                  companyLogo={item.companyLogo}
+                />
+              ))
+            }
+          </div>
         </XBox>
       </div>
     </Layout>

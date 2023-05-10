@@ -4,13 +4,7 @@ import SmallChartCard from "../../components/Cards/SmallChartCard";
 import ChartCard from "../../components/Cards/ChartCard";
 import { getTotalGainers, getTotalLosers } from '../../services/coin.service'
 import { coinPriceFormat, percentFormat } from "../../utils/format";
-
-const NFTImages = [
-  "/img/nfts/1.jpg",
-  "/img/nfts/2.jpg",
-  "https://ipfs.io/ipfs/QmYTTuyEfWYsT5bGnzW3d2Z2EEnphFAZdpA2YC5QCKqDL7",
-  "/img/nfts/4.jpg",
-]
+import { NFTImages } from "./data";
 
 const Home = () => {
 

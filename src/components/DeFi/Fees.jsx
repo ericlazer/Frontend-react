@@ -6,7 +6,7 @@ import { marketCapFormat } from "../../utils/format";
 import DaisugiTable from "../DaisugiTable";
 import ReactPaginate from "react-paginate";
 import ImageWithFallback from "../ImageWithFallback";
-import { chainImages } from "../../data/data";
+import { chainImages } from "../../data/chain";
 
 const columns = [
   {

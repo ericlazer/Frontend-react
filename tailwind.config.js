@@ -11,7 +11,7 @@ module.exports = {
         'gradient-card': 'linear-gradient(131.78deg, #383838 2.07%, #000000 95.81%);',
         'gradient-btn': 'linear-gradient(94.32deg, #262626 8.94%, #2D2D2D 89.83%);',
         'box-image': "linear-gradient(143.69deg, #323232 12.27%, #272727 47.57%, #141414 92.01%);",
-        'gradient-card1': 'linear-gradient(143.69deg, #323232 12.27%, #292929 92.01%);',
+        'gradient-card1': 'linear-gradient(143.69deg, #292928 12.27%, #0d0d0d 92.01%);',
       },
       backgroundColor: {
         'button-hover': '#323232',
