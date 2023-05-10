@@ -62,7 +62,6 @@ code {
   overflow: hidden;
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: inherit;
   background-position: center;
   transition: all 0.3s ease-in-out;
   transform: scale(1);

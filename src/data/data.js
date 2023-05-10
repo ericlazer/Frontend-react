@@ -110,4 +110,5 @@ export const chainImages = {
   "elrond": 'erd.png',
   "ethereumclassic": 'etc.png',
   "litecoin": 'ltc.png',
+  "immutable": "_imx.png"
 }

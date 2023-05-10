@@ -3,8 +3,15 @@
 // Coin price type
 export const coinPriceFormat = (price) => {
   const num = parseFloat(price);
-  if (num !== 0) {
-    let decimalCount = num;
+
+  if (num >= 1e8) { // 100,000,000
+    return '$' + (num / 1e9).toFixed(1) + 'B';
+  } else if (num >= 1e6) { // 1,000,000
+    return '$' + (num / 1e6).toFixed(1) + 'M';
+  } else if (num >= 1e5) { // 100,000
+    return '$' + (num / 1e3).toFixed(1) + 'K';
+  } else if (num !== 0) {
+    let decimalCount;
     if (num >= 1) {
       decimalCount = num.toFixed(2);
     } else {
@@ -14,9 +21,9 @@ export const coinPriceFormat = (price) => {
         temp *= 10;
         precision++;
       }
-      decimalCount = num.toFixed(precision + 4);
+      decimalCount = num.toFixed(precision + 2);
     }
-    return '$' + decimalCount;
+    return '$' + Number(decimalCount).toLocaleString('en');
   } else {
     return '$0.00';
   }
