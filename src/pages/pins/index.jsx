@@ -50,7 +50,7 @@ const Pins = () => {
         </div>
         <div className="bg-gradient-card1 h-[350px] rounded-lg p-5">
           <div className="h-[60%] relative rounded-lg">
-            <button className="text-[12px] text-white m-4 px-5 py-2 bg-[#3E3E3E] absolute z-[99]">
+            <button className="text-[12px] text-white m-4 px-5 py-2 bg-[#3E3E3E] absolute z-10">
               News
             </button>
             <img src="/img/news/1.png" className="w-full h-full object-cover absolute rounded-lg" alt="News" />
@@ -66,7 +66,7 @@ const Pins = () => {
         </div>
         <div className="bg-gradient-card1 h-[350px] rounded-lg p-5">
           <div className="h-[60%] relative rounded-lg">
-            <button className="text-[12px] text-white m-4 px-5 py-2 bg-[#3E3E3E] absolute z-[99]">
+            <button className="text-[12px] text-white m-4 px-5 py-2 bg-[#3E3E3E] absolute z-10">
               NFT
             </button>
             <img src="/img/nfts/5.png" className="w-full h-full object-cover absolute rounded-lg" alt="NFTs" />

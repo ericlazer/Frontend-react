@@ -17,13 +17,17 @@ export const coinPriceFormat = (price) => {
     } else {
       let temp = num;
       let precision = 0;
-      while (temp < 1) {
+      let nonZeroCount = 0;
+      while (nonZeroCount < 2) {
         temp *= 10;
         precision++;
+        if (Math.floor(temp) !== 0) {
+          nonZeroCount++;
+        }
       }
-      decimalCount = num.toFixed(precision + 2);
+      decimalCount = num.toFixed(precision);
     }
-    return '$' + Number(decimalCount).toLocaleString('en');
+    return '$' + parseFloat(decimalCount).toLocaleString('en', {minimumFractionDigits: decimalCount.split('.')[1].length});
   } else {
     return '$0.00';
   }

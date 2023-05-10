@@ -3,6 +3,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faTelegramPlane,
 } from "@fortawesome/free-brands-svg-icons";
+import {
+  faPaperPlane,
+} from "@fortawesome/free-solid-svg-icons";
 
 const Telegram = () => {
   return (
@@ -36,6 +39,13 @@ const Telegram = () => {
         <div className='text-white text-[13px]'>
           Lorem ipsum dolor sit amet consectetur. Velit placerat risus adipiscing aliquet .
         </div>
+      </div>
+      <div className="fixed flex justify-between bg-[#212121] rounded-2xl items-center px-4 py-3 gap-2 bottom-5 left-2 right-2">
+        <FontAwesomeIcon icon={faPaperPlane} className="text-white" />
+        <input
+          placeholder="Type Your Message..."
+          className="bg-transparent border-none outline-none text-white text-[12px] flex-grow"
+        />
       </div>
     </div>
   )
