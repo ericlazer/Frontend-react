@@ -36,6 +36,44 @@ const coinBreakDown = [
   },
 ];
 
+const SocialInsights = [
+  {
+    name: "Bitcoin",
+    symbol: "BTC",
+    imgURL: "https://lcw.nyc3.cdn.digitaloceanspaces.com/production/currencies/32/btc.png",
+    value: "20,810",
+    changed: 3.2,
+  },
+  {
+    name: "Ethereum",
+    symbol: "ETH",
+    imgURL: "https://lcw.nyc3.cdn.digitaloceanspaces.com/production/currencies/32/eth.png",
+    value: "14,213",
+    changed: -1.3,
+  },
+  {
+    name: "PePe",
+    symbol: "PEPE",
+    imgURL: "https://lcw.nyc3.cdn.digitaloceanspaces.com/production/currencies/32/pepe.png",
+    value: "11,988",
+    changed: 1.5,
+  },
+  {
+    name: "Solana",
+    symbol: "SOL",
+    imgURL: "https://lcw.nyc3.cdn.digitaloceanspaces.com/production/currencies/32/sol.png",
+    value: "9,826",
+    changed: 6.7,
+  },
+  {
+    name: "CryptoGPT",
+    symbol: "GPT",
+    imgURL: "https://lcw.nyc3.cdn.digitaloceanspaces.com/production/currencies/32/gpt.png",
+    value: "6,780",
+    changed: -3.5,
+  },
+]
+
 const Coins = () => {
   const [topCoins, setTopCoins] = useState();
   const [isLoading, setIsLoading] = useState(true)
@@ -109,7 +147,19 @@ const Coins = () => {
           </XBox>
         </Link>
         <Link to="/coins/trading">
-          <XBox imageURL='/img/CoinImages/Trading.png' header="Trading">
+          <XBox isBackground={true} header="Trading">
+            {
+              SocialInsights.map((item, index) => (
+                <CoinListBox
+                  key={index}
+                  imgURL={item.imgURL}
+                  name={item.name}
+                  symbol={item.symbol}
+                  price={item.value}
+                  changed={item.changed}
+                />
+              ))
+            }
           </XBox>
         </Link>
         <Link to="/coins/exchange">

@@ -1,12 +1,12 @@
 import React from "react";
 import { Default } from "react-awesome-spinners";
 
-const XBox = ({ isBackground, imageURL, gap, header, isLoading, children }) => {
+const XBox = ({ isBackground, imageURL, gap, header, isLoading, center, children }) => {
   return (
     <div
       className={`h-[350px] md:h-[400px] ${
         isBackground && "bg-gradient-card1"
-      } border-2 border-[#323232] text-white text-lg lg:text-2xl rounded-[30px] p-5 transition border border-gray-500/0 hover:border-gray-500/100 bg-zoom-hover flex flex-col relative`}
+      } border-2 ${center && "flex justify-center items-center"} border-[#323232] text-white text-lg lg:text-2xl rounded-[30px] p-5 transition hover:border-gray-500/100 bg-zoom-hover flex flex-col relative`}
       style={{
         backgroundImage: imageURL && `url(${imageURL})`
       }}
