@@ -5,7 +5,7 @@ import DaisugiTable from "../DaisugiTable";
 import { API_BASE } from "../../config/constants";
 import ImageWithFallback from "../ImageWithFallback";
 import { marketCapFormat, normalPercentFormat } from "../../utils/format";
-import { chainImages } from "../../data/data";
+import { chainImages } from "../../data/chain";
 
 const filter = {
   showCount: [25, 50, 100],

@@ -5,14 +5,7 @@ import SmallChartCard from "../../components/Cards/SmallChartCard";
 import { getDefiFee, getDefiYield } from "../../services/defi.service";
 import CoinListBox from "../../components/Coins/CoinListBox";
 import XBox from "../../components/XBox";
-
-const tempImage = [
-  "https://icons.llamao.fi/icons/protocols/lido.png",
-  "https://icons.llamao.fi/icons/protocols/uniswap-v3.png",
-  "https://icons.llamao.fi/icons/protocols/bitcoin.png",
-  "https://icons.llamao.fi/icons/protocols/gmx.png",
-  "https://icons.llamao.fi/icons/protocols/pancakeswap-amm.jpg",
-]
+import { tempImage } from "./data";
 
 const DeFiTVL = () => {
   const [feeData, setFeeData] = useState();
