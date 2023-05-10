@@ -42,6 +42,44 @@ const TopCollections = [
   }
 ]
 
+const TrendCollections = [
+  {
+    name: "Azuki",
+    imgURL: "/img/nfts/azuki.jpg",
+    networks: ["Ethereum"],
+    volume: "14.00ETH",
+    changed: 2.2,
+  },
+  {
+    name: "Pixelady Marker",
+    imgURL: "/img/nfts/pixelady.jpg",
+    volume: "0.19ETH",
+    networks: ["Ethereum"],
+    changed: 8.2,
+  },
+  {
+    name: "Mad Lads",
+    imgURL: "/img/nfts/madlads.jpg",
+    volume: "14.4K SOL",
+    networks: ["Solana"],
+    changed: -3.41,
+  },
+  {
+    name: "Famous Fox Federation",
+    imgURL: "/img/nfts/famousfox.jpg",
+    volume: "4564SOL",
+    networks: ["Solana"],
+    changed: -25.52,
+  },
+  {
+    name: "Bitcoin Frogs",
+    imgURL: "/img/nfts/bitcoinfrog.jpg",
+    volume: "32ETH",
+    networks: ["Ethereum"],
+    changed: 13.21,
+  }
+]
+
 const TopMarketPlaces = [
   {
     name: "Blur",
@@ -113,6 +151,72 @@ const Mints = [
   }
 ]
 
+const TopTraders = [
+  {
+    name: "0x577eBC",
+    networks: ["Ethereum"],
+    value: 1900,
+    changed: 34.4,
+  },
+  {
+    name: "wilcox.eth",
+    networks: ["Ethereum"],
+    value: 313.48,
+    changed: -11.26,
+  },
+  {
+    name: "0x6611fE",
+    networks: ["Ethereum"],
+    value: 655.94,
+    changed: 117.28,
+  },
+  {
+    name: "0x223BC8",
+    networks: ["Ethereum"],
+    value: 0,
+    changed: -10.52,
+  },
+  {
+    name: "0x6F4A2d",
+    networks: ["Ethereum"],
+    value: 1130,
+    changed: 27.27,
+  }
+]
+
+const CrossChains = [
+  {
+    name: "Ethereum",
+    imgURL: "https://lcw.nyc3.cdn.digitaloceanspaces.com/production/currencies/32/eth.png",
+    value: 34992164,
+    changed: 2.10,
+  },
+  {
+    name: "Mythos Chain",
+    imgURL: "https://lcw.nyc3.cdn.digitaloceanspaces.com/production/currencies/32/_myth.png",
+    value: 1604052,
+    changed: 1.78,
+  },
+  {
+    name: "Solana",
+    imgURL: "https://lcw.nyc3.cdn.digitaloceanspaces.com/production/currencies/32/sol.png",
+    value: 1192192,
+    changed: 2.10,
+  },
+  {
+    name: "Polygon",
+    imgURL: "https://lcw.nyc3.cdn.digitaloceanspaces.com/production/currencies/32/matic.png",
+    value: 889767,
+    changed: 2.10,
+  },
+  {
+    name: "ImmutableX",
+    imgURL: "https://lcw.nyc3.cdn.digitaloceanspaces.com/production/currencies/32/_imx.png",
+    value: 754840,
+    changed: 1.91,
+  }
+]
+
 const NFT = () => {
 
   return (
@@ -158,7 +262,7 @@ const NFT = () => {
         <Link to="/nft/trending">
           <XBox isBackground={true} header="Trending Collections">
             {
-              TopCollections.map((item, index) => (
+              TrendCollections.map((item, index) => (
                 <NFTListBox
                   key={index}
                   imgURL={item.imgURL}
@@ -188,10 +292,32 @@ const NFT = () => {
         </Link>
         <Link to="/nft/crosschain">
           <XBox isBackground={true} header="Cross-Chain">
+            {
+              CrossChains.map((item, index) => (
+                <NFTListBox
+                  key={index}
+                  imgURL={item.imgURL}
+                  name={item.name}
+                  price={item.value}
+                  changed={item.changed}
+                />
+              ))
+            }
           </XBox>
         </Link>
         <Link to="/nft/trader">
           <XBox isBackground={true} header="Top Traders">
+            {
+              TopTraders.map((item, index) => (
+                <NFTListBox
+                  key={index}
+                  name={item.name}
+                  networks={item.networks}
+                  price={item.value}
+                  changed={item.changed}
+                />
+              ))
+            }
           </XBox>
         </Link>
       </div>

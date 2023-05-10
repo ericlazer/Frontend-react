@@ -1,52 +1,101 @@
-import React from 'react'
-import Layout from '../../components/Layout'
+import React from "react";
+import Layout from "../../components/Layout";
+import XBox from "../../components/XBox";
 
-const DirectBoxes = [
+const Ventures = [
   {
-    label: 'Reviews',
-    icon: '/icon/star.png',
+    name: "Coinbase",
+    imgURL: "/img/directory/coinbase.png",
   },
   {
-    label: 'Active VC',
-    icon: '/icon/vc.png',
+    name: "NGC Ventures",
+    imgURL: "/img/directory/ngc.png",
   },
   {
-    label: 'People',
-    icon: '/icon/people.png',
+    name: "AU21 Capital",
+    imgURL: "/img/directory/au21.png",
   },
   {
-    label: 'Companies',
-    icon: '/icon/company.png',
+    name: "Digital Currency Group",
+    imgURL: "/img/directory/dcg.png",
   },
   {
-    label: 'Product',
-    icon: '/icon/product.png',
-  }
-]
+    name: "Shima Capital",
+    imgURL: "/img/directory/shima.png",
+  },
+  {
+    name: "Animoca Brands",
+    imgURL: "/img/directory/animoca.png",
+  },
+];
+
+const Companies = [
+  {
+    name: "Megaton",
+    imgURL: "/img/directory/megaton.png",
+  },
+  {
+    name: "NGC Ventures",
+    imgURL: "/img/directory/ngc.png",
+  },
+  {
+    name: "Liberty Leaf",
+    imgURL: "/img/directory/liberty.png",
+  },
+  {
+    name: "XcekPay",
+    imgURL: "/img/directory/xcel.png",
+  },
+  {
+    name: "Coinbase",
+    imgURL: "/img/directory/coinbase.png",
+  },
+  {
+    name: "Animoca Brands",
+    imgURL: "/img/directory/animoca.png",
+  },
+];
 
 const Directory = () => {
-
   return (
     <Layout>
-      <div className="w-full grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-10">
-        {
-          DirectBoxes.map(item => (
-            <div key={item.label}>
-              <div
-                className="h-[200px] lg:h-[250px] xl:h-[350px] text-white text-lg lg:text-2xl rounded-[30px] p-5 transition border border-gray-500/0 hover:border-gray-500/100 bg-zoom-hover"
-                style={{
-                  backgroundImage: item.label === "Reviews" ? "linear-gradient(143.69deg, #FFBE18 12.27%, #FF6B00 92.01%)" : "linear-gradient(143.69deg, #323232 12.27%, #292929 92.01%)",
-                }}
-              >
-                <img src={item.icon} className="bottom-[90px] font-semibold absolute w-14" alt="Directory Icons" />
-                <div className="bottom-10 font-semibold absolute">{item.label}</div>
+      <div className="w-full grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-10">
+        <XBox isBackground={true} header="Reviews & Product" imageURL="/img/directory/product.png">
+
+        </XBox>
+        <XBox isBackground={true} header="Active VC" center={true}>
+          <div className="grid grid-cols-3 gap-8">
+            {Ventures.map((item, index) => (
+              <div key={index} className="flex flex-col">
+                <img
+                  src={item.imgURL}
+                  alt="Ventures"
+                  className="rounded-full w-[80px] h-[80px] mx-auto"
+                />
+                <p className="text-[15px] text-center">{item.name}</p>
               </div>
-            </div>
-          ))
-        }
+            ))}
+          </div>
+        </XBox>
+        <XBox isBackground={true} header="Companies to watch" center={true}>
+          <div className="grid grid-cols-3 gap-8">
+            {Companies.map((item, index) => (
+              <div key={index} className="flex flex-col">
+                <img
+                  src={item.imgURL}
+                  alt="Companies"
+                  className="rounded-full w-[80px] h-[80px] mx-auto"
+                />
+                <p className="text-[15px] text-center">{item.name}</p>
+              </div>
+            ))}
+          </div>
+        </XBox>
+        <XBox isBackground={true} header="People" imageURL="/img/directory/people.png">
+        </XBox>
       </div>
     </Layout>
-  )
-}
+  );
+};
 
-export default Directory
+export default Directory;

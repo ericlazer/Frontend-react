@@ -19,7 +19,11 @@ const CoinListBox = ({ imgURL, name, symbol, price, changed, type }) => {
       </div>
       <div className="flex flex-col">
         <p className="text-white text-[14px] text-right font-semibold">
-          {coinPriceFormat(price)}
+          {
+            typeof price === "number" ?
+              coinPriceFormat(price) :
+              price
+          }
         </p>
         {changed != null && (
           <div className="flex items-center gap-2 justify-end">
