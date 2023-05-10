@@ -82,7 +82,7 @@ const Coins = () => {
           </XBox>
         </Link>
         <Link to="/coins/trading">
-          <XBox isBackground={true} header="Trading">
+          <XBox isBackground={true} header="Social Insights">
             {
               SocialInsights.map((item, index) => (
                 <CoinListBox
@@ -98,7 +98,8 @@ const Coins = () => {
           </XBox>
         </Link>
         <Link to="/coins/exchange">
-          <XBox imgURL='/img/CoinImages/Exchange.png' header="Exchange">
+          <XBox header="Exchange">
+            <img src="/img/CoinImages/Exchange.png" alt="Exchange" className="w-[350px] m-auto"/>
           </XBox>
         </Link>
         <Link to="/coins/breakdown">
