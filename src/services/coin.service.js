@@ -18,3 +18,8 @@ export const getTotalLosers = async () => {
   const response = await axios.get(`${API_BASE}/coin/total_losers`);
   return response.data;
 }
+
+export const getTopCoins = async () => {
+  const response = await axios.get(`${API_BASE}/coin/ranks`)
+  return response.data;
+}

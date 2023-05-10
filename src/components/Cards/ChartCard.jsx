@@ -18,9 +18,12 @@ const ChartCard = ({
       }px] rounded-lg relative`}
     >
       <div className="p-5">
-        <button className="text-[12px] text-white px-5 py-2 bg-[#3E3E3E]">
-          {header}
-        </button>
+        {
+          header &&
+          <button className="text-[12px] text-white px-5 py-2 bg-[#3E3E3E]">
+            {header}
+          </button>
+        }
         <div className="flex justify-between mt-4">
           <div className="flex gap-3 items-center">
             <img src={imgURL} alt="Logo" width={32} className="rounded-full" />
@@ -42,7 +45,7 @@ const ChartCard = ({
                 className="text-[12px]"
                 style={{ color: change < 0 ? "#FF2B1E" : "#58FF1E" }}
               >
-                {change}%
+                {change}
               </p>
             </div>
           </div>

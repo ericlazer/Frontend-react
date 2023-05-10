@@ -271,7 +271,7 @@ const Layout = ({ children }) => {
             </button>
           </div>
           {children}
-          <div className="fixed bottom-0 left-0 md:left-[300px] right-0 flex justify-center gap-6 py-4 px-4 backdrop-blur-md">
+          <div className="fixed bottom-0 right-0 flex justify-center gap-6 py-4 px-4 backdrop-blur-md">
             <FontAwesomeIcon
               icon={faTwitter}
               size="2x"

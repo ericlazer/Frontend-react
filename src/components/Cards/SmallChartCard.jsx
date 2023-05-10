@@ -3,24 +3,31 @@ import LineChart from '../Charts/LineChart'
 
 const SmallChartCard = ({ header, height, value, change, chartData }) => {
   return (
-    <div className={`bg-gradient-card1 h-[${height && height}px] p-4 rounded-lg`}>
+    <div
+      className={`bg-gradient-card1 p-4 rounded-lg`}
+      style={{
+        height: height && `${height}px`
+      }}
+    >
       <div className='text-[14px] opacity-[0.5] text-white'>
         { header }
       </div>
       <div className="flex justify-between gap-4">
         <div className="flex flex-col gap-1">
           <p className="text-[19px] text-white">{value}</p>
-          <div className='flex items-center gap-2'>
-            <i
-              className={`fa ${
-                change < 0 ? "fa-sort-down" : "fa-sort-up"
-              } text-[18px] text-[#FF2B1E] ${change < 0 ? "-mt-2" : "mt-2"}`}
-              style={{ color: change < 0 ? "#FF2B1E" : "#58FF1E" }}
-            />
-            <p className="text-[12px]" style={{ color: change < 0 ? "#FF2B1E" : "#58FF1E" }}>
-              {`${Math.abs(change)}%`}
-            </p>
-          </div>
+          {
+            change && <div className='flex items-center gap-2'>
+              <i
+                className={`fa ${
+                  change < 0 ? "fa-sort-down" : "fa-sort-up"
+                } text-[18px] text-[#FF2B1E] ${change < 0 ? "-mt-2" : "mt-2"}`}
+                style={{ color: change < 0 ? "#FF2B1E" : "#58FF1E" }}
+              />
+              <p className="text-[12px]" style={{ color: change < 0 ? "#FF2B1E" : "#58FF1E" }}>
+                {`${Math.abs(change)}%`}
+              </p>
+            </div>
+          }
         </div>
         <div className="h-[50px] w-[50%]">
           <LineChart

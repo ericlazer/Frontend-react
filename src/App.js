@@ -17,11 +17,14 @@ import Learning from './pages/learning';
 import CoinRanks from './pages/coins/Ranks';
 import TradingCoins from './pages/coins/TradingCoins';
 import Liquidation from './pages/coins/Liquidation';
+import CoinCharts from './pages/coins/Charts'
+import CoinExchange from './pages/coins/Exchange'
+import CoinBreakDown from './pages/coins/CoinBreakDown'
 import DeFiTVL from './pages/defi/tvl';
 import DefiFee from './pages/defi/fee';
 import Bridge from './pages/defi/bridge'
 import Yield from './pages/defi/yield'
-import Dex from './pages/defi/dex'
+import DexLiquidation from './pages/defi/dex'
 import DexBreakDown from './pages/defi/breakdown'
 
 function App() {
@@ -36,13 +39,16 @@ function App() {
         <Route exact path="/coins/rank" element={<CoinRanks />} />
         <Route exact path="/coins/trading" element={<TradingCoins />} />
         <Route exact path="/coins/liquidation" element={<Liquidation />} />
+        <Route exact path="/coins/charts" element={<CoinCharts />} />
+        <Route exact path="/coins/exchange" element={<CoinExchange />} />
+        <Route exact path="/coins/breakdown" element={<CoinBreakDown />} />
         <Route exact path="/defi" element={<DeFi />} />
         <Route exact path="/defi/tvl" element={<DeFiTVL />} />
         <Route exact path="/defi/fee" element={<DefiFee />} />
         <Route exact path="/defi/bridge" element={<Bridge />} />
         <Route exact path="/defi/yield" element={<Yield />} />
-        <Route exact path="/defi/dex" element={<Dex />} />
-        <Route exact path="/defi/dexbreakdown" element={<DexBreakDown />} />
+        <Route exact path="/defi/liquidation" element={<DexLiquidation />} />
+        <Route exact path="/defi/breakdown" element={<DexBreakDown />} />
         <Route path="/exchange" element={<Exchange />} />
         <Route path="/nft" element={<NFT />} />
         <Route path="/dapp" element={<Dapp />} />
