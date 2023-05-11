@@ -19,6 +19,7 @@ const Calendar = () => {
                   imgURL={item.imgURL}
                   title={item.title}
                   description={item.description}
+                  networks={item.networks}
                   month={item.month}
                   day={item.day}
                   time={item.time}

@@ -4,14 +4,39 @@ import {
   faDiscord,
   faTwitter,
 } from "@fortawesome/free-brands-svg-icons";
+import { chainImages } from '../../data/chain'
 
-const NFTCalendarBox = ({imgURL, title, description, month, day, time, price, supply}) => {
+const NFTCalendarBox = ({imgURL, title, description, networks, month, day, time, price, supply}) => {
   return (
     <div className='flex flex-col p-2 rounded-xl border-2 border-[#323232]'>
       <div className='grid grid-cols-3'>
         <img src={imgURL} alt={title} className='rounded-xl w-[100px] h-[100px]' />
         <div className='flex flex-col relative'>
           <p className='font-bold text-[18px]'>{title}</p>
+          <div className="flex gap-2 text-[12px] text-gray-300">
+            {
+              networks &&
+              (networks.length < 4
+                ? networks.map((item, index) => (
+                    <div key={index} className="flex gap-1 items-center">
+                      <img
+                        src={`https://lcw.nyc3.cdn.digitaloceanspaces.com/production/currencies/32/${chainImages[item.toLowerCase()]}`}
+                        alt="Network"
+                        className="w-5 h-5"
+                      ></img>
+                      <span>{item}</span>
+                    </div>
+                  ))
+                : networks.map((item, index) => (
+                    <img
+                      key={index}
+                      src={`https://lcw.nyc3.cdn.digitaloceanspaces.com/production/currencies/32/${chainImages[item.toLowerCase()]}`}
+                      alt="Network"
+                      className="w-5 h-5"
+                    ></img>
+              )))
+            }
+          </div>
           <div className='flex gap-2 bottom-2 absolute'>
             <FontAwesomeIcon
               icon={faTwitter}

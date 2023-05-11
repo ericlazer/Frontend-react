@@ -68,8 +68,8 @@ export const TrendCollections = [
   {
     name: "Bitcoin Frogs",
     imgURL: "/img/nfts/bitcoinfrog.jpg",
-    volume: "32ETH",
-    networks: ["Ethereum"],
+    volume: "0.24BTC",
+    networks: ["Bitcoin"],
     changed: 13.21,
   }
 ]
