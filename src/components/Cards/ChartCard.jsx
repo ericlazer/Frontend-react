@@ -45,7 +45,9 @@ const ChartCard = ({
                 className="text-[12px]"
                 style={{ color: change < 0 ? "#FF2B1E" : "#58FF1E" }}
               >
-                {change}
+                {
+                  change && (typeof change === "string") ? change : change + "%"
+                }
               </p>
             </div>
           </div>
