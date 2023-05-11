@@ -2,7 +2,8 @@ import React from "react";
 import Layout from "../../components/Layout";
 import XBox from "../../components/XBox";
 import PeopleBox from "../../components/PeopleBox";
-import { Products, Ventures, Companies, People } from "./data";
+import { Products, Ventures, Companies, People, Investments } from "./data";
+import InvestListBox from "../../components/InvestListBox";
 
 const Directory = () => {
   return (
@@ -66,6 +67,19 @@ const Directory = () => {
               ))
             }
           </div>
+        </XBox>
+        <XBox isBackground={true} header="Investments">
+          {
+            Investments.map((item, index) => (
+              <InvestListBox
+                key={index}
+                name={item.name}
+                round={item.round}
+                price={item.amount}
+                date={item.date}
+              />
+            ))
+          }
         </XBox>
       </div>
     </Layout>

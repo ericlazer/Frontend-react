@@ -129,3 +129,36 @@ export const People = [
     companyLogo: "https://cryptoslate.com/wp-content/themes/cryptoslate-2020/imgresize/timthumb.php?src=https://cryptoslate.com/wp-content/uploads/2023/04/OpenAI-logo.jpg&w=24&h=24&q=75",
   },
 ]
+
+export const Investments = [
+  {
+    name: "Triple Lab",
+    round: "Seed",
+    amount: 2500000,
+    date: "03/10/2023 00:00",
+  },
+  {
+    name: "Blocktorch",
+    round: "Seed",
+    amount: 4200000,
+    date: "03/13/2023 07:00",
+  },
+  {
+    name: "Blockworks",
+    round: "Strategic",
+    amount: 12000000,
+    date: "04/10/2023 03:40",
+  },
+  {
+    name: "Pudgy Penguins",
+    round: "Seed",
+    amount: 9000000,
+    date: "04/15/2023 14:20",
+  },
+  {
+    name: "Aether Games",
+    round: "Seed",
+    amount: 4500000,
+    date: "05/10/2023 01:30",
+  }
+]
