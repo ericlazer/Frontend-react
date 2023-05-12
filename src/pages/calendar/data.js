@@ -95,30 +95,35 @@ export const MajorEvents = [
     symbol: "LDO",
     imgURL: "https://lcw.nyc3.cdn.digitaloceanspaces.com/production/currencies/32/ldo.png",
     title: "Lido v.2.0 Upgrade",
+    time: "05/02/2023",
   },
   {
     name: "Gala",
     symbol: "GALA",
     imgURL: "https://lcw.nyc3.cdn.digitaloceanspaces.com/production/currencies/32/gala.png",
     title: "GALA v.2.0 Launch",
+    time: "05/04/2023",
   },
   {
     name: "Bitcoin",
     symbol: "BTC",
     imgURL: "https://lcw.nyc3.cdn.digitaloceanspaces.com/production/currencies/32/btc.png",
     title: "Brazil, Bitcoin is Recognized ...",
+    time: "05/07/2023",
   },
   {
     name: "Litecoin",
     symbol: "LTC",
     imgURL: "https://lcw.nyc3.cdn.digitaloceanspaces.com/production/currencies/32/ltc.png",
     title: "Block Reward Halving",
+    time: "05/10/2023",
   },
   {
     name: "Bitcoin",
     symbol: "BTC",
     imgURL: "https://lcw.nyc3.cdn.digitaloceanspaces.com/production/currencies/32/btc.png",
     title: "Block Reward Halving",
+    time: "05/12/2023",
   }
 ]
 

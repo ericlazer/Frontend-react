@@ -16,7 +16,7 @@ const EconomicList = ({imgURL, name, symbol, time, location}) => {
         <p className="text-white text-[14px] text-right font-semibold">
           {time}
         </p>
-        <p className="text-white text-[12px] opacity-[0.5]">
+        <p className="text-white text-[12px] opacity-[0.5] text-right">
           {location}
         </p>
       </div>
