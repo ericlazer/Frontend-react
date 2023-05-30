@@ -41,6 +41,7 @@ const TrendingCoins = () => {
       if (!groupedCoins[item.chain]) return null;
 
       const coins = groupedCoins[item.chain];
+      // console.log(coins)
 
       return (
         <div key={item.chain}>
