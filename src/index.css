@@ -26,6 +26,35 @@ code {
     monospace;
 }
 
+/* HTML tags */
+h2 {
+  font-size: 2em;
+  font-weight: bold;
+  color: white;
+}
+
+p {
+  font-size: 1em;
+  color: white;
+  line-height: 1.5em;
+  margin-bottom: 1em;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+ul {
+  list-style-type: disc;
+  padding-left: 2em;
+}
+
+li {
+  margin-bottom: 0.5em;
+  color: rgb(219, 209, 209);
+}
+
 /* Scroll bar Style */
 /* width */
 
@@ -55,7 +84,6 @@ code {
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
-
 
 .bg-zoom-hover {
   position: relative;

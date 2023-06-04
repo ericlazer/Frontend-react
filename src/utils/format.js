@@ -27,7 +27,8 @@ export const coinPriceFormat = (price) => {
       }
       decimalCount = num.toFixed(precision);
     }
-    return '$' + parseFloat(decimalCount).toLocaleString('en', {minimumFractionDigits: decimalCount.split('.')[1].length});
+    const decimalDigits = decimalCount.includes('.') ? decimalCount.split('.')[1].length : 0;
+    return '$' + parseFloat(decimalCount).toLocaleString('en', {minimumFractionDigits: decimalDigits});
   } else {
     return '$0.00';
   }
@@ -64,3 +65,29 @@ export const marketCapFormat = (num) => {
     }
   }
 };
+
+// Change unix timestamp to time format
+export const formatUnixTimestamp = (unixTimestamp) => {
+  // The Unix timestamp is in seconds, but JavaScript works with milliseconds,
+  // so we need to multiply by 1000
+  const date = new Date(unixTimestamp * 1000);
+
+  const options = {
+    month: 'numeric',
+    day: 'numeric',
+    year: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    hour12: true
+  };
+
+  return date.toLocaleString('en-US', options);
+}
+
+// Ellipis form
+export const truncateString = (str, num) => {
+  if (str.length <= num) {
+      return str
+  }
+  return str.slice(0, num) + '...'
+}

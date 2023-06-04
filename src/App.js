@@ -18,8 +18,11 @@ import CoinRanks from './pages/coins/Ranks';
 import TradingCoins from './pages/coins/TradingCoins';
 import Liquidation from './pages/coins/Liquidation';
 import CoinCharts from './pages/coins/Charts'
+import CoinSocial from './pages/coins/Social'
 import CoinExchange from './pages/coins/Exchange'
+import CoinInfluencer from './pages/coins/Social/Influencer';
 import CoinBreakDown from './pages/coins/CoinBreakDown'
+import CoinProfile from './pages/coins/Profile'
 import DeFiTVL from './pages/defi/tvl';
 import DefiFee from './pages/defi/fee';
 import Bridge from './pages/defi/bridge'
@@ -40,8 +43,11 @@ function App() {
         <Route exact path="/coins/trading" element={<TradingCoins />} />
         <Route exact path="/coins/liquidation" element={<Liquidation />} />
         <Route exact path="/coins/charts" element={<CoinCharts />} />
+        <Route exact path="/coins/social" element={<CoinSocial />} />
+        <Route exact path="/coins/social/influencers/:influencer" element={<CoinInfluencer />} />
         <Route exact path="/coins/exchange" element={<CoinExchange />} />
         <Route exact path="/coins/breakdown" element={<CoinBreakDown />} />
+        <Route exact path="/coins/:coin" element={<CoinProfile />} />
         <Route exact path="/defi" element={<DeFi />} />
         <Route exact path="/defi/tvl" element={<DeFiTVL />} />
         <Route exact path="/defi/fee" element={<DefiFee />} />
