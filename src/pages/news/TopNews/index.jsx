@@ -6,7 +6,10 @@ import { Default } from "react-awesome-spinners";
 
 const NewsBox = ({ displayName, twitterName, time, avatarImg, bannerImg, title, description, link, socialSocre }) => {
   return (
-    <Link to={link}>
+    <Link onClick={(event) => {
+      event.preventDefault();
+      window.open(`${link}`);
+    }}>
       <div className='bg-zoom-hover border border-gray-500 p-5 rounded-lg h-[600px] relative'>
         <div className='flex gap-5'>
           <img src={avatarImg} className='w-20 h-20 rounded-full' />

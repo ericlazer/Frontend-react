@@ -9,7 +9,10 @@ import { Default } from "react-awesome-spinners";
 const ProfileBox = ({ time, displayName, twitterName, avatarImg, link, engagement, likes }) => {
 
   return (
-    <Link to={`https://twitter.com/anyuser/status/${link}`}>
+    <Link onClick={(event) => {
+      event.preventDefault();
+      window.open(`https://twitter.com/anyuser/status/${link}`);
+    }}>
       <div className='bg-zoom-hover border border-gray-500 p-5'>
         <div className='flex gap-5'>
           <img src={avatarImg} className='w-20 h-20 rounded-full' />

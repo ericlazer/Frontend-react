@@ -6,7 +6,10 @@ import { Default } from "react-awesome-spinners";
 
 const RedditBox = ({ time, title, link, bannerImg, socialSocre }) => {
   return (
-    <Link to={link}>
+    <Link onClick={(event) => {
+      event.preventDefault();
+      window.open(`${link}`);
+    }}>
       <div className='bg-zoom-hover border border-gray-500 p-5 rounded-lg h-[450px] relative'>
         <div className='flex gap-5'>
           <div className='flex flex-col gap-1'>

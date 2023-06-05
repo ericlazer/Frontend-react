@@ -91,7 +91,10 @@ const MarketCap = () => {
           <div>{numberFormat(row.items_total)}</div>,
           <div>{marketCapFormat(row.market_cap)}</div>,
           <div>{coinPriceFormat(row.average_market_price)}</div>,
-          <Link to={`https://etherscan.io/address/${row.contract_address}`}>
+          <Link onClick={(event) => {
+            event.preventDefault();
+            window.open(`https://etherscan.io/address/${row.contract_address}`);
+          }}>
             <div>{coinPriceFormat(row.average_market_price)}</div>
           </Link>,
         ]);
