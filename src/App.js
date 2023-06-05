@@ -26,6 +26,8 @@ import CoinProfile from './pages/coins/Profile'
 import NFTSocial from './pages/nft/Social'
 import NFTMarketplace from './pages/nft/Marketplace'
 import NFTOverview from './pages/nft/Overview'
+import NFTTraders from './pages/nft/TopTraders'
+import NFTMint from './pages/nft/Mint'
 import DeFiTVL from './pages/defi/tvl';
 import DefiFee from './pages/defi/fee';
 import Bridge from './pages/defi/bridge'
@@ -63,6 +65,8 @@ function App() {
         <Route path="/nft/social" element={<NFTSocial />} />
         <Route path="/nft/marketplace" element={<NFTMarketplace />} />
         <Route path="/nft/overview" element={<NFTOverview />} />
+        <Route path="/nft/trader" element={<NFTTraders />} />
+        <Route path="/nft/mint" element={<NFTMint />} />
         <Route path="/dapp" element={<Dapp />} />
         <Route path="/dao" element={<Dao />} />
         <Route path="/news" element={<News />} />

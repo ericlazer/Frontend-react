@@ -63,6 +63,8 @@ export const marketCapFormat = (num) => {
     } else {
       return '$' + num.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
     }
+  } else {
+    return '$0.00';
   }
 };
 
@@ -76,6 +78,8 @@ export const numberFormat = (num) => {
     } else {
       return num.toLocaleString();
     }
+  } else {
+    return 0;
   }
 };
 

@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import Layout from "../../../components/Layout";
-import AllCoins from "../../../components/Coins/AllCoins";
-import StableCoins from "../../../components/Coins/StableCoins";
-import TrendingCoins from "../../../components/Coins/TrendingCoins";
+import Traders from "./Traders";
+import Wallet from './Wallet';
+import WalletTrade from "./WalletTrade";
 
-const CoinRank = () => {
+const TopTraders = () => {
   const [category, setCategory] = useState(0);
 
   return (
     <Layout>
       <div>
         <div className="flex gap-6 items-center">
-          <span className="text-xl text-white">Coins</span>
+          <span className="text-xl text-white">Traders Rank</span>
           <div className="sm:flex gap-5 border-2 border-white/50 rounded-xl px-8 py-3 items-center">
             <div
               className={`text-white/50 cursor-pointer p-2 rounded-md transition hover:bg-gray-600 ${
@@ -19,7 +19,7 @@ const CoinRank = () => {
                 }`}
               onClick={() => setCategory(0)}
             >
-              Coins
+              Traders
             </div>
             <div
               className={`text-white/50 cursor-pointer p-2 rounded-md transition hover:bg-gray-600 ${
@@ -27,7 +27,7 @@ const CoinRank = () => {
                 }`}
               onClick={() => setCategory(1)}
             >
-              Stable Coins
+              Wallet
             </div>
             <div
               className={`text-white/50 cursor-pointer p-2 rounded-md transition hover:bg-gray-600 ${
@@ -35,26 +35,18 @@ const CoinRank = () => {
                 }`}
               onClick={() => setCategory(2)}
             >
-              Trending Coins
-            </div>
-            <div
-              className={`text-white/50 cursor-pointer p-2 rounded-md transition hover:bg-gray-600 ${
-                category === 3 && "!bg-button-hover"
-                }`}
-              onClick={() => setCategory(3)}
-            >
-              My Coins
+              Wallet Trade
             </div>
           </div>
         </div>
         <div>
-          {category === 0 && <AllCoins />}
-          {category === 1 && <StableCoins />}
-          {category === 2 && <TrendingCoins />}
+          {category === 0 && <Traders />}
+          {category === 1 && <Wallet />}
+          {category === 2 && <WalletTrade />}
         </div>
       </div>
     </Layout>
   );
 };
 
-export default CoinRank;
+export default TopTraders;

@@ -4,6 +4,8 @@ import Collection from "./Collection";
 import MarketCap from "./MarketCap";
 import Trade from "./Trade";
 import Gas from "./Gas";
+import SolanaNFT from "./Solana";
+import AptosNFT from "./Aptos";
 
 const Overview = () => {
   const [category, setCategory] = useState(0);
@@ -13,7 +15,7 @@ const Overview = () => {
       <div>
         <div className="flex gap-6 items-center">
           <span className="text-xl text-white">NFT Rank</span>
-          <div className="flex gap-5 border-2 border-white/50 rounded-xl px-8 py-3 items-center">
+          <div className="sm:flex gap-5 border-2 border-white/50 rounded-xl px-8 py-3 items-center">
             <div
               className={`text-white/50 cursor-pointer p-2 rounded-md transition hover:bg-gray-600 ${
                 category === 0 && "!bg-button-hover"
@@ -46,6 +48,22 @@ const Overview = () => {
             >
               Gas
             </div>
+            <div
+              className={`text-white/50 cursor-pointer p-2 rounded-md transition hover:bg-gray-600 ${
+                category === 4 && "!bg-button-hover"
+                }`}
+              onClick={() => setCategory(4)}
+            >
+              Solana Rank
+            </div>
+            <div
+              className={`text-white/50 cursor-pointer p-2 rounded-md transition hover:bg-gray-600 ${
+                category === 5 && "!bg-button-hover"
+                }`}
+              onClick={() => setCategory(5)}
+            >
+              Aptos Rank
+            </div>
           </div>
         </div>
         <div>
@@ -53,6 +71,8 @@ const Overview = () => {
           {category === 1 && <MarketCap />}
           {category === 2 && <Trade />}
           {category === 3 && <Gas />}
+          {category === 4 && <SolanaNFT />}
+          {category === 5 && <AptosNFT />}
         </div>
       </div>
     </Layout>

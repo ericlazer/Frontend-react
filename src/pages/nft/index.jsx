@@ -63,8 +63,8 @@ const NFT = () => {
             }
           </XBox>
         </Link>
-        <Link to="/nft/livemint">
-          <XBox isBackground={true} header="Live Mints">
+        <Link to="/nft/mint">
+          <XBox isBackground={true} header="Mints">
             {
               Mints.map((item, index) => (
                 <NFTListBox
