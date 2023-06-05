@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Layout from "../../components/Layout";
 import SmallChartCard from "../../components/Cards/SmallChartCard";
 import ChartCard from "../../components/Cards/ChartCard";
 import { getTotalGainers, getTotalLosers } from '../../services/coin.service'
 import { coinPriceFormat, percentFormat } from "../../utils/format";
+import XBox from '../../components/XBox';
 import { NFTImages } from "./data";
 
 const Home = () => {
@@ -24,8 +26,8 @@ const Home = () => {
 
   return (
     <Layout>
-      <div className="grid grid-cols-1 gap-5 lg:grid-cols-2 2xl:grid-cols-3">
-        <div className="flex flex-col gap-[10px]">
+      <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 2xl:grid-cols-3">
+        <XBox ixBackground={true} gap={true}>
           <SmallChartCard
             header="BTC Domiance"
             height={110}
@@ -47,8 +49,8 @@ const Home = () => {
             change={12.3}
             chartData={[8, 7, 6, 7, 5, 4, 7, 4, 6, 5, 6, 3, 4, 6,]}
           />
-        </div>
-        <div className="bg-gradient-card1 h-[350px] rounded-lg p-5">
+        </XBox>
+        <XBox ixBackground={true} gap={true}>
           <p className="text-[14px] text-white opacity-0.5">Crypto Price Gainers</p>
           {
             gainers && gainers.map((item, index) => (
@@ -70,8 +72,8 @@ const Home = () => {
               </div>
             ))
           }
-        </div>
-        <div className="bg-gradient-card1 h-[350px] rounded-lg p-5">
+        </XBox>
+        <XBox ixBackground={true} gap={true}>
           <p className="text-[14px] text-white opacity-0.5">Crypto Price Losers</p>
           {
             losers && losers.map((item, index) => (
@@ -93,28 +95,34 @@ const Home = () => {
               </div>
             ))
           }
-        </div>
-        <div className="bg-gradient-card1 h-[350px] rounded-lg p-5 grid grid-cols-2 gap-3">
+        </XBox>
+        <XBox ixBackground={true} gap={true}>
+        <div className="grid grid-cols-2">
           {
             NFTImages.map((item, index) => (
-              <div key={index} className="rounded-lg overflow-hidden">
-                <img src={item} className="w-full h-full object-cover" alt="NFTs" />
+              <div key={index} className="overflow-hidden">
+                <img src={item} className="w-[90%] h-[90%] object-cover" alt="NFTs" />
               </div>
             ))
           }
-        </div>
-        <ChartCard
-          header="Coin"
-          height={350}
-          name="Bitcoin"
-          symbol="BTC"
-          imgURL="https://lcw.nyc3.cdn.digitaloceanspaces.com/production/currencies/32/btc.png"
-          value="$150,545,658"
-          change={-2.87}
-          charData={[7, 3, 1, 2, 5, 7, 5, 8, 9, 5, 4, 2, 5, 3]}
-        />
-        <div className="bg-gradient-card1 h-[350px] rounded-lg p-5">
-          <div className="h-[60%] relative rounded-lg">
+          </div>
+        </XBox>
+        <Link to="/coins/bitcoin">
+          <XBox ixBackground={true} gap={true}>
+            <ChartCard
+              header="Coin"
+              height={350}
+              name="Bitcoin"
+              symbol="BTC"
+              imgURL="https://lcw.nyc3.cdn.digitaloceanspaces.com/production/currencies/32/btc.png"
+              value="$150,545,658"
+              change={-2.87}
+              charData={[7, 3, 1, 2, 5, 7, 5, 8, 9, 5, 4, 2, 5, 3]}
+            />
+          </XBox>
+        </Link>
+        <XBox ixBackground={true} gap={true}>
+          <div className="h-[250px] relative rounded-lg">
             <img src="/img/nfts/5.png" className="w-full h-full object-cover absolute rounded-lg" alt="NFTs" />
           </div>
           <div className="mt-2 p-2">
@@ -145,7 +153,7 @@ const Home = () => {
               </div>
             </div>
           </div>
-        </div>
+        </XBox>
       </div>
     </Layout>
   );

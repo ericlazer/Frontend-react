@@ -18,18 +18,6 @@ export const getNFTSocialRanks = async () => {
   return response.data;
 };
 
-export const getNFTFeeds = async () => {
-
-  const config = {
-    headers: {
-      'Authorization': 'Bearer 2fwfdjua4rtsmym2o7u7t9iludli30wel5eufeu3'
-    }
-  }
-
-  const response = await axios.get('https://lunarcrush.com/api3/feeds?limit=100&sources=news&market=nfts', config);
-  return response.data.data;
-}
-
 export const getNFTMarketplace = async (timeRange) => {
 
   const response = await axios.get(`${API_BASE}/nft/marketplace?timeRange=${timeRange}`)

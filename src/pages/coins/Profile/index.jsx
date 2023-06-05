@@ -8,9 +8,9 @@ import { Default } from "react-awesome-spinners";
 
 const ChangeBox = ({changed, header}) => {
   return (
-    <div className="text-[20px] text-white flex-col relative">
+    <div className="text-[20px] text-white flex-col relative w-[200px]">
       <p>{header}</p>
-      <span className="text-[20px] text-gray-300">
+      <span className={`text-[20px] ${changed >=1 ? "text-[#80FF9C]" : "text-[#FF8080]"}`}>
         {percentFormat(changed)}
         {
           changed >= 1 ? 
@@ -74,10 +74,9 @@ const Profile = () => {
                 {coinPriceFormat(profile?.price)}
               </span>
             </div>
-            <div className="mt-10 2xl:flex gap-10">
-              <div className="w-[100%] 2xl:w-[40%]">
+            <div className="mt-10 gap-10">
+              <div className="w-[100%]">
                 <TradingViewWidget
-                  // symbol="BTCUSDT"
                   symbol={`${profile?.symbol.toUpperCase()}USDT`}
                   theme={Themes.DARK}
                   locale="en"
@@ -86,13 +85,13 @@ const Profile = () => {
                   className="rounded-lg"
                 />
               </div>
-              <div className="flex flex-col gap-4 mt-10 2xl:mt-0">
-                <div className="flex gap-10 items-center justify-between">
+              <div className="flex flex-col gap-4 mt-10">
+                <div className="flex gap-10 items-center">
                   <ChangeBox header="Hourly Changed" changed={profile?.hourlyChanged} />
                   <ChangeBox header="Daily Changed" changed={profile?.dailyChanged} />
                   <ChangeBox header="Weekly Changed" changed={profile?.weeklyChanged} />
                 </div>
-                <div className="flex gap-10 items-center justify-between">
+                <div className="flex gap-10 items-center">
                   <ChangeBox header="Monthly Changed" changed={profile?.monthlyChanged} />
                   <ChangeBox header="Quartely Changed" changed={profile?.quarterlyChanged} />
                   <ChangeBox header="Yearly Changed" changed={profile?.yearlyChanged} />

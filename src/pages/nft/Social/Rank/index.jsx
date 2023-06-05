@@ -67,7 +67,7 @@ const Influencers = () => {
         data.forEach((row, key) => {
           newData.rows.push([
             (key + 1),
-            <div>{row.category}</div>,
+            <div>{row.category.replace(/_/g, ' ')}</div>,
             <div>{coinPriceFormat(row.value)}</div>,
             <div>{coinPriceFormat(row.prev_value)}</div>,
             <div>{coinPriceFormat(row.initial_value)}</div>,
