@@ -6,7 +6,7 @@ import { Default } from "react-awesome-spinners";
 
 const TwitterBox = ({ displayName, twitterName, time, avatarImg, title, link, socialSocre }) => {
   return (
-    <Link onClick={(event) => {
+    <Link to={link} onClick={(event) => {
       event.preventDefault();
       window.open(`${link}`);
     }}>

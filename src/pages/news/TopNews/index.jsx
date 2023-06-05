@@ -6,7 +6,7 @@ import { Default } from "react-awesome-spinners";
 
 const NewsBox = ({ displayName, twitterName, time, avatarImg, bannerImg, title, description, link, socialSocre }) => {
   return (
-    <Link onClick={(event) => {
+    <Link to={link} onClick={(event) => {
       event.preventDefault();
       window.open(`${link}`);
     }}>

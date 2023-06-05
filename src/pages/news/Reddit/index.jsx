@@ -6,7 +6,7 @@ import { Default } from "react-awesome-spinners";
 
 const RedditBox = ({ time, title, link, bannerImg, socialSocre }) => {
   return (
-    <Link onClick={(event) => {
+    <Link to={link} onClick={(event) => {
       event.preventDefault();
       window.open(`${link}`);
     }}>
