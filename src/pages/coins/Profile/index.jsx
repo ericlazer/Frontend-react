@@ -118,7 +118,7 @@ const Profile = () => {
                 <p className="text-green-500 text-[20px] mb-3">Block Explorers</p>
                 {
                   profile && profile.block_explorers.map((item, index) =>
-                    <Link to={`${item}`} key={index} onClick={(event) => {
+                    <Link key={index} onClick={(event) => {
                       event.preventDefault();
                       window.open(`${item}`);
                     }}>
@@ -131,7 +131,7 @@ const Profile = () => {
                 <p className="text-green-500 text-[20px] mb-3">Website</p>
                 {
                   profile && profile.website.map((item, index) =>
-                    <Link to={`${item}`} key={index} onClick={(event) => {
+                    <Link key={index} onClick={(event) => {
                       event.preventDefault();
                       window.open(`${item}`);
                     }}>
@@ -144,7 +144,7 @@ const Profile = () => {
                 <p className="text-green-500 text-[20px] mb-3">Code</p>
                 {
                   profile && profile.code.map((item, index) =>
-                    <Link to={`${item}`} key={index} onClick={(event) => {
+                    <Link key={index} onClick={(event) => {
                       event.preventDefault();
                       window.open(`${item}`);
                     }}>
@@ -155,7 +155,7 @@ const Profile = () => {
                 </div>
               <div className="flex flex-col">
                 <p className="text-green-500 text-[20px] mb-3">Resource</p>
-                  <Link to={profile?.resource.doc[0]} onClick={(event) => {
+                  <Link onClick={(event) => {
                     event.preventDefault();
                     window.open(profile?.resource.doc[0]);
                   }}>

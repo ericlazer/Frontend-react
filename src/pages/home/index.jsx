@@ -115,8 +115,8 @@ const Home = () => {
               name="Bitcoin"
               symbol="BTC"
               imgURL="https://lcw.nyc3.cdn.digitaloceanspaces.com/production/currencies/32/btc.png"
-              value="$150,545,658"
-              change={-2.87}
+              value="$25,580.50"
+              change={-6.19}
               charData={[7, 3, 1, 2, 5, 7, 5, 8, 9, 5, 4, 2, 5, 3]}
             />
           </XBox>
