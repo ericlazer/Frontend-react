@@ -1,36 +1,44 @@
 import React, { useEffect, useState, useCallback } from "react";
+import { getNFTMarketCap } from "../../../../services/nft.service";
+import {
+  coinPriceFormat,
+  marketCapFormat,
+  numberFormat,
+} from "../../../../utils/format";
 import { Link } from "react-router-dom";
-import axios from "axios";
-import { API_BASE } from "../../config/constants";
-import { coinPriceFormat, marketCapFormat } from "../../utils/format";
-import DaisugiTable from "../DaisugiTable";
+import DaisugiTable from "../../../../components/DaisugiTable";
 import ReactPaginate from "react-paginate";
 
 const columns = [
   {
     header: "No",
     name: "no",
-    align: "left",
-  },
-  {
-    header: "Coin",
-    name: "coin",
-    align: "left",
-  },
-  {
-    header: "Name",
-    name: "name",
     align: "center",
   },
   {
-    header: "Price",
-    name: "price",
+    header: "Name",
+    name: "contract_name",
+    align: "left",
+  },
+  {
+    header: "Items",
+    name: "items_total",
     align: "right",
   },
   {
     header: "Market Cap",
-    name: "marketcup",
+    name: "market_cap",
     align: "right",
+  },
+  {
+    header: "Average Price",
+    name: "average_market_price",
+    align: "right",
+  },
+  {
+    header: "Contract",
+    name: "contract_address",
+    align: "left",
   },
 ];
 
@@ -38,65 +46,50 @@ const filter = {
   showCount: [25, 50, 100],
 };
 
-const AllCoins = () => {
+const MarketCap = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [showCountOption, setShowCountOption] = useState(filter.showCount[0]);
   const [isLoading, setIsLoading] = useState(false);
   const [tableData, setTableData] = useState({});
 
-  const drawTable = useCallback(
-    (data) => {
-      let newData = {
-        columns,
-        rows: [],
-        totalPages: 0,
-      };
-      if (data.data.length) {
-        data.data.forEach((row, key) => {
-          newData.rows.push([
-            showCountOption * currentPage + (key + 1),
-            <Link to={`/coins/${row.name.toLowerCase()}`}>
-              <div>
-                <img
-                  src={row.imgURL}
-                  className="inline-block w-[1.5rem] h-[1.5rem] mr-3"
-                  alt="CoinIcon"
-                />
-                {row.symbol}
-              </div>
-            </Link>,
-            <Link to={`/coins/${row.name.toLowerCase()}`}>
-              <div>{row.name}</div>
-            </Link>,
-            <Link to={`/coins/${row.name.toLowerCase()}`}>
-              <div>{coinPriceFormat(row.price)}</div>
-            </Link>,
-            <Link to={`/coins/${row.name.toLowerCase()}`}>
-              <div>{marketCapFormat(row.marketCap)}</div>
-            </Link>,
-          ]);
-        });
-      }
-      newData.totalPages = data.totalPages;
-      setTableData(newData);
-    },
-    [showCountOption, currentPage]
-  );
+  const drawTable = useCallback((data) => {
+    let newData = {
+      columns,
+      rows: [],
+      totalPages: 0,
+    };
 
-  const fetchData = useCallback(async () => {
-    setIsLoading(true);
-    const response = await axios.get(
-      `${API_BASE}/coin/getall?page=${
-        currentPage + 1
-      }}&pageSize=${showCountOption}`
-    );
-    drawTable(response.data);
-    setIsLoading(false);
-  }, [showCountOption, currentPage, drawTable]);
+    if (data.length) {
+      // Get data range
+      const start = currentPage * showCountOption;
+      const end = (currentPage + 1) * showCountOption;
 
-  useEffect(() => {
-    fetchData();
-  }, [fetchData]);
+      console.log(start, end, currentPage);
+      const pageData = data.slice(start, end);
+    
+      pageData.forEach((row, key) => {
+        newData.rows.push([
+          showCountOption * currentPage + (key + 1),
+          <div>
+            <img
+              src={row.logo_url}
+              className="inline-block w-[1.5rem] h-[1.5rem] mr-3 rounded-full"
+              alt="CoinIcon"
+            />
+            {row.contract_name}
+          </div>,
+          <div>{numberFormat(row.items_total)}</div>,
+          <div>{marketCapFormat(row.market_cap)}</div>,
+          <div>{coinPriceFormat(row.average_market_price)}</div>,
+          <Link to={`https://etherscan.io/address/${row.contract_address}`}>
+            <div>{coinPriceFormat(row.average_market_price)}</div>
+          </Link>,
+        ]);
+      });
+    }
+    newData.totalPages = data.length / showCountOption;
+    setTableData(newData);
+  }, [currentPage, showCountOption]);
 
   const handleSelectOption = (event, selectType) => {
     const { value } = event.target;
@@ -112,6 +105,17 @@ const AllCoins = () => {
   const handlePageClick = ({ selected: selectedPage }) => {
     setCurrentPage(selectedPage);
   };
+
+  useEffect(() => {
+    const getData = async () => {
+      setIsLoading(true);
+      const data = await getNFTMarketCap();
+      drawTable(data);
+      setIsLoading(false);
+    };
+
+    getData();
+  }, [showCountOption, currentPage, drawTable]);
 
   return (
     <div className="mt-10">
@@ -150,4 +154,4 @@ const AllCoins = () => {
   );
 };
 
-export default AllCoins;
+export default MarketCap;

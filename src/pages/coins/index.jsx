@@ -81,7 +81,7 @@ const Coins = () => {
             />
           </XBox>
         </Link>
-        <Link to="/coins/trading">
+        <Link to="/coins/social">
           <XBox isBackground={true} header="Social Insights">
             {
               SocialInsights.map((item, index) => (

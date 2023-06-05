@@ -1,6 +1,6 @@
 export const chains = [
   { name: 'Ethereum', chain: 'ethereum', symbol: 'ETH', img: 'eth.png' },
-  { name: 'Binance', chain: 'binance', symbol: 'BNB', img: 'bnb.png' },
+  // { name: 'Binance', chain: 'binance', symbol: 'BNB', img: 'bnb.png' },
   { name: 'BSC', chain: 'binance', symbol: 'BNB', img: 'bnb.png' },
   { name: 'Tron', chain: 'tron', symbol: 'TRX', img: 'trx.png' },
   { name: 'Arbitrum', chain: 'arbitrum', symbol: 'ARB', img: 'arb.png' },

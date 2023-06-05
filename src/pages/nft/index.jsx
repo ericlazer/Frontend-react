@@ -10,8 +10,8 @@ const NFT = () => {
   return (
     <Layout>
       <div className="w-full grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-10">
-        <Link to="/nft/top">
-          <XBox isBackground={true} header="Top Collections">
+        <Link to="/nft/overview">
+          <XBox isBackground={true} header="Overview">
             {
               TopCollections.map((item, index) => (
                 <NFTListBox
@@ -47,8 +47,8 @@ const NFT = () => {
             </div>
           </XBox>
         </Link>
-        <Link to="/nft/trending">
-          <XBox isBackground={true} header="Trending Collections">
+        <Link to="/nft/social">
+          <XBox isBackground={true} header="Social Insights">
             {
               TrendCollections.map((item, index) => (
                 <NFTListBox

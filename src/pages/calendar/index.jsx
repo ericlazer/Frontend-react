@@ -87,6 +87,7 @@ const Calendar = () => {
                 imgURL={item.imgURL}
                 symbol={item.symbol}
                 time={item.title}
+                location={item.time}
               />
             ))  
           }
