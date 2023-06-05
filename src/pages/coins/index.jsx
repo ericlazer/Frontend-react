@@ -76,7 +76,8 @@ const Coins = () => {
               symbol="BTC"
               imgURL="https://lcw.nyc3.cdn.digitaloceanspaces.com/production/currencies/32/btc.png"
               value={topCoins && coinPriceFormat(topCoins[0].price)}
-              change={topCoins && percentFormat(topCoins[0].hourlyChanged)}
+              // change={topCoins && percentFormat(topCoins[0].hourlyChanged)}
+              change={-2.87}
               charData={[7, 5, 6, 4, 4, 7, 6, 5, 5, 5, 4, 3, 2, 2]}
             />
           </XBox>
