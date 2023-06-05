@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom';
-import { getInfluencers } from '../../services/coin.service';
+import React, { useState, useEffect } from "react";
+import { getNFTInfluencers } from "../../../../services/nft.service";
+import { Link } from "react-router-dom";
 import { Default } from "react-awesome-spinners";
 
 const filter = {
-  timeRange: [
-    "1d", "1w", "1m", "3m", "6m", "1y", "2y", "all",
-  ],
+  timeRange: ["1d", "1w", "1m", "3m", "6m", "1y", "2y", "all"],
 };
 
 const InfluencerBox = ({followers, engagement, twitterName, displayName, following, profileImg, bannerImg}) => {
@@ -46,16 +44,15 @@ const Influencers = () => {
   };
 
   useEffect(() => {
-
     const getData = async () => {
       setIsLoading(true);
-      const data = await getInfluencers(timeRange)
+      const data = await getNFTInfluencers(timeRange);
       setInfluencers(data);
       setIsLoading(false);
-    }
+    };
 
-    getData()
-  }, [timeRange])
+    getData();
+  }, [timeRange]);
 
   return (
     <div>
@@ -75,34 +72,31 @@ const Influencers = () => {
       </div>
       <div
         className={`${
-          isLoading ? 'flex justify-center items-center' : ''
+          isLoading ? "flex justify-center items-center" : ""
         } mt-5`}
-        style={{ minHeight: 'calc(100vh - 15rem)' }}
+        style={{ minHeight: "calc(100vh - 15rem)" }}
       >
-        {
-          isLoading ?
-            <Default color="#a1a1a1" />
-            :
-            <div className='grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-10'>
-              {
-                influencers && influencers.map((item, index) => (
-                  <InfluencerBox
-                    key={index}
-                    followers={item.followers}
-                    following={item.following}
-                    engagement={item.engagement}
-                    twitterName={item.twitter_screen_name}
-                    displayName={item.display_name}
-                    profileImg={item.profile_image}
-                    bannerImg={item.banner_image}
-                  />
-                ))
-              }
-            </div>
+        {isLoading ? <Default color="#a1a1a1" /> :
+          <div className='grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-10'>
+            {
+              influencers && influencers.map((item, index) => (
+                <InfluencerBox
+                  key={index}
+                  followers={item.followers}
+                  following={item.following}
+                  engagement={item.engagement}
+                  twitterName={item.twitter_screen_name}
+                  displayName={item.display_name}
+                  profileImg={item.profile_image}
+                  bannerImg={item.banner_image}
+                />
+              ))
+            }
+          </div>
         }
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Influencers
+export default Influencers;

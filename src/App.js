@@ -23,6 +23,9 @@ import CoinExchange from './pages/coins/Exchange'
 import CoinInfluencer from './pages/coins/Social/Influencer';
 import CoinBreakDown from './pages/coins/CoinBreakDown'
 import CoinProfile from './pages/coins/Profile'
+import NFTSocial from './pages/nft/Social'
+import NFTMarketplace from './pages/nft/Marketplace'
+import NFTOverview from './pages/nft/Overview'
 import DeFiTVL from './pages/defi/tvl';
 import DefiFee from './pages/defi/fee';
 import Bridge from './pages/defi/bridge'
@@ -44,7 +47,7 @@ function App() {
         <Route exact path="/coins/liquidation" element={<Liquidation />} />
         <Route exact path="/coins/charts" element={<CoinCharts />} />
         <Route exact path="/coins/social" element={<CoinSocial />} />
-        <Route exact path="/coins/social/influencers/:influencer" element={<CoinInfluencer />} />
+        <Route exact path="/influencers/:influencer" element={<CoinInfluencer />} />
         <Route exact path="/coins/exchange" element={<CoinExchange />} />
         <Route exact path="/coins/breakdown" element={<CoinBreakDown />} />
         <Route exact path="/coins/:coin" element={<CoinProfile />} />
@@ -57,6 +60,9 @@ function App() {
         <Route exact path="/defi/breakdown" element={<DexBreakDown />} />
         <Route path="/exchange" element={<Exchange />} />
         <Route path="/nft" element={<NFT />} />
+        <Route path="/nft/social" element={<NFTSocial />} />
+        <Route path="/nft/marketplace" element={<NFTMarketplace />} />
+        <Route path="/nft/overview" element={<NFTOverview />} />
         <Route path="/dapp" element={<Dapp />} />
         <Route path="/dao" element={<Dao />} />
         <Route path="/news" element={<News />} />

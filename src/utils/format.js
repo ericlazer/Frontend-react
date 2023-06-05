@@ -66,6 +66,19 @@ export const marketCapFormat = (num) => {
   }
 };
 
+// marketCap format
+export const numberFormat = (num) => {
+  if (typeof num === "number") {
+    if (num >= 1000000000) {
+      return (num / 1000000000) + "B";
+    } else if (num >= 1000000) {
+      return (num / 1000000) + "M";
+    } else {
+      return num.toLocaleString();
+    }
+  }
+};
+
 // Change unix timestamp to time format
 export const formatUnixTimestamp = (unixTimestamp) => {
   // The Unix timestamp is in seconds, but JavaScript works with milliseconds,
