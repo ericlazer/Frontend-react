@@ -7,6 +7,7 @@ import {
 } from "../../../../utils/format";
 import { Link } from "react-router-dom";
 import DaisugiTable from "../../../../components/DaisugiTable";
+import ImageWithFallback from "../../../../components/ImageWithFallback";
 import ReactPaginate from "react-paginate";
 
 const columns = [
@@ -71,11 +72,20 @@ const MarketCap = () => {
         newData.rows.push([
           showCountOption * currentPage + (key + 1),
           <div>
-            <img
-              src={row.logo_url}
-              className="inline-block w-[1.5rem] h-[1.5rem] mr-3 rounded-full"
-              alt="CoinIcon"
-            />
+            {
+              row.logo_url ? 
+              <ImageWithFallback
+                src={row.logo_url}
+                className="inline-block w-[1.5rem] h-[1.5rem] mr-3 rounded-full"
+                fallback="/img/CoinImages/blank.png"
+                alt="CoinIcon"
+                /> :
+              <img
+                className="inline-block w-[1.5rem] h-[1.5rem] mr-3 rounded-full"
+                src="/img/CoinImages/blank.png"
+                alt="Blank Coin"
+              />
+            }
             {row.contract_name}
           </div>,
           <div>{numberFormat(row.items_total)}</div>,

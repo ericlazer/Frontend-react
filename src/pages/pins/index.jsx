@@ -1,6 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Layout from "../../components/Layout";
 import ChartCard from "../../components/Cards/ChartCard";
+import XBox from "../../components/XBox";
 
 const Pins = () => {
   return (
@@ -11,20 +13,22 @@ const Pins = () => {
           Manage Pins
         </div>
       </div>
-      <div className="grid grid-cols-1 gap-5 lg:grid-cols-2 2xl:grid-cols-3 mt-4">
-        <div>
-          <ChartCard
-            header="Coin"
-            height={350}
-            name="Bitcoin"
-            symbol="BTC"
-            imgURL="https://lcw.nyc3.cdn.digitaloceanspaces.com/production/currencies/32/btc.png"
-            value="$150,545,658"
-            change={-2.87}
-            charData={[7, 3, 1, 2, 5, 7, 5, 8, 9, 5, 4, 2, 5, 3]}
-          />
-        </div>
-        <div>
+      <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 2xl:grid-cols-3 mt-4">
+        <Link to="/coins/bitcoin">
+          <XBox ixBackground={true}>
+            <ChartCard
+              header="Coin"
+              height={350}
+              name="Bitcoin"
+              symbol="BTC"
+              imgURL="https://lcw.nyc3.cdn.digitaloceanspaces.com/production/currencies/32/btc.png"
+              value="$150,545,658"
+              change={-2.87}
+              charData={[7, 3, 1, 2, 5, 7, 5, 8, 9, 5, 4, 2, 5, 3]}
+            />
+          </XBox>
+        </Link>
+        <XBox ixBackground={true}>
           <ChartCard
             header="DeFi"
             height={350}
@@ -35,8 +39,8 @@ const Pins = () => {
             change={12.87}
             charData={[4, 1, 3, 1, 5, 5, 6, 7, 8, 9, 6, 2, 4, 3]}
           />
-        </div>
-        <div>
+        </XBox>
+        <XBox ixBackground={true}>
           <ChartCard
             header="Dapp"
             height={350}
@@ -47,9 +51,9 @@ const Pins = () => {
             change={6.87}
             charData={[0, 1, 1, 4, 2, 1, 3, 2, 1, 9, 4, 1, 2, 3]}
           />
-        </div>
-        <div className="bg-gradient-card1 h-[350px] rounded-lg p-5">
-          <div className="h-[60%] relative rounded-lg">
+        </XBox>
+        <XBox ixBackground={true}>
+          <div className="h-[200px] relative rounded-lg">
             <button className="text-[12px] text-white m-4 px-5 py-2 bg-[#3E3E3E] absolute z-10">
               News
             </button>
@@ -63,9 +67,9 @@ const Pins = () => {
               <img src="/icon/LinkIcon.png" alt="Link Icon" className="w-4 h-4" />
             </div>
           </div>
-        </div>
-        <div className="bg-gradient-card1 h-[350px] rounded-lg p-5">
-          <div className="h-[60%] relative rounded-lg">
+        </XBox>
+        <XBox ixBackground={true}>
+          <div className="h-[250px] relative rounded-lg">
             <button className="text-[12px] text-white m-4 px-5 py-2 bg-[#3E3E3E] absolute z-10">
               NFT
             </button>
@@ -99,8 +103,8 @@ const Pins = () => {
               </div>
             </div>
           </div>
-        </div>
-        <div>
+        </XBox>
+        <XBox ixBackground={true}>
           <ChartCard
             header="Exchange"
             height={350}
@@ -111,7 +115,7 @@ const Pins = () => {
             change={6.87}
             charData={[0, 1, 2, 1, 5, 6, 4, 8, 5, 9, 2, 7, 6, 7]}
           />
-        </div>
+        </XBox>
       </div>
     </Layout>
   );

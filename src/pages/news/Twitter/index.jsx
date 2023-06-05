@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { getNFTFeeds } from "../../../../services/nft.service";
-import { formatUnixTimestamp } from "../../../../utils/format";
+import { getTwitterNews } from "../../../services/news.service";
+import { formatUnixTimestamp } from "../../../utils/format";
 import { Default } from "react-awesome-spinners";
 
-const FeedBox = ({ displayName, twitterName, time, avatarImg, bannerImg, title, description, link, socialSocre }) => {
+const TwitterBox = ({ displayName, twitterName, time, avatarImg, bannerImg, title, description, link, socialSocre }) => {
   return (
     <Link to={link}>
       <div className='bg-zoom-hover border border-gray-500 p-5 rounded-lg h-[600px] relative'>
@@ -27,15 +27,16 @@ const FeedBox = ({ displayName, twitterName, time, avatarImg, bannerImg, title, 
   )
 }
 
-const Feeds = () => {
-  const [feed, setFeed] = useState();
+const Twitter = () => {
+
+  const [twitterNews, setTwitterNews] = useState();
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     const getData = async () => {
       setIsLoading(true);
-      const data = await getNFTFeeds();
-      setFeed(data);
+      const data = await getTwitterNews();
+      setTwitterNews(data);
       setIsLoading(false);
     };
 
@@ -49,8 +50,8 @@ const Feeds = () => {
     >
       {isLoading ? <Default color="#a1a1a1" /> : <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-10">
         {
-          feed && feed.map((item, index) => (
-            <FeedBox
+          twitterNews && twitterNews.map((item, index) => (
+            <TwitterBox
               key={index}
               displayName={item.display_name}
               twitterName={item.twitter_screen_name}
@@ -67,6 +68,6 @@ const Feeds = () => {
       </div>}
     </div>
   );
-};
+}
 
-export default Feeds;
+export default Twitter

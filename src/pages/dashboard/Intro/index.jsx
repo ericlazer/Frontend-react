@@ -26,9 +26,6 @@ const Intro = () => {
           </Link>
         </div>
       </div>
-      <div className='mt-16'>
-        <img src="/img/LandingPange.png" className='m-auto rounded-lg' alt="Preview App" width={1000} />
-      </div>
     </>
   )
 }

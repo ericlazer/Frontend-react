@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useCallback } from "react";
-import { coinPriceFormat, marketCapFormat, numberFormat } from "../../../../utils/format";
-import { getNFTCollection } from "../../../../services/nft.service";
+import { marketCapFormat, numberFormat } from "../../../../utils/format";
+import { getAptosNFTRank } from "../../../../services/nft.service";
 import DaisugiTable from '../../../../components/DaisugiTable'
-import ImageWithFallback from "../../../../components/ImageWithFallback";
+import ImageWithFallback from '../../../../components/ImageWithFallback'
 
 const columns = [
   {
@@ -27,32 +27,22 @@ const columns = [
   },
   {
     header: "Sales",
-    name: "sales_total",
+    name: "sales",
     align: "right",
   },
   {
-    header: "1D Change",
-    name: "sales_change_1d",
-    align: "right",
-  },
-  {
-    header: "7D Change",
-    name: "sales_change_7d",
-    align: "right",
-  },
-  {
-    header: "30D Change",
-    name: "sales_change_30d",
+    header: "Lowest Price",
+    name: "lowest_price",
     align: "right",
   },
   {
     header: "Volume",
-    name: "volume_total",
+    name: "volume",
     align: "right",
   },
   {
-    header: "Floor price",
-    name: "floor_price",
+    header: "Volume Change",
+    name: "volume_change",
     align: "right",
   },
   {
@@ -62,7 +52,8 @@ const columns = [
   },
 ];
 
-const Collection = () => {
+const AptosNFT = () => {
+
   const [isLoading, setIsLoading] = useState(true);
   const [tableData, setTableData] = useState({});
 
@@ -91,60 +82,36 @@ const Collection = () => {
                 alt="Blank Coin"
               />
             }
-            {row.contract_name}
+            {row.collection}
           </div>,
           <div>{numberFormat(row.items_total)}</div>,
           <div>{numberFormat(row.owners_total)}</div>,
-          <div>{numberFormat(row.sales_total)}</div>,
+          <div>{numberFormat(row.sales)}</div>,
+          <div>{numberFormat(row.lowest_price)}</div>,
+          <div>{numberFormat(row.volume)}</div>,
           <div
             className={`flex items-center justify-end text-[#${
-              row.sales_change_1d[0] !== "-" ? "80FF9C" : "FF8080"
+              row.volume_change[0] !== "-" ? "80FF9C" : "FF8080"
             }]`}
           >
             <i
               className={`text-xl fa fa-sort-${
-                row.sales_change_1d[0] !== "-" ? "up" : "down"
-              } ${row.sales_change_1d[0] !== "-" ? "mt-2" : "-mt-2"} mr-2`}
+                row.volume_change[0] !== "-" ? "up" : "down"
+              } ${row.volume_change[0] !== "-" ? "mt-2" : "-mt-2"} mr-2`}
             />
-            {row.sales_change_1d}
+            {row.volume_change}
           </div>,
-          <div
-            className={`flex items-center justify-end text-[#${
-              row.sales_change_7d[0] !== "-" ? "80FF9C" : "FF8080"
-            }]`}
-          >
-            <i
-              className={`text-xl fa fa-sort-${
-                row.sales_change_7d[0] !== "-" ? "up" : "down"
-              } ${row.sales_change_7d[0] !== "-" ? "mt-2" : "-mt-2"} mr-2`}
-            />
-            {row.sales_change_7d}
-          </div>,
-          <div
-            className={`flex items-center justify-end text-[#${
-              row.sales_change_30d[0] !== "-" ? "80FF9C" : "FF8080"
-            }]`}
-          >
-            <i
-              className={`text-xl fa fa-sort-${
-                row.sales_change_30d[0] !== "-" ? "up" : "down"
-              } ${row.sales_change_30d[0] !== "-" ? "mt-2" : "-mt-2"} mr-2`}
-            />
-            {row.sales_change_30d}
-          </div>,
-          <div>{marketCapFormat(row.volume_total)}</div>,
-          <div>{coinPriceFormat(row.floor_price)}</div>,
           <div>{marketCapFormat(row.market_cap)}</div>,
         ]);
       });
     }
     setTableData(newData);
   }, []);
-
+  
   useEffect(() => {
     const getData = async () => {
       setIsLoading(true);
-      const data = await getNFTCollection();
+      const data = await getAptosNFTRank();
       drawTable(data);
       setIsLoading(false);
     };
@@ -157,6 +124,6 @@ const Collection = () => {
       <DaisugiTable tableData={tableData} isLoading={isLoading} />
     </div>
   );
-};
+}
 
-export default Collection;
+export default AptosNFT
