@@ -5,7 +5,6 @@ import {
   marketCapFormat,
   numberFormat,
 } from "../../../../utils/format";
-import { Link } from "react-router-dom";
 import DaisugiTable from "../../../../components/DaisugiTable";
 import ImageWithFallback from "../../../../components/ImageWithFallback";
 import ReactPaginate from "react-paginate";
@@ -93,7 +92,6 @@ const MarketCap = () => {
             <div>{marketCapFormat(row?.market_cap)}</div>,
             <div>{coinPriceFormat(row?.average_market_price)}</div>,
             <a
-              key={index}
               href={`https://etherscan.io/address/${row?.contract_address}`}
               target="_blank"
               rel="noopener noreferrer"

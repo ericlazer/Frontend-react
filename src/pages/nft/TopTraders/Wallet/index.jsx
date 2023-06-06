@@ -61,7 +61,6 @@ const Wallet = () => {
         newData.rows.push([
           key + 1,
           <a
-            key={index}
             href={`https://etherscan.io/address/${row?.account_address}`}
             target="_blank"
             rel="noopener noreferrer"
