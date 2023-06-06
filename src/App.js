@@ -34,6 +34,8 @@ import Bridge from './pages/defi/bridge'
 import Yield from './pages/defi/yield'
 import DexLiquidation from './pages/defi/dex'
 import DexBreakDown from './pages/defi/breakdown'
+import Investments from './pages/directory/Investments'
+import Ventures from './pages/directory/Ventures'
 
 function App() {
   return (
@@ -72,6 +74,8 @@ function App() {
         <Route path="/news" element={<News />} />
         <Route path="/videos" element={<Videos />} />
         <Route path="/directory" element={<Directory />} />
+        <Route path="/directory/investments" element={<Investments />} />
+        <Route path="/directory/ventures" element={<Ventures />} />
         <Route path="/calendar" element={<Calendar />} />
         <Route path="/learning" element={<Learning />} />
         <Route path="/research" element={<Research />} />

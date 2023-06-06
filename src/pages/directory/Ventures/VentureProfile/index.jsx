@@ -1,35 +1,23 @@
 import React, { useEffect, useState, useCallback } from "react";
-import axios from "axios";
-import { API_BASE } from "../../config/constants";
-import { coinPriceFormat, marketCapFormat } from "../../utils/format";
-import DaisugiTable from "../DaisugiTable";
+import { getVentures } from "../../../../services/func.service";
+import DaisugiTable from "../../../../components/DaisugiTable";
 import ReactPaginate from "react-paginate";
 
 const columns = [
   {
     header: "No",
     name: "no",
-    align: "left",
-  },
-  {
-    header: "Name",
-    name: "name",
-    align: "left",
-  },
-  {
-    header: "Name",
-    name: "name",
     align: "center",
   },
   {
-    header: "Price",
-    name: "price",
-    align: "right",
+    header: "Investor",
+    name: "name",
+    align: "left",
   },
   {
-    header: "Market Cap",
-    name: "marketcup",
-    align: "right",
+    header: "Description",
+    name: "description",
+    align: "center",
   },
 ];
 
@@ -37,7 +25,8 @@ const filter = {
   showCount: [25, 50, 100],
 };
 
-const AllNFTs = () => {
+const Ventures = () => {
+
   const [currentPage, setCurrentPage] = useState(0);
   const [showCountOption, setShowCountOption] = useState(filter.showCount[0]);
   const [isLoading, setIsLoading] = useState(false);
@@ -56,15 +45,13 @@ const AllNFTs = () => {
             showCountOption * currentPage + (key + 1),
             <div>
               <img
-                src={row?.imgURL}
-                className="inline-block w-[1.5rem] h-[1.5rem] mr-3"
-                alt="CoinIcon"
+                src={row?.image}
+                className="inline-block w-[1.5rem] h-[1.5rem] mr-3 rounded-full"
+                alt="Ventures"
               />
-              {row?.symbol}
+              {row?.name}
             </div>,
-            row?.name,
-            coinPriceFormat(row?.price),
-            marketCapFormat(row?.marketCap),
+            <div>{row?.description}</div>,
           ]);
         });
       }
@@ -73,21 +60,6 @@ const AllNFTs = () => {
     },
     [showCountOption, currentPage]
   );
-
-  const fetchData = useCallback(async () => {
-    setIsLoading(true);
-    const response = await axios.get(
-      `${API_BASE}/coin/getall?page=${
-        currentPage + 1
-      }}&pageSize=${showCountOption}`
-    );
-    drawTable(response.data);
-    setIsLoading(false);
-  }, [showCountOption, currentPage, drawTable]);
-
-  useEffect(() => {
-    fetchData();
-  }, [fetchData]);
 
   const handleSelectOption = (event, selectType) => {
     const { value } = event.target;
@@ -104,8 +76,20 @@ const AllNFTs = () => {
     setCurrentPage(selectedPage);
   };
 
+  useEffect(() => {
+    const getData = async () => {
+      setIsLoading(true);
+      const data = await getVentures(currentPage + 1, showCountOption);
+      drawTable(data);
+      console.log(data)
+      setIsLoading(false);
+    };
+
+    getData();
+  }, [currentPage, showCountOption, drawTable]);
+
   return (
-    <div className="mt-10">
+    <div>
       <div className="flex justify-end mr-5">
         <select
           className="ml-5 px-8 py-3 rounded bg-gradient-btn text-white"
@@ -138,7 +122,7 @@ const AllNFTs = () => {
         />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default AllNFTs;
+export default Ventures

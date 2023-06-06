@@ -77,31 +77,31 @@ const Yields = () => {
           newData.rows.push([
             showCountOption * currentPage + (key + 1),
             <div className="flex items-center gap-4">
-              {row.symbol && (
+              {row?.symbol && (
                 <ImageWithFallback
-                  src={`https://lcw.nyc3.cdn.digitaloceanspaces.com/production/currencies/32/${row.symbol.toLowerCase()}.png`}
+                  src={`https://lcw.nyc3.cdn.digitaloceanspaces.com/production/currencies/32/${row?.symbol.toLowerCase()}.png`}
                   fallback="/img/CoinImages/blank.png" // Replace this with the path to your fallback image
-                  alt={row.symbol}
+                  alt={row?.symbol}
                   className="rounded-full"
                 />
               )}
-              {row.symbol}
+              {row?.symbol}
             </div>,
             <div className="flex items-center gap-4">
               <img
                 src={`https://lcw.nyc3.cdn.digitaloceanspaces.com/production/currencies/32/${
-                  chainImages[row.chain.toLowerCase()]
+                  chainImages[row?.chain.toLowerCase()]
                 }`}
-                alt={row.chain}
+                alt={row?.chain}
               />
-              {row.chain}
+              {row?.chain}
             </div>,
-            marketCapFormat(row.tvlUsd),
-            normalPercentFormat(row.apy),
-            normalPercentFormat(row.apyPct1D),
-            normalPercentFormat(row.apyPct7D),
-            normalPercentFormat(row.apyPct30D),
-            normalPercentFormat(row.predictions.predictedClass),
+            marketCapFormat(row?.tvlUsd),
+            normalPercentFormat(row?.apy),
+            normalPercentFormat(row?.apyPct1D),
+            normalPercentFormat(row?.apyPct7D),
+            normalPercentFormat(row?.apyPct30D),
+            normalPercentFormat(row?.predictions.predictedClass),
           ]);
         });
       }

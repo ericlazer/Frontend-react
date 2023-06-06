@@ -5,7 +5,7 @@ import {
   coinPriceFormat,
 } from "../../../../utils/format";
 import { getNFTTrade } from "../../../../services/nft.service";
-import DaisugiTable from '../../../../components/DaisugiTable'
+import DaisugiTable from "../../../../components/DaisugiTable";
 import ImageWithFallback from "../../../../components/ImageWithFallback";
 
 const columns = [
@@ -18,6 +18,11 @@ const columns = [
     header: "Name",
     name: "contract_name",
     align: "left",
+  },
+  {
+    header: "Floor Price",
+    name: "floor_price",
+    align: "right",
   },
   {
     header: "Items",
@@ -45,11 +50,6 @@ const columns = [
     align: "right",
   },
   {
-    header: "Floor Price",
-    name: "floor_price",
-    align: "right",
-  },
-  {
     header: "Volume",
     name: "volume",
     align: "right",
@@ -71,29 +71,29 @@ const Trade = () => {
         newData.rows.push([
           key + 1,
           <div>
-            {
-              row.logo_url ? 
+            {row?.logo_url ? (
               <ImageWithFallback
-                src={row.logo_url}
+                src={row?.logo_url}
                 className="inline-block w-[1.5rem] h-[1.5rem] mr-3 rounded-full"
                 fallback="/img/CoinImages/blank.png"
                 alt="CoinIcon"
-                /> :
+              />
+            ) : (
               <img
                 className="inline-block w-[1.5rem] h-[1.5rem] mr-3 rounded-full"
                 src="/img/CoinImages/blank.png"
                 alt="Blank Coin"
               />
-            }
-            {row.contract_name}
+            )}
+            {row?.contract_name}
           </div>,
-          <div>{numberFormat(row.items_total)}</div>,
-          <div>{numberFormat(row.owners_total)}</div>,
-          <div>{coinPriceFormat(row.lowest_price)}</div>,
-          <div>{coinPriceFormat(row.average_price)}</div>,
-          <div>{coinPriceFormat(row.highest_price)}</div>,
-          <div>{coinPriceFormat(row.floor_price)}</div>,
-          <div>{marketCapFormat(row.volume)}</div>,
+          <div>{numberFormat(row?.floor_price)}</div>,
+          <div>{numberFormat(row?.items_total)}</div>,
+          <div>{numberFormat(row?.owners_total)}</div>,
+          <div>{numberFormat(row?.lowest_price)}</div>,
+          <div>{numberFormat(row?.average_price)}</div>,
+          <div>{numberFormat(row?.highest_price)}</div>,
+          <div>{numberFormat(row?.volume)}</div>,
         ]);
       });
     }

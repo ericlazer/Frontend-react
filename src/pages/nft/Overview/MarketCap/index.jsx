@@ -53,53 +53,61 @@ const MarketCap = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [tableData, setTableData] = useState({});
 
-  const drawTable = useCallback((data) => {
-    let newData = {
-      columns,
-      rows: [],
-      totalPages: 0,
-    };
+  const drawTable = useCallback(
+    (data) => {
+      let newData = {
+        columns,
+        rows: [],
+        totalPages: 0,
+      };
 
-    if (data.length) {
-      // Get data range
-      const start = currentPage * showCountOption;
-      const end = (currentPage + 1) * showCountOption;
+      if (data.length) {
+        // Get data range
+        const start = currentPage * showCountOption;
+        const end = (currentPage + 1) * showCountOption;
 
-      console.log(start, end, currentPage);
-      const pageData = data.slice(start, end);
-    
-      pageData.forEach((row, key) => {
-        newData.rows.push([
-          showCountOption * currentPage + (key + 1),
-          <div>
-            {
-              row.logo_url ? 
-              <ImageWithFallback
-                src={row.logo_url}
-                className="inline-block w-[1.5rem] h-[1.5rem] mr-3 rounded-full"
-                fallback="/img/CoinImages/blank.png"
-                alt="CoinIcon"
-                /> :
-              <img
-                className="inline-block w-[1.5rem] h-[1.5rem] mr-3 rounded-full"
-                src="/img/CoinImages/blank.png"
-                alt="Blank Coin"
-              />
-            }
-            {row.contract_name}
-          </div>,
-          <div>{numberFormat(row.items_total)}</div>,
-          <div>{marketCapFormat(row.market_cap)}</div>,
-          <div>{coinPriceFormat(row.average_market_price)}</div>,
-          <a key={index} href={`https://etherscan.io/address/${row.contract_address}`} target="_blank" rel="noopener noreferrer">
-            <span>{coinPriceFormat(row.average_market_price)}</span>
-          </a>,
-        ]);
-      });
-    }
-    newData.totalPages = data.length / showCountOption;
-    setTableData(newData);
-  }, [currentPage, showCountOption]);
+        console.log(start, end, currentPage);
+        const pageData = data.slice(start, end);
+
+        pageData.forEach((row, key) => {
+          newData.rows.push([
+            showCountOption * currentPage + (key + 1),
+            <div>
+              {row?.logo_url ? (
+                <ImageWithFallback
+                  src={row?.logo_url}
+                  className="inline-block w-[1.5rem] h-[1.5rem] mr-3 rounded-full"
+                  fallback="/img/CoinImages/blank.png"
+                  alt="CoinIcon"
+                />
+              ) : (
+                <img
+                  className="inline-block w-[1.5rem] h-[1.5rem] mr-3 rounded-full"
+                  src="/img/CoinImages/blank.png"
+                  alt="Blank Coin"
+                />
+              )}
+              {row?.contract_name}
+            </div>,
+            <div>{numberFormat(row?.items_total)}</div>,
+            <div>{marketCapFormat(row?.market_cap)}</div>,
+            <div>{coinPriceFormat(row?.average_market_price)}</div>,
+            <a
+              key={index}
+              href={`https://etherscan.io/address/${row?.contract_address}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span>{coinPriceFormat(row?.average_market_price)}</span>
+            </a>,
+          ]);
+        });
+      }
+      newData.totalPages = data.length / showCountOption;
+      setTableData(newData);
+    },
+    [currentPage, showCountOption]
+  );
 
   const handleSelectOption = (event, selectType) => {
     const { value } = event.target;

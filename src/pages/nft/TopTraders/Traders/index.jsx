@@ -1,11 +1,8 @@
-import React, { useEffect, useState, useCallback } from 'react'
-import { Link } from 'react-router-dom';
-import {
-  numberFormat,
-  marketCapFormat,
-} from "../../../../utils/format";
-import { getNFTTraders } from '../../../../services/nft.service';
-import DaisugiTable from '../../../../components/DaisugiTable'
+import React, { useEffect, useState, useCallback } from "react";
+import { Link } from "react-router-dom";
+import { numberFormat, marketCapFormat } from "../../../../utils/format";
+import { getNFTTraders } from "../../../../services/nft.service";
+import DaisugiTable from "../../../../components/DaisugiTable";
 
 const columns = [
   {
@@ -31,7 +28,6 @@ const columns = [
 ];
 
 const Traders = () => {
-
   const [isLoading, setIsLoading] = useState(true);
   const [tableData, setTableData] = useState({});
 
@@ -45,11 +41,16 @@ const Traders = () => {
       data.forEach((row, key) => {
         newData.rows.push([
           key + 1,
-          <a key={index} href={`https://etherscan.io/address/${row.account_address}`} target="_blank" rel="noopener noreferrer">
-            <div>{row.account_address}</div>
+          <a
+            key={index}
+            href={`https://etherscan.io/address/${row?.account_address}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div>{row?.account_address}</div>
           </a>,
-          <div>{marketCapFormat(row.volume)}</div>,
-          <div>{numberFormat(row.trades_total)}</div>,
+          <div>{marketCapFormat(row?.volume)}</div>,
+          <div>{numberFormat(row?.trades_total)}</div>,
         ]);
       });
     }
@@ -71,7 +72,7 @@ const Traders = () => {
     <div className="mt-5 overflow-x-auto overflow-y-hidden">
       <DaisugiTable tableData={tableData} isLoading={isLoading} />
     </div>
-  )
-}
+  );
+};
 
-export default Traders
+export default Traders;

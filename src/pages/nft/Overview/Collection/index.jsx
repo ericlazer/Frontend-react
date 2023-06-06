@@ -1,7 +1,11 @@
 import React, { useEffect, useState, useCallback } from "react";
-import { coinPriceFormat, marketCapFormat, numberFormat } from "../../../../utils/format";
+import {
+  coinPriceFormat,
+  marketCapFormat,
+  numberFormat,
+} from "../../../../utils/format";
 import { getNFTCollection } from "../../../../services/nft.service";
-import DaisugiTable from '../../../../components/DaisugiTable'
+import DaisugiTable from "../../../../components/DaisugiTable";
 import ImageWithFallback from "../../../../components/ImageWithFallback";
 
 const columns = [
@@ -14,6 +18,11 @@ const columns = [
     header: "Name",
     name: "contract_name",
     align: "left",
+  },
+  {
+    header: "Floor price",
+    name: "floor_price",
+    align: "right",
   },
   {
     header: "Items",
@@ -51,11 +60,6 @@ const columns = [
     align: "right",
   },
   {
-    header: "Floor price",
-    name: "floor_price",
-    align: "right",
-  },
-  {
     header: "Market Cap",
     name: "market_cap",
     align: "right",
@@ -77,64 +81,64 @@ const Collection = () => {
         newData.rows.push([
           key + 1,
           <div>
-            {
-              row.logo_url ? 
+            {row?.logo_url ? (
               <ImageWithFallback
-                src={row.logo_url}
+                src={row?.logo_url}
                 className="inline-block w-[1.5rem] h-[1.5rem] mr-3 rounded-full"
                 fallback="/img/CoinImages/blank.png"
                 alt="CoinIcon"
-                /> :
+              />
+            ) : (
               <img
                 className="inline-block w-[1.5rem] h-[1.5rem] mr-3 rounded-full"
                 src="/img/CoinImages/blank.png"
                 alt="Blank Coin"
               />
-            }
-            {row.contract_name}
+            )}
+            {row?.contract_name}
           </div>,
-          <div>{numberFormat(row.items_total)}</div>,
-          <div>{numberFormat(row.owners_total)}</div>,
-          <div>{numberFormat(row.sales_total)}</div>,
+          <div>{numberFormat(row?.floor_price)}</div>,
+          <div>{numberFormat(row?.items_total)}</div>,
+          <div>{numberFormat(row?.owners_total)}</div>,
+          <div>{numberFormat(row?.sales_total)}</div>,
           <div
             className={`flex items-center justify-end text-[#${
-              row.sales_change_1d[0] !== "-" ? "80FF9C" : "FF8080"
+              row?.sales_change_1d[0] !== "-" ? "80FF9C" : "FF8080"
             }]`}
           >
             <i
               className={`text-xl fa fa-sort-${
-                row.sales_change_1d[0] !== "-" ? "up" : "down"
-              } ${row.sales_change_1d[0] !== "-" ? "mt-2" : "-mt-2"} mr-2`}
+                row?.sales_change_1d[0] !== "-" ? "up" : "down"
+              } ${row?.sales_change_1d[0] !== "-" ? "mt-2" : "-mt-2"} mr-2`}
             />
-            {row.sales_change_1d}
+            {row?.sales_change_1d}
           </div>,
           <div
             className={`flex items-center justify-end text-[#${
-              row.sales_change_7d[0] !== "-" ? "80FF9C" : "FF8080"
+              row?.sales_change_7d[0] !== "-" ? "80FF9C" : "FF8080"
             }]`}
           >
             <i
               className={`text-xl fa fa-sort-${
-                row.sales_change_7d[0] !== "-" ? "up" : "down"
-              } ${row.sales_change_7d[0] !== "-" ? "mt-2" : "-mt-2"} mr-2`}
+                row?.sales_change_7d[0] !== "-" ? "up" : "down"
+              } ${row?.sales_change_7d[0] !== "-" ? "mt-2" : "-mt-2"} mr-2`}
             />
-            {row.sales_change_7d}
+            {row?.sales_change_7d}
           </div>,
           <div
             className={`flex items-center justify-end text-[#${
-              row.sales_change_30d[0] !== "-" ? "80FF9C" : "FF8080"
+              row?.sales_change_30d[0] !== "-" ? "80FF9C" : "FF8080"
             }]`}
           >
             <i
               className={`text-xl fa fa-sort-${
-                row.sales_change_30d[0] !== "-" ? "up" : "down"
-              } ${row.sales_change_30d[0] !== "-" ? "mt-2" : "-mt-2"} mr-2`}
+                row?.sales_change_30d[0] !== "-" ? "up" : "down"
+              } ${row?.sales_change_30d[0] !== "-" ? "mt-2" : "-mt-2"} mr-2`}
             />
-            {row.sales_change_30d}
+            {row?.sales_change_30d}
           </div>,
-          <div>{marketCapFormat(row.volume_total)}</div>,
-          <div>{coinPriceFormat(row.floor_price)}</div>,
-          <div>{marketCapFormat(row.market_cap)}</div>,
+          <div>{numberFormat(row?.volume_total)}</div>,
+          <div>{marketCapFormat(row?.market_cap)}</div>,
         ]);
       });
     }

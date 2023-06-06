@@ -91,77 +91,77 @@ const Marketplace = () => {
             (key + 1),
             <div>
               <img
-                src={row.logo_url}
+                src={row?.logo_url}
                 className="inline-block w-[1.5rem] h-[1.5rem] mr-3 rounded-full"
                 alt="CoinIcon"
               />
-              {row.contract_name}
+              {row?.contract_name}
             </div>,
-            <div>{marketCapFormat(row.volume)}</div>,
-            <div>{marketCapFormat(row.gas)}</div>,
-            <div>{numberFormat(row.sales)}</div>,
-            <div>{numberFormat(row.wallets)}</div>,
+            <div>{marketCapFormat(row?.volume)}</div>,
+            <div>{marketCapFormat(row?.gas)}</div>,
+            <div>{numberFormat(row?.sales)}</div>,
+            <div>{numberFormat(row?.wallets)}</div>,
             <div
               className={`flex items-center justify-end text-[#${
-                row.volume1d_change[0] !== '-'
+                row?.volume1d_change[0] !== '-'
                   ? "80FF9C"
                   : "FF8080"
               }]`}
             >
               <i
                 className={`text-xl fa fa-sort-${
-                  row.volume1d_change[0] !== '-'
+                  row?.volume1d_change[0] !== '-'
                     ? "up"
                     : "down"
                 } ${
-                  row.volume1d_change[0] !== '-'
+                  row?.volume1d_change[0] !== '-'
                     ? "mt-2"
                     : "-mt-2"
                 } mr-2`}
               />
-              {row.volume1d_change}
+              {row?.volume1d_change}
             </div>,
             <div
               className={`flex items-center justify-end text-[#${
-                row.volume7d_change[0] !== '-'
+                row?.volume7d_change[0] !== '-'
                   ? "80FF9C"
                   : "FF8080"
               }]`}
             >
               <i
                 className={`text-xl fa fa-sort-${
-                  row.volume7d_change[0] !== '-'
+                  row?.volume7d_change[0] !== '-'
                     ? "up"
                     : "down"
                 } ${
-                  row.volume7d_change[0] !== '-'
+                  row?.volume7d_change[0] !== '-'
                     ? "mt-2"
                     : "-mt-2"
                 } mr-2`}
               />
-              {row.volume7d_change}
+              {row?.volume7d_change}
             </div>,
             <div
               className={`flex items-center justify-end text-[#${
-                row.volume30d_change[0] !== '-'
+                row?.volume30d_change[0] !== '-'
                   ? "80FF9C"
                   : "FF8080"
               }]`}
             >
               <i
                 className={`text-xl fa fa-sort-${
-                  row.volume30d_change[0] !== '-'
+                  row?.volume30d_change[0] !== '-'
                     ? "up"
                     : "down"
                 } ${
-                  row.volume30d_change[0] !== '-'
+                  row?.volume30d_change[0] !== '-'
                     ? "mt-2"
                     : "-mt-2"
                 } mr-2`}
               />
-              {row.volume30d_change}
+              {row?.volume30d_change}
             </div>,
-            <div>{row.handling_fee}</div>,
+            <div>{row?.handling_fee}</div>,
           ]);
         });
       }

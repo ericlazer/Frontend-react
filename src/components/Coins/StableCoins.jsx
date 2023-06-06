@@ -56,15 +56,15 @@ const StableCoins = () => {
             showCountOption * currentPage + (key + 1),
             <div>
               <img
-                src={row.imgURL}
+                src={row?.imgURL}
                 className="inline-block w-[1.5rem] h-[1.5rem] mr-3"
                 alt="CoinIcon"
               />
-              {row.symbol}
+              {row?.symbol}
             </div>,
-            row.name,
-            coinPriceFormat(row.price),
-            marketCapFormat(row.marketCap),
+            row?.name,
+            coinPriceFormat(row?.price),
+            marketCapFormat(row?.marketCap),
           ]);
         });
       }

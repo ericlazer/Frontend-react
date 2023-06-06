@@ -1,7 +1,7 @@
-import React, { useEffect, useState, useCallback } from 'react'
-import { getNFTGas } from '../../../../services/nft.service';
-import DaisugiTable from '../../../../components/DaisugiTable'
-import ImageWithFallback from '../../../../components/ImageWithFallback';
+import React, { useEffect, useState, useCallback } from "react";
+import { getNFTGas } from "../../../../services/nft.service";
+import DaisugiTable from "../../../../components/DaisugiTable";
+import ImageWithFallback from "../../../../components/ImageWithFallback";
 
 const columns = [
   {
@@ -32,7 +32,6 @@ const columns = [
 ];
 
 const Gas = () => {
-
   const [isLoading, setIsLoading] = useState(true);
   const [tableData, setTableData] = useState({});
 
@@ -47,25 +46,25 @@ const Gas = () => {
         newData.rows.push([
           key + 1,
           <div>
-            {
-              row.logo_url ? 
+            {row?.logo_url ? (
               <ImageWithFallback
-                src={row.logo_url}
+                src={row?.logo_url}
                 className="inline-block w-[1.5rem] h-[1.5rem] mr-3 rounded-full"
                 fallback="/img/CoinImages/blank.png"
                 alt="CoinIcon"
-                /> :
+              />
+            ) : (
               <img
                 className="inline-block w-[1.5rem] h-[1.5rem] mr-3 rounded-full"
                 src="/img/CoinImages/blank.png"
                 alt="Blank Coin"
               />
-            }
-            {row.contract_name}
+            )}
+            {row?.contract_name}
           </div>,
-          <div>{row.gas_fee_1h}</div>,
-          <div>{row.gas_fee_12h}</div>,
-          <div>{row.gas_fee_24h}</div>,
+          <div>{row?.gas_fee_1h}</div>,
+          <div>{row?.gas_fee_12h}</div>,
+          <div>{row?.gas_fee_24h}</div>,
         ]);
       });
     }
@@ -87,7 +86,7 @@ const Gas = () => {
     <div className="mt-5 overflow-x-auto overflow-y-hidden">
       <DaisugiTable tableData={tableData} isLoading={isLoading} />
     </div>
-  )
-}
+  );
+};
 
-export default Gas
+export default Gas;

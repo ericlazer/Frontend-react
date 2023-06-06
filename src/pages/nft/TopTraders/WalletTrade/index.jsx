@@ -1,10 +1,7 @@
-import React, { useEffect, useState, useCallback } from 'react'
-import {
-  numberFormat,
-  marketCapFormat,
-} from "../../../../utils/format";
-import { getWalletTrading } from '../../../../services/nft.service';
-import DaisugiTable from '../../../../components/DaisugiTable'
+import React, { useEffect, useState, useCallback } from "react";
+import { numberFormat, marketCapFormat } from "../../../../utils/format";
+import { getWalletTrading } from "../../../../services/nft.service";
+import DaisugiTable from "../../../../components/DaisugiTable";
 
 const columns = [
   {
@@ -35,7 +32,6 @@ const columns = [
 ];
 
 const WalletTrade = () => {
-
   const [isLoading, setIsLoading] = useState(true);
   const [tableData, setTableData] = useState({});
 
@@ -49,12 +45,17 @@ const WalletTrade = () => {
       data.forEach((row, key) => {
         newData.rows.push([
           key + 1,
-          <a key={index} href={`https://etherscan.io/address/${row.account_address}`} target="_blank" rel="noopener noreferrer">
-            <div>{row.account_address}</div>
+          <a
+            key={index}
+            href={`https://etherscan.io/address/${row?.account_address}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div>{row?.account_address}</div>
           </a>,
-          <div>{numberFormat(row.trade_volume)}</div>,
-          <div>{marketCapFormat(row.trade_volume_usdc)}</div>,
-          <div>{numberFormat(row.trade_count)}</div>,
+          <div>{numberFormat(row?.trade_volume)}</div>,
+          <div>{marketCapFormat(row?.trade_volume_usdc)}</div>,
+          <div>{numberFormat(row?.trade_count)}</div>,
         ]);
       });
     }
@@ -76,7 +77,7 @@ const WalletTrade = () => {
     <div className="mt-5 overflow-x-auto overflow-y-hidden">
       <DaisugiTable tableData={tableData} isLoading={isLoading} />
     </div>
-  )
-}
+  );
+};
 
-export default WalletTrade
+export default WalletTrade;

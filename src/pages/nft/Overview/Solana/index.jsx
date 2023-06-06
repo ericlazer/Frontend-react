@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { marketCapFormat, numberFormat } from "../../../../utils/format";
 import { getSolanaNFTRank } from "../../../../services/nft.service";
-import DaisugiTable from '../../../../components/DaisugiTable'
-import ImageWithFallback from '../../../../components/ImageWithFallback'
+import DaisugiTable from "../../../../components/DaisugiTable";
+import ImageWithFallback from "../../../../components/ImageWithFallback";
 
 const columns = [
   {
@@ -53,7 +53,6 @@ const columns = [
 ];
 
 const SolanaNFT = () => {
-
   const [isLoading, setIsLoading] = useState(true);
   const [tableData, setTableData] = useState({});
 
@@ -68,46 +67,46 @@ const SolanaNFT = () => {
         newData.rows.push([
           key + 1,
           <div>
-            {
-              row.logo_url ? 
+            {row?.logo_url ? (
               <ImageWithFallback
-                src={row.logo_url}
+                src={row?.logo_url}
                 className="inline-block w-[1.5rem] h-[1.5rem] mr-3 rounded-full"
                 fallback="/img/CoinImages/blank.png"
                 alt="CoinIcon"
-                /> :
+              />
+            ) : (
               <img
                 className="inline-block w-[1.5rem] h-[1.5rem] mr-3 rounded-full"
                 src="/img/CoinImages/blank.png"
                 alt="Blank Coin"
               />
-            }
-            {row.collection}
+            )}
+            {row?.collection}
           </div>,
-          <div>{numberFormat(row.items_total)}</div>,
-          <div>{numberFormat(row.owners_total)}</div>,
-          <div>{numberFormat(row.sales)}</div>,
-          <div>{numberFormat(row.lowest_price)}</div>,
-          <div>{numberFormat(row.volume)}</div>,
+          <div>{numberFormat(row?.items_total)}</div>,
+          <div>{numberFormat(row?.owners_total)}</div>,
+          <div>{numberFormat(row?.sales)}</div>,
+          <div>{numberFormat(row?.lowest_price)}</div>,
+          <div>{numberFormat(row?.volume)}</div>,
           <div
             className={`flex items-center justify-end text-[#${
-              row.volume_change[0] !== "-" ? "80FF9C" : "FF8080"
+              row?.volume_change[0] !== "-" ? "80FF9C" : "FF8080"
             }]`}
           >
             <i
               className={`text-xl fa fa-sort-${
-                row.volume_change[0] !== "-" ? "up" : "down"
-              } ${row.volume_change[0] !== "-" ? "mt-2" : "-mt-2"} mr-2`}
+                row?.volume_change[0] !== "-" ? "up" : "down"
+              } ${row?.volume_change[0] !== "-" ? "mt-2" : "-mt-2"} mr-2`}
             />
-            {row.volume_change}
+            {row?.volume_change}
           </div>,
-          <div>{marketCapFormat(row.market_cap)}</div>,
+          <div>{marketCapFormat(row?.market_cap)}</div>,
         ]);
       });
     }
     setTableData(newData);
   }, []);
-  
+
   useEffect(() => {
     const getData = async () => {
       setIsLoading(true);
@@ -124,6 +123,6 @@ const SolanaNFT = () => {
       <DaisugiTable tableData={tableData} isLoading={isLoading} />
     </div>
   );
-}
+};
 
-export default SolanaNFT
+export default SolanaNFT;
