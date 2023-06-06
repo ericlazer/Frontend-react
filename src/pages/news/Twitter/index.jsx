@@ -5,7 +5,7 @@ import { Default } from "react-awesome-spinners";
 
 const TwitterBox = ({ displayName, twitterName, time, avatarImg, title, link, socialSocre }) => {
   return (
-    <a key={index} href={link} target="_blank" rel="noopener noreferrer">
+    <a href={link} target="_blank" rel="noopener noreferrer">
       <div className='bg-zoom-hover border border-gray-500 p-5 rounded-lg h-[400px] relative'>
         <div className='flex gap-5'>
           <img src={avatarImg} className='w-20 h-20 rounded-full' />
