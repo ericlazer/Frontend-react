@@ -1,7 +1,11 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { getNFTSocialRanks } from "../../../../services/nft.service";
-import DaisugiTable from '../../../../components/DaisugiTable'
-import { formatUnixTimestamp, normalPercentFormat, coinPriceFormat } from "../../../../utils/format";
+import DaisugiTable from "../../../../components/DaisugiTable";
+import {
+  formatUnixTimestamp,
+  normalPercentFormat,
+  coinPriceFormat,
+} from "../../../../utils/format";
 
 const columns = [
   {
@@ -52,36 +56,32 @@ const columns = [
 ];
 
 const Influencers = () => {
-
   const [tableData, setTableData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
-  const drawTable = useCallback(
-    (data) => {
-      let newData = {
-        columns,
-        rows: [],
-        totalPages: 0,
-      };
-      if (data.length) {
-        data.forEach((row, key) => {
-          newData.rows.push([
-            (key + 1),
-            <div>{row.category.replace(/_/g, ' ')}</div>,
-            <div>{coinPriceFormat(row.value)}</div>,
-            <div>{coinPriceFormat(row.prev_value)}</div>,
-            <div>{coinPriceFormat(row.initial_value)}</div>,
-            <div>{normalPercentFormat(row.change)}</div>,
-            <div>{row.variability}</div>,
-            <div>{formatUnixTimestamp(row.time_created)}</div>,
-            <div>{row.name}</div>,
-          ]);
-        });
-      }
-      setTableData(newData);
-    },
-    []
-  );
+  const drawTable = useCallback((data) => {
+    let newData = {
+      columns,
+      rows: [],
+      totalPages: 0,
+    };
+    if (data.length) {
+      data.forEach((row, key) => {
+        newData.rows.push([
+          key + 1,
+          <div>{row?.category.replace(/_/g, " ")}</div>,
+          <div>{coinPriceFormat(row?.value)}</div>,
+          <div>{coinPriceFormat(row?.prev_value)}</div>,
+          <div>{coinPriceFormat(row?.initial_value)}</div>,
+          <div>{normalPercentFormat(row?.change)}</div>,
+          <div>{row?.variability}</div>,
+          <div>{formatUnixTimestamp(row?.time_created)}</div>,
+          <div>{row?.name}</div>,
+        ]);
+      });
+    }
+    setTableData(newData);
+  }, []);
 
   useEffect(() => {
     const getData = async () => {

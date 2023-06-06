@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Layout from "../../components/Layout";
 import XBox from "../../components/XBox";
 import PeopleBox from "../../components/PeopleBox";
@@ -24,20 +25,22 @@ const Directory = () => {
             }
           </div>
         </XBox>
-        <XBox isBackground={true} header="Active VC" center={true}>
-          <div className="grid grid-cols-3 gap-8">
-            {Ventures.map((item, index) => (
-              <div key={index} className="flex flex-col">
-                <img
-                  src={item.imgURL}
-                  alt="Ventures"
-                  className="rounded-full w-[80px] h-[80px] mx-auto"
-                />
-                <p className="text-[15px] text-center">{item.name}</p>
-              </div>
-            ))}
-          </div>
-        </XBox>
+        <Link to="/directory/ventures">
+          <XBox isBackground={true} header="Active VC" center={true}>
+            <div className="grid grid-cols-3 gap-8">
+              {Ventures.map((item, index) => (
+                <div key={index} className="flex flex-col">
+                  <img
+                    src={item.imgURL}
+                    alt="Ventures"
+                    className="rounded-full w-[80px] h-[80px] mx-auto"
+                  />
+                  <p className="text-[15px] text-center">{item.name}</p>
+                </div>
+              ))}
+            </div>
+          </XBox>
+        </Link>
         <XBox isBackground={true} header="Companies to watch" center={true}>
           <div className="grid grid-cols-3 gap-8">
             {Companies.map((item, index) => (
@@ -68,19 +71,21 @@ const Directory = () => {
             }
           </div>
         </XBox>
-        <XBox isBackground={true} header="Investments">
-          {
-            Investments.map((item, index) => (
-              <InvestListBox
-                key={index}
-                name={item.name}
-                round={item.round}
-                price={item.amount}
-                date={item.date}
-              />
-            ))
-          }
-        </XBox>
+        <Link to="/directory/investments">
+          <XBox isBackground={true} header="Investments">
+            {
+              Investments.map((item, index) => (
+                <InvestListBox
+                  key={index}
+                  name={item.name}
+                  round={item.round}
+                  price={item.amount}
+                  date={item.date}
+                />
+              ))
+            }
+          </XBox>
+        </Link>
       </div>
     </Layout>
   );

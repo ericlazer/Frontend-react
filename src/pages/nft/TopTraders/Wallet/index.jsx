@@ -1,9 +1,7 @@
-import React, { useState, useEffect, useCallback } from 'react'
-import {
-  numberFormat,
-} from "../../../../utils/format";
-import { getNFTTradersWallet } from '../../../../services/nft.service';
-import DaisugiTable from '../../../../components/DaisugiTable'
+import React, { useState, useEffect, useCallback } from "react";
+import { numberFormat } from "../../../../utils/format";
+import { getNFTTradersWallet } from "../../../../services/nft.service";
+import DaisugiTable from "../../../../components/DaisugiTable";
 
 const columns = [
   {
@@ -49,7 +47,6 @@ const columns = [
 ];
 
 const Wallet = () => {
-
   const [isLoading, setIsLoading] = useState(true);
   const [tableData, setTableData] = useState({});
 
@@ -63,21 +60,26 @@ const Wallet = () => {
       data.forEach((row, key) => {
         newData.rows.push([
           key + 1,
-          <a key={index} href={`https://etherscan.io/address/${row.account_address}`} target="_blank" rel="noopener noreferrer">
-            <div>{row.account_address}</div>
+          <a
+            key={index}
+            href={`https://etherscan.io/address/${row?.account_address}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div>{row?.account_address}</div>
           </a>,
-          <div>{numberFormat(row.holding_volume)}</div>,
-          <div>{numberFormat(row.buy_volume)}</div>,
-          <div>{numberFormat(row.sell_volume)}</div>,
-          <div>{numberFormat(row.holding_collections)}</div>,
-          <div>{numberFormat(row.holding_nfts)}</div>,
-          <div>{numberFormat(row.trade_count)}</div>,
+          <div>{numberFormat(row?.holding_volume)}</div>,
+          <div>{numberFormat(row?.buy_volume)}</div>,
+          <div>{numberFormat(row?.sell_volume)}</div>,
+          <div>{numberFormat(row?.holding_collections)}</div>,
+          <div>{numberFormat(row?.holding_nfts)}</div>,
+          <div>{numberFormat(row?.trade_count)}</div>,
         ]);
       });
     }
     setTableData(newData);
   }, []);
-  
+
   useEffect(() => {
     const getData = async () => {
       setIsLoading(true);
@@ -93,7 +95,7 @@ const Wallet = () => {
     <div className="mt-5 overflow-x-auto overflow-y-hidden">
       <DaisugiTable tableData={tableData} isLoading={isLoading} />
     </div>
-  )
-}
+  );
+};
 
-export default Wallet
+export default Wallet;

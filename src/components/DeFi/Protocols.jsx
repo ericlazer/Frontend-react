@@ -87,17 +87,17 @@ const Protocols = () => {
             showCountOption * currentPage + (rowIndex + 1),
             <div className="flex gap-4 items-center">
               <ImageWithFallback
-                src={row.logo}
+                src={row?.logo}
                 fallback="/img/CoinImages/blank.png"
                 className="rounded-full w-7"
               />
-              {row.name}
+              {row?.name}
             </div>,
-            row.category,
-            row.chain,
+            row?.category,
+            row?.chain,
             <div className="relative w-full h-full">
               <div className="flex gap-1 w-5">
-                {row.chains
+                {row?.chains
                   .filter((_, key) => key < 3)
                   .map((chain, key) => (
                     <ImageWithFallback
@@ -111,17 +111,17 @@ const Protocols = () => {
                     />
                   ))}
               </div>
-              {row.chains.length > 3 ? (
+              {row?.chains.length > 3 ? (
                 <>
                   <Link
                     className="text-yellow-500"
                     onClick={() => handleExpendView(rowIndex)}
                   >
-                    more +{row.chains.length - 3}
+                    more +{row?.chains.length - 3}
                   </Link>
                   {expend === rowIndex ? (
                     <div className="absolute flex flex-wrap w-[200px] top-0 right-0 p-3 translate-x-[calc(100%+20px)] bg-[#323232] rounded z-10">
-                      {row.chains
+                      {row?.chains
                         .filter((_, key) => key >= 3)
                         .map((chain, key) => (
                           <ImageWithFallback
@@ -144,21 +144,21 @@ const Protocols = () => {
               )}
             </div>,
             <div
-              className={`text-[${row.change_1d > 0 ? "#80FF9C" : "#FF8080"}]`}
+              className={`text-[${row?.change_1d > 0 ? "#80FF9C" : "#FF8080"}]`}
             >
-              {normalPercentFormat(row.change_1h)}
+              {normalPercentFormat(row?.change_1h)}
             </div>,
             <div
-              className={`text-[${row.change_1d > 0 ? "#80FF9C" : "#FF8080"}]`}
+              className={`text-[${row?.change_1d > 0 ? "#80FF9C" : "#FF8080"}]`}
             >
-              {normalPercentFormat(row.change_1d)}
+              {normalPercentFormat(row?.change_1d)}
             </div>,
             <div
-              className={`text-[${row.change_1d > 0 ? "#80FF9C" : "#FF8080"}]`}
+              className={`text-[${row?.change_1d > 0 ? "#80FF9C" : "#FF8080"}]`}
             >
-              {normalPercentFormat(row.change_7d)}
+              {normalPercentFormat(row?.change_7d)}
             </div>,
-            marketCapFormat(row.tvl),
+            marketCapFormat(row?.tvl),
           ]);
         });
       }

@@ -64,12 +64,12 @@ const Bridges = () => {
         data.data.forEach((row, key) => {
           newData.rows.push([
             showCountOption * currentPage + (key + 1),
-            row.displayName,
-            marketCapFormat(row.volumePrevDay),
-            marketCapFormat(row.lastHourlyVolume),
-            marketCapFormat(row.currentDayVolume),
-            marketCapFormat(row.lastDailyVolume),
-            marketCapFormat(row.weeklyVolume),
+            row?.displayName,
+            marketCapFormat(row?.volumePrevDay),
+            marketCapFormat(row?.lastHourlyVolume),
+            marketCapFormat(row?.currentDayVolume),
+            marketCapFormat(row?.lastDailyVolume),
+            marketCapFormat(row?.weeklyVolume),
           ]);
         });
       }

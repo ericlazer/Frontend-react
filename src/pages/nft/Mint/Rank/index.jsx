@@ -17,6 +17,11 @@ const columns = [
     align: "left",
   },
   {
+    header: "Floor Price",
+    name: "floor_price",
+    align: "right",
+  },
+  {
     header: "Mints",
     name: "mint_total",
     align: "right",
@@ -24,11 +29,6 @@ const columns = [
   {
     header: "Mint Cost",
     name: "mint_cost",
-    align: "right",
-  },
-  {
-    header: "Floor Price",
-    name: "floor_price",
     align: "right",
   },
   {
@@ -56,16 +56,16 @@ const MintRank = () => {
           key + 1,
           <div>
             <img
-              src={row.logo_url}
+              src={row?.logo_url}
               className="inline-block w-[1.5rem] h-[1.5rem] mr-3 rounded-full"
               alt="CoinIcon"
             />
-            {row.contract_name}
+            {row?.contract_name}
           </div>,
-          <div>{numberFormat(row.mint_total)}</div>,
-          <div>{numberFormat(row.mint_cost)}</div>,
-          <div>{numberFormat(row.floor_price)}</div>,
-          <div>{numberFormat(row.sale_total)}</div>,
+          <div>{numberFormat(row?.floor_price)}</div>,
+          <div>{numberFormat(row?.mint_total)}</div>,
+          <div>{numberFormat(row?.mint_cost)}</div>,
+          <div>{numberFormat(row?.sale_total)}</div>,
         ]);
       });
     }

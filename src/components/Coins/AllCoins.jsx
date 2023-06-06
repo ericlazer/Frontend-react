@@ -55,24 +55,24 @@ const AllCoins = () => {
         data.data.forEach((row, key) => {
           newData.rows.push([
             showCountOption * currentPage + (key + 1),
-            <Link to={`/coins/${row.name.toLowerCase()}`}>
+            <Link to={`/coins/${row?.name.toLowerCase()}`}>
               <div>
                 <img
-                  src={row.imgURL}
+                  src={row?.imgURL}
                   className="inline-block w-[1.5rem] h-[1.5rem] mr-3"
                   alt="CoinIcon"
                 />
-                {row.symbol}
+                {row?.symbol}
               </div>
             </Link>,
-            <Link to={`/coins/${row.name.toLowerCase()}`}>
-              <div>{row.name}</div>
+            <Link to={`/coins/${row?.name.toLowerCase()}`}>
+              <div>{row?.name}</div>
             </Link>,
-            <Link to={`/coins/${row.name.toLowerCase()}`}>
-              <div>{coinPriceFormat(row.price)}</div>
+            <Link to={`/coins/${row?.name.toLowerCase()}`}>
+              <div>{coinPriceFormat(row?.price)}</div>
             </Link>,
-            <Link to={`/coins/${row.name.toLowerCase()}`}>
-              <div>{marketCapFormat(row.marketCap)}</div>
+            <Link to={`/coins/${row?.name.toLowerCase()}`}>
+              <div>{marketCapFormat(row?.marketCap)}</div>
             </Link>,
           ]);
         });

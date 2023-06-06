@@ -1,20 +1,16 @@
 import React, { useEffect, useState, useCallback } from "react";
-import axios from "axios";
-import { API_BASE } from "../../config/constants";
-import { coinPriceFormat, marketCapFormat } from "../../utils/format";
-import DaisugiTable from "../DaisugiTable";
+import { Link } from "react-router-dom";
+import Layout from "../../../components/Layout";
+import { marketCapFormat, truncateString } from "../../../utils/format";
+import { getInvestments } from "../../../services/func.service";
+import DaisugiTable from "../../../components/DaisugiTable";
 import ReactPaginate from "react-paginate";
 
 const columns = [
   {
     header: "No",
     name: "no",
-    align: "left",
-  },
-  {
-    header: "Name",
-    name: "name",
-    align: "left",
+    align: "center",
   },
   {
     header: "Name",
@@ -22,14 +18,29 @@ const columns = [
     align: "center",
   },
   {
-    header: "Price",
-    name: "price",
+    header: "Date",
+    name: "date",
     align: "right",
   },
   {
-    header: "Market Cap",
-    name: "marketcup",
+    header: "Raised",
+    name: "amount_raised",
     align: "right",
+  },
+  {
+    header: "Round",
+    name: "round",
+    align: "right",
+  },
+  {
+    header: "Description",
+    name: "description",
+    align: "left",
+  },
+  {
+    header: "Investor",
+    name: "lead_investor",
+    align: "center",
   },
 ];
 
@@ -37,7 +48,7 @@ const filter = {
   showCount: [25, 50, 100],
 };
 
-const AllNFTs = () => {
+const Investments = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [showCountOption, setShowCountOption] = useState(filter.showCount[0]);
   const [isLoading, setIsLoading] = useState(false);
@@ -54,17 +65,31 @@ const AllNFTs = () => {
         data.data.forEach((row, key) => {
           newData.rows.push([
             showCountOption * currentPage + (key + 1),
-            <div>
-              <img
-                src={row?.imgURL}
-                className="inline-block w-[1.5rem] h-[1.5rem] mr-3"
-                alt="CoinIcon"
-              />
-              {row?.symbol}
-            </div>,
-            row?.name,
-            coinPriceFormat(row?.price),
-            marketCapFormat(row?.marketCap),
+            <a href={row?.source} target="_blank" rel="noopener noreferrer">
+              <div>{row?.name}</div>
+            </a>,
+            <a href={row?.source} target="_blank" rel="noopener noreferrer">
+              <div>{row?.date}</div>
+            </a>,
+            <a href={row?.source} target="_blank" rel="noopener noreferrer">
+              <div>
+                {row?.amount_raised
+                  ? isNaN(Number(row?.amount_raised))
+                    ? 0
+                    : marketCapFormat(Number(row?.amount_raised))
+                  : 0
+                }
+              </div>
+            </a>,
+            <a href={row?.source} target="_blank" rel="noopener noreferrer">
+              <div>{row?.round}</div>
+            </a>,
+            <a href={row?.source} target="_blank" rel="noopener noreferrer">
+              <div>{truncateString(row?.description, 40)}</div>
+            </a>,
+            <a href={row?.source} target="_blank" rel="noopener noreferrer">
+              <div>{truncateString(row?.lead_investor?.replace(/\+/g, ','), 30)}</div>
+            </a>,
           ]);
         });
       }
@@ -73,21 +98,6 @@ const AllNFTs = () => {
     },
     [showCountOption, currentPage]
   );
-
-  const fetchData = useCallback(async () => {
-    setIsLoading(true);
-    const response = await axios.get(
-      `${API_BASE}/coin/getall?page=${
-        currentPage + 1
-      }}&pageSize=${showCountOption}`
-    );
-    drawTable(response.data);
-    setIsLoading(false);
-  }, [showCountOption, currentPage, drawTable]);
-
-  useEffect(() => {
-    fetchData();
-  }, [fetchData]);
 
   const handleSelectOption = (event, selectType) => {
     const { value } = event.target;
@@ -104,8 +114,20 @@ const AllNFTs = () => {
     setCurrentPage(selectedPage);
   };
 
+  useEffect(() => {
+    const getData = async () => {
+      setIsLoading(true);
+      const data = await getInvestments(currentPage + 1, showCountOption);
+      drawTable(data);
+      console.log(data)
+      setIsLoading(false);
+    };
+
+    getData();
+  }, [currentPage, showCountOption, drawTable]);
+
   return (
-    <div className="mt-10">
+    <Layout>
       <div className="flex justify-end mr-5">
         <select
           className="ml-5 px-8 py-3 rounded bg-gradient-btn text-white"
@@ -137,8 +159,8 @@ const AllNFTs = () => {
           disabledLinkClassName="brightness-75 hover:brightness-75 hover:cursor-not-allowed"
         />
       </div>
-    </div>
+    </Layout>
   );
 };
 
-export default AllNFTs;
+export default Investments;

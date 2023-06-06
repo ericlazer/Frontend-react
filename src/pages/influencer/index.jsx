@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Layout from '../../components/Layout'
 import { useParams } from 'react-router-dom'
 import { getInfluencerProfile } from '../../services/influencer.service'
-// import { getLinkPreview } from '../../services/linkPreview.service'
+// import { getLinkPreview } from '../../services/func.service'
 import { formatUnixTimestamp } from '../../utils/format'
 import { Default } from "react-awesome-spinners";
 

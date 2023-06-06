@@ -36,18 +36,19 @@ const Table = ({ tableOption = {}, tableData, isLoading }) => {
                 key={key}
                 className="text-white text-center hover:brightness-125"
               >
-                {row.map((item, i) => {
-                  return (
-                    <td
-                      key={i}
-                      className={`px-3 py-2 border border-[#313131] text-${
-                        tableData.columns[i] && tableData.columns[i].align
-                      }`}
-                    >
-                      {item}
-                    </td>
-                  );
-                })}
+                {row &&
+                  row?.map((item, i) => {
+                    return (
+                      <td
+                        key={i}
+                        className={`px-3 py-2 border border-[#313131] text-${
+                          tableData.columns[i] && tableData.columns[i].align
+                        }`}
+                      >
+                        {item}
+                      </td>
+                    );
+                  })}
               </tr>
             );
           })

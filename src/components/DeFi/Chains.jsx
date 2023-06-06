@@ -50,18 +50,18 @@ const Chains = () => {
         data.data.forEach((row, key) => {
           newData.rows.push([
             showCountOption * currentPage + (key + 1),
-            row.chainFullName,
+            row?.chainFullName,
             <div className="flex items-center gap-4">
-              {row.chainShortName && (
+              {row?.chainShortName && (
                 <ImageWithFallback
-                  src={`https://lcw.nyc3.cdn.digitaloceanspaces.com/production/currencies/32/${row.chainShortName.toLowerCase()}.png`}
+                  src={`https://lcw.nyc3.cdn.digitaloceanspaces.com/production/currencies/32/${row?.chainShortName.toLowerCase()}.png`}
                   fallback="/img/CoinImages/blank.png"
                   className="rounded-full w-7"
                 />
               )}
-              {row.chainShortName}
+              {row?.chainShortName}
             </div>,
-            marketCapFormat(row.tvl),
+            marketCapFormat(row?.tvl),
           ]);
         });
       }

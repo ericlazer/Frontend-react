@@ -82,17 +82,17 @@ const Fees = () => {
             showCountOption * currentPage + (rowIndex + 1),
             <div className="flex gap-4 items-center">
               <ImageWithFallback
-                src={row.logo}
+                src={row?.logo}
                 fallback="/img/CoinImages/blank.png"
                 className="rounded-full w-7"
               />
-              {row.name}
+              {row?.name}
             </div>,
-            row.category,
-            row.chain,
+            row?.category,
+            row?.chain,
             <div className="relative w-full h-full">
               <div className="flex gap-1 w-5">
-                {row.chains
+                {row?.chains
                   .filter((_, key) => key < 3)
                   .map((chain, key) => (
                     <ImageWithFallback
@@ -106,17 +106,17 @@ const Fees = () => {
                     />
                   ))}
               </div>
-              {row.chains.length > 3 ? (
+              {row?.chains.length > 3 ? (
                 <>
                   <Link
                     className="text-yellow-500"
                     onClick={() => handleExpendView(rowIndex)}
                   >
-                    more +{row.chains.length - 3}
+                    more +{row?.chains.length - 3}
                   </Link>
                   {expend === rowIndex ? (
                     <div className="absolute flex flex-wrap w-[200px] top-0 right-0 p-3 translate-x-[calc(100%+20px)] bg-[#323232] rounded z-10">
-                      {row.chains
+                      {row?.chains
                         .filter((_, key) => key >= 3)
                         .map((chain, key) => (
                           <ImageWithFallback
@@ -138,9 +138,9 @@ const Fees = () => {
                 <></>
               )}
             </div>,
-            marketCapFormat(row.dailyFees),
-            marketCapFormat(row.dailyRevenue),
-            marketCapFormat(row.tvl),
+            marketCapFormat(row?.dailyFees),
+            marketCapFormat(row?.dailyRevenue),
+            marketCapFormat(row?.tvl),
           ]);
         });
       }
