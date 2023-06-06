@@ -20,7 +20,7 @@ import Liquidation from './pages/coins/Liquidation';
 import CoinCharts from './pages/coins/Charts'
 import CoinSocial from './pages/coins/Social'
 import CoinExchange from './pages/coins/Exchange'
-import CoinInfluencer from './pages/coins/Social/Influencer';
+import Influencer from './pages/influencer';
 import CoinBreakDown from './pages/coins/CoinBreakDown'
 import CoinProfile from './pages/coins/Profile'
 import NFTSocial from './pages/nft/Social'
@@ -49,7 +49,7 @@ function App() {
         <Route exact path="/coins/liquidation" element={<Liquidation />} />
         <Route exact path="/coins/charts" element={<CoinCharts />} />
         <Route exact path="/coins/social" element={<CoinSocial />} />
-        <Route exact path="/influencers/:influencer" element={<CoinInfluencer />} />
+        <Route exact path="/influencers/:influencer" element={<Influencer />} />
         <Route exact path="/coins/exchange" element={<CoinExchange />} />
         <Route exact path="/coins/breakdown" element={<CoinBreakDown />} />
         <Route exact path="/coins/:coin" element={<CoinProfile />} />

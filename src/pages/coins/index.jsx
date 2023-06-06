@@ -68,7 +68,7 @@ const Coins = () => {
             />
           </XBox>
         </Link>
-        <Link to="/coins/charts">
+        <Link to="/coins/bitcoin">
           <XBox isBackground={true} header="Charts">
             <ChartCard
               height={350}

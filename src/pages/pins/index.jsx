@@ -57,14 +57,22 @@ const Pins = () => {
             <button className="text-[12px] text-white m-4 px-5 py-2 bg-[#3E3E3E] absolute z-10">
               News
             </button>
-            <img src="/img/news/1.png" className="w-full h-full object-cover absolute rounded-lg" alt="News" />
+            <img
+              src="/img/news/1.png"
+              className="w-full h-full object-cover absolute rounded-lg"
+              alt="News"
+            />
           </div>
           <div className="mt-2 p-2">
             <div className="flex justify-between items-center">
               <div className="w-[60%] text-white">
                 A new and latest Dapp that are taking over gaming industry
               </div>
-              <img src="/icon/LinkIcon.png" alt="Link Icon" className="w-4 h-4" />
+              <img
+                src="/icon/LinkIcon.png"
+                alt="Link Icon"
+                className="w-4 h-4"
+              />
             </div>
           </div>
         </XBox>
@@ -73,21 +81,33 @@ const Pins = () => {
             <button className="text-[12px] text-white m-4 px-5 py-2 bg-[#3E3E3E] absolute z-10">
               NFT
             </button>
-            <img src="/img/nfts/5.png" className="w-full h-full object-cover absolute rounded-lg" alt="NFTs" />
+            <img
+              src="/img/nfts/5.png"
+              className="w-full h-full object-cover absolute rounded-lg"
+              alt="NFTs"
+            />
           </div>
           <div className="mt-2 p-2">
             <div className="flex justify-between items-center">
               <span className="text-[16px] text-white">CAPTAINZ</span>
-              <img src="/icon/LinkIcon.png" alt="Link Icon" className="w-4 h-4" />
+              <img
+                src="/icon/LinkIcon.png"
+                alt="Link Icon"
+                className="w-4 h-4"
+              />
             </div>
             <div className="grid grid-cols-5 mt-2">
               <div>
                 <p className="text-[13px] text-white">35,701 ETH</p>
-                <p className="text-[13px] text-white opacity-[0.5]">total volume</p>
+                <p className="text-[13px] text-white opacity-[0.5]">
+                  total volume
+                </p>
               </div>
               <div className="text-center">
                 <p className="text-[13px] text-white">7.75 ETH</p>
-                <p className="text-[13px] text-white opacity-[0.5]">floor price</p>
+                <p className="text-[13px] text-white opacity-[0.5]">
+                  floor price
+                </p>
               </div>
               <div className="text-center">
                 <p className="text-[13px] text-white">4,630</p>
@@ -95,7 +115,9 @@ const Pins = () => {
               </div>
               <div className="text-center">
                 <p className="text-[13px] text-white">7.3 WETH</p>
-                <p className="text-[13px] text-white opacity-[0.5]">best offer</p>
+                <p className="text-[13px] text-white opacity-[0.5]">
+                  best offer
+                </p>
               </div>
               <div className="text-right">
                 <p className="text-[13px] text-white">0.7%</p>
