@@ -50,8 +50,7 @@ const Home = () => {
             chartData={[8, 7, 6, 7, 5, 4, 7, 4, 6, 5, 6, 3, 4, 6,]}
           />
         </XBox>
-        <XBox ixBackground={true} gap={true}>
-          <p className="text-[14px] text-white opacity-0.5">Crypto Price Gainers</p>
+        <XBox ixBackground={true} header="Crypto Gainers">
           {
             gainers && gainers.map((item, index) => (
               <div key={index} className="flex justify-between mt-2 items-center">
@@ -73,11 +72,10 @@ const Home = () => {
             ))
           }
         </XBox>
-        <XBox ixBackground={true} gap={true}>
-          <p className="text-[14px] text-white opacity-0.5">Crypto Price Losers</p>
+        <XBox ixBackground={true} header="Crypto Losers">
           {
             losers && losers.map((item, index) => (
-              <div key={index} className="flex justify-between mt-3 items-center">
+              <div key={index} className="flex justify-between mt-2 items-center">
                 <div className="flex gap-3 items-center">
                   <img src={item.imgURL} alt="Coin Losers" className="rounded-full" />
                   <div className="flex flex-col">
@@ -97,14 +95,14 @@ const Home = () => {
           }
         </XBox>
         <XBox ixBackground={true} gap={true}>
-        <div className="grid grid-cols-2">
-          {
-            NFTImages.map((item, index) => (
-              <div key={index} className="overflow-hidden">
-                <img src={item} className="w-[90%] h-[90%] object-cover" alt="NFTs" />
-              </div>
-            ))
-          }
+          <div className="grid grid-cols-2">
+            {
+              NFTImages.map((item, index) => (
+                <div key={index} className="overflow-hidden">
+                  <img src={item} className="w-[90%] h-[90%] object-cover" alt="NFTs" />
+                </div>
+              ))
+            }
           </div>
         </XBox>
         <Link to="/coins/bitcoin">
@@ -122,7 +120,7 @@ const Home = () => {
           </XBox>
         </Link>
         <XBox ixBackground={true} gap={true}>
-          <div className="h-[250px] relative rounded-lg">
+          <div className="h-[230px] relative rounded-lg">
             <img src="/img/nfts/5.png" className="w-full h-full object-cover absolute rounded-lg" alt="NFTs" />
           </div>
           <div className="mt-2 p-2">

@@ -1,31 +1,27 @@
 import React, { useEffect, useState } from 'react'
 import Layout from '../../components/Layout'
-import { Link } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
 import { getInfluencerProfile } from '../../services/influencer.service'
-import { getLinkPreview } from '../../services/linkPreview.service'
+// import { getLinkPreview } from '../../services/linkPreview.service'
 import { formatUnixTimestamp } from '../../utils/format'
 import { Default } from "react-awesome-spinners";
 
 const ProfileBox = ({ time, displayName, twitterName, avatarImg, link, engagement, likes }) => {
 
-  const [previewData, setPreviewData] = useState();
+  // const [previewData, setPreviewData] = useState();
 
-  useEffect(() => {
-    const getData = async () => {
-      const data = await getLinkPreview(link);
-      setPreviewData(data)
-    }
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     const data = await getLinkPreview(`https://twitter.com/anyuser/status/${link}`);
+  //     setPreviewData(data)
+  //   }
 
-    getData()
-  }, [])
+  //   getData()
+  // }, [])
 
   return (
-    <Link onClick={(event) => {
-      event.preventDefault();
-      window.open(`https://twitter.com/anyuser/status/${link}`);
-    }}>
-      <div className='bg-zoom-hover border border-gray-500 p-5 h-[600px] relative'>
+    <a href={`https://twitter.com/anyuser/status/${link}`} target="_blank" rel="noopener noreferrer">
+      <div className='bg-zoom-hover border border-gray-500 p-5 h-[270px] relative'>
         <div className='flex gap-5'>
           <img src={avatarImg} className='w-20 h-20 rounded-full' />
           <div className='flex flex-col gap-1'>
@@ -34,15 +30,17 @@ const ProfileBox = ({ time, displayName, twitterName, avatarImg, link, engagemen
             <p className='text-gray-500 text-[12px]'>{formatUnixTimestamp(time)}</p>
           </div>
         </div>
-        <p className='mt-5 text-white'>{previewData?.title}</p>
+        {/* <p className='mt-5 text-white'>{previewData?.title}</p>
         <span className='text-gray-500 text-sm'>{previewData?.description}</span>
-        <img src={previewData?.image} className="h-[200px] w-full mt-5" />
+        <img src={previewData?.image} className="h-[200px] w-full mt-5" /> */}
+        <p className='text-center text-sm mt-10'>Twitter ID: {link}</p>
+        <p className='text-center text-sm'>Read Article</p>
         <div className='flex gap-5 absolute bottom-2'>
           <p className='text-sm text-gray-500'>engagement: {engagement}</p>
           <p className='text-sm text-gray-500'>likes: {likes}</p>
         </div>
       </div>
-    </Link>
+    </a>
   )
 }
 

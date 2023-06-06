@@ -77,7 +77,7 @@ const Pins = () => {
           </div>
         </XBox>
         <XBox ixBackground={true}>
-          <div className="h-[250px] relative rounded-lg">
+          <div className="h-[230px] relative rounded-lg">
             <button className="text-[12px] text-white m-4 px-5 py-2 bg-[#3E3E3E] absolute z-10">
               NFT
             </button>

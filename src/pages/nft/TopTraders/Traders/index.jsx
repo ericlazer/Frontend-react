@@ -45,12 +45,9 @@ const Traders = () => {
       data.forEach((row, key) => {
         newData.rows.push([
           key + 1,
-          <Link onClick={(event) => {
-            event.preventDefault();
-            window.open(`https://etherscan.io/address/${row.account_address}`);
-          }}>
+          <a key={index} href={`https://etherscan.io/address/${row.account_address}`} target="_blank" rel="noopener noreferrer">
             <div>{row.account_address}</div>
-          </Link>,
+          </a>,
           <div>{marketCapFormat(row.volume)}</div>,
           <div>{numberFormat(row.trades_total)}</div>,
         ]);
