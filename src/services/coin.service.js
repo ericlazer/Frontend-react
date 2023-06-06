@@ -29,11 +29,6 @@ export const getInfluencers = async (timeRange) => {
   return response.data;
 }
 
-export const getInfluencerProfile = async (influencer) => {
-  const response = await axios.get(`${API_BASE}/coin/influencers/${influencer}`);
-  return response.data;
-}
-
 export const getCoinProfile = async (coinName) => {
   const response = await axios.get(`${API_BASE}/coin/${coinName}`)
   return response.data.coin;

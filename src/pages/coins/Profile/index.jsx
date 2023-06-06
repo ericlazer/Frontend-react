@@ -118,12 +118,9 @@ const Profile = () => {
                 <p className="text-green-500 text-[20px] mb-3">Block Explorers</p>
                 {
                   profile && profile.block_explorers.map((item, index) =>
-                    <Link key={index} onClick={(event) => {
-                      event.preventDefault();
-                      window.open(`${item}`);
-                    }}>
+                    <a key={index} href={item} target="_blank" rel="noopener noreferrer">
                       <span className="text-gray-500">{truncateString(item, 40)}</span>
-                    </Link>
+                    </a>
                   )
                 }
               </div>
@@ -131,12 +128,9 @@ const Profile = () => {
                 <p className="text-green-500 text-[20px] mb-3">Website</p>
                 {
                   profile && profile.website.map((item, index) =>
-                    <Link key={index} onClick={(event) => {
-                      event.preventDefault();
-                      window.open(`${item}`);
-                    }}>
-                      <p className="text-gray-500">{truncateString(item, 40)}</p>
-                    </Link>
+                    <a key={index} href={item} target="_blank" rel="noopener noreferrer">
+                      <span className="text-gray-500">{truncateString(item, 40)}</span>
+                    </a>
                   )
                 }
               </div>
@@ -144,23 +138,17 @@ const Profile = () => {
                 <p className="text-green-500 text-[20px] mb-3">Code</p>
                 {
                   profile && profile.code.map((item, index) =>
-                    <Link key={index} onClick={(event) => {
-                      event.preventDefault();
-                      window.open(`${item}`);
-                    }}>
+                    <a key={index} href={item} target="_blank" rel="noopener noreferrer">
                       <p className="text-gray-500">{truncateString(item, 40)}</p>
-                    </Link>
+                    </a>
                   )
                 }
                 </div>
               <div className="flex flex-col">
                 <p className="text-green-500 text-[20px] mb-3">Resource</p>
-                  <Link onClick={(event) => {
-                    event.preventDefault();
-                    window.open(profile?.resource.doc[0]);
-                  }}>
+                  <a href={profile?.resource.doc[0]} target="_blank" rel="noopener noreferrer">
                     <p className="text-gray-500">{profile?.resource.doc[0]}</p>
-                  </Link>
+                  </a>
               </div>
             </div>
           </>
